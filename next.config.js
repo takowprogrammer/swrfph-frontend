@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // Remove standalone output for Vercel compatibility
+    // output: 'standalone', // Commented out for Vercel
     // Helps Next.js find the correct project root in monorepos with multiple lockfiles
     outputFileTracingRoot: __dirname,
     // Disable experimental features that cause React Server Components issues
