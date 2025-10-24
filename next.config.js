@@ -1,30 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // Remove standalone output for Vercel compatibility
-    // output: 'standalone', // Commented out for Vercel
-    // Remove outputFileTracingRoot for Vercel compatibility
-    // outputFileTracingRoot: __dirname, // Commented out for Vercel
-    // Disable experimental features that cause React Server Components issues
-    experimental: {
-        // Disable optimizePackageImports to fix Vercel client reference issues
-        optimizePackageImports: [],
-    },
-    // Move serverComponentsExternalPackages to the correct location
-    serverExternalPackages: [],
-    // Disable React strict mode to avoid hydration issues
+    // Keep reactStrictMode false to avoid potential hydration issues
     reactStrictMode: false,
-    // Minimal webpack configuration
-    webpack: (config, { isServer }) => {
-        if (!isServer) {
-            config.resolve.fallback = {
-                ...config.resolve.fallback,
-                fs: false,
-                net: false,
-                tls: false,
-            };
-        }
-        return config;
-    },
+
+    // Essential configuration for external images
     images: {
         remotePatterns: [
             {
@@ -37,6 +16,8 @@ const nextConfig = {
             },
         ],
     },
+
+    // Ensure the API URL environment variable is available
     env: {
         NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000',
     },
