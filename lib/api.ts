@@ -383,9 +383,9 @@ class ApiService {
         return this.request(`/notifications${queryString ? `?${queryString}` : ''}`);
     }
 
-    async getNotificationStats() {
+    async getNotificationStats(): Promise<NotificationStats> {
         // Stats are role-aware now (admin: global, provider: scoped)
-        return this.request('/notifications/stats');
+        return this.request('/notifications/stats') as Promise<NotificationStats>;
     }
 
     async getNotification(id: string) {
