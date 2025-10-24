@@ -182,7 +182,8 @@ class ApiService {
         if (!refreshToken) return false;
 
         try {
-            const response = await fetch(`${this.baseURL}/auth/refresh`, {
+            const cleanBaseURL = this.baseURL.endsWith('/') ? this.baseURL.slice(0, -1) : this.baseURL;
+            const response = await fetch(`${cleanBaseURL}/auth/refresh`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ refreshToken }),
@@ -202,11 +203,14 @@ class ApiService {
 
     // Auth endpoints
     async login(credentials: LoginCredentials): Promise<AuthResponse> {
-        console.log('API Service - Making login request to:', `${this.baseURL}/auth/login`);
+        const cleanBaseURL = this.baseURL.endsWith('/') ? this.baseURL.slice(0, -1) : this.baseURL;
+        const loginURL = `${cleanBaseURL}/auth/login`;
+        
+        console.log('API Service - Making login request to:', loginURL);
         console.log('API Service - Credentials:', credentials);
 
         try {
-            const response = await fetch(`${this.baseURL}/auth/login`, {
+            const response = await fetch(loginURL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(credentials),
@@ -281,7 +285,8 @@ class ApiService {
         }
 
         const queryString = queryParams.toString();
-        const response = await fetch(`${this.baseURL}/medicines${queryString ? `?${queryString}` : ''}`, {
+        const cleanBaseURL = this.baseURL.endsWith('/') ? this.baseURL.slice(0, -1) : this.baseURL;
+        const response = await fetch(`${cleanBaseURL}/medicines${queryString ? `?${queryString}` : ''}`, {
             headers: {
                 'Content-Type': 'application/json',
             },
