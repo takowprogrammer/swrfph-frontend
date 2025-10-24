@@ -130,7 +130,11 @@ class ApiService {
             },
         };
 
-        const response = await fetch(`${this.baseURL}${endpoint}`, config);
+        const cleanBaseURL = this.baseURL.endsWith('/') ? this.baseURL.slice(0, -1) : this.baseURL;
+        const cleanEndpoint = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
+        const requestURL = `${cleanBaseURL}/${cleanEndpoint}`;
+
+        const response = await fetch(requestURL, config);
 
         if (!response.ok) {
             if (response.status === 401) {
@@ -143,9 +147,10 @@ class ApiService {
                         ...config.headers,
                         Authorization: `Bearer ${newToken}`,
                     };
-                    const retryResponse = await fetch(`${this.baseURL}${endpoint}`, config);
+                    const retryResponse = await fetch(requestURL, config);
                     if (!retryResponse.ok) {
-                        throw new Error(`API Error: ${retryResponse.status}`);
+                        const errorData = await retryResponse.json().catch(() => ({ message: `API Error: ${retryResponse.status}` }));
+                        throw new Error(errorData.message);
                     }
                     return retryResponse.json();
                 } else {
