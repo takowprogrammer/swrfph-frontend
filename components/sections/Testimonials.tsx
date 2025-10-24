@@ -79,8 +79,8 @@ export function Testimonials() {
 
                 <div ref={ref} className="max-w-4xl mx-auto">
                     <div className={`transition-all duration-700 transform ${isVisible
-                            ? 'translate-y-0 opacity-100'
-                            : 'translate-y-8 opacity-0'
+                        ? 'translate-y-0 opacity-100'
+                        : 'translate-y-8 opacity-0'
                         }`}>
                         <div className="bg-gradient-to-br from-health-50 to-white rounded-2xl shadow-xl p-8 md:p-12 relative overflow-hidden">
                             {/* Quote icon */}
@@ -139,8 +139,8 @@ export function Testimonials() {
                                         key={index}
                                         onClick={() => setCurrentIndex(index)}
                                         className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
-                                                ? 'bg-health-600 scale-125'
-                                                : 'bg-gray-300 hover:bg-gray-400'
+                                            ? 'bg-health-600 scale-125'
+                                            : 'bg-gray-300 hover:bg-gray-400'
                                             }`}
                                     />
                                 ))}
