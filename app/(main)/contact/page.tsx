@@ -83,11 +83,11 @@ export default function ContactPage() {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSubmitted, setIsSubmitted] = useState(false)
 
-    const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation()
-    const { ref: formRef, isVisible: formVisible } = useScrollAnimation()
-    const { ref: contactRef, isVisible: contactVisible } = useScrollAnimation()
-    const { ref: faqRef, isVisible: faqVisible } = useScrollAnimation()
-    const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation()
+    const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref: formRef, isVisible: formVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref: contactRef, isVisible: contactVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref: faqRef, isVisible: faqVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation<HTMLDivElement>()
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target

@@ -10,7 +10,7 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { useEffect, useState } from 'react'
 
 export function Hero() {
-    const { ref, isVisible } = useScrollAnimation()
+    const { ref, isVisible } = useScrollAnimation<HTMLDivElement>()
     const [scrollY, setScrollY] = useState(0)
     const [particles, setParticles] = useState<Array<{ id: number, left: number, top: number, delay: number, duration: number }>>([])
 

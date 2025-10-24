@@ -26,8 +26,8 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import Image from 'next/image'
 
 export default function ProgramsPage() {
-    const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation()
-    const { ref: programsRef, isVisible: programsVisible } = useScrollAnimation()
+    const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref: programsRef, isVisible: programsVisible } = useScrollAnimation<HTMLDivElement>()
 
     const programs = [
         {

@@ -26,9 +26,9 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import Image from 'next/image'
 
 export default function ImpactPage() {
-    const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation()
-    const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation()
-    const { ref: achievementsRef, isVisible: achievementsVisible } = useScrollAnimation()
+    const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref: achievementsRef, isVisible: achievementsVisible } = useScrollAnimation<HTMLDivElement>()
 
     const keyStats = [
         {

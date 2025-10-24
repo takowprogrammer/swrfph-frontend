@@ -7,7 +7,7 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import Link from 'next/link'
 
 export function Services() {
-    const { ref, isVisible } = useScrollAnimation()
+    const { ref, isVisible } = useScrollAnimation<HTMLDivElement>()
 
     const programs = [
         {

@@ -9,7 +9,7 @@ import { AnimatedCounter } from '@/components/ui/AnimatedCounter'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 
 export function SupportMission() {
-    const { ref, isVisible } = useScrollAnimation()
+    const { ref, isVisible } = useScrollAnimation<HTMLDivElement>()
     const progress = (32500 / 50000) * 100
 
     const goals = [

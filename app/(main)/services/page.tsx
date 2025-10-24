@@ -78,10 +78,10 @@ const processSteps = [
 ]
 
 export default function ServicesPage() {
-    const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation()
-    const { ref: supplyRef, isVisible: supplyVisible } = useScrollAnimation()
-    const { ref: trainingRef, isVisible: trainingVisible } = useScrollAnimation()
-    const { ref: processRef, isVisible: processVisible } = useScrollAnimation()
+    const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref: supplyRef, isVisible: supplyVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref: trainingRef, isVisible: trainingVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref: processRef, isVisible: processVisible } = useScrollAnimation<HTMLDivElement>()
 
     return (
         <div className="bg-white">

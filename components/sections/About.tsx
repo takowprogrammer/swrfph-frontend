@@ -6,7 +6,7 @@ import { Calendar, Users, Shield, Award, Heart, Globe, Building, Target } from '
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 
 export function About() {
-    const { ref, isVisible } = useScrollAnimation()
+    const { ref, isVisible } = useScrollAnimation<HTMLDivElement>()
 
     const timeline = [
         {

@@ -25,7 +25,7 @@ const impacts = [
 ]
 
 export function Impact() {
-    const { ref, isVisible } = useScrollAnimation()
+    const { ref, isVisible } = useScrollAnimation<HTMLDivElement>()
 
     const statistics = [
         {

@@ -8,7 +8,7 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { Button } from '@/components/ui/button'
 
 export function ServicesPreview() {
-    const { ref, isVisible } = useScrollAnimation()
+    const { ref, isVisible } = useScrollAnimation<HTMLDivElement>()
 
     const programs = [
         {

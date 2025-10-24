@@ -45,7 +45,7 @@ const testimonials = [
 
 export function Testimonials() {
     const [currentIndex, setCurrentIndex] = useState(0)
-    const { ref, isVisible } = useScrollAnimation()
+    const { ref, isVisible } = useScrollAnimation<HTMLDivElement>()
 
     useEffect(() => {
         const interval = setInterval(() => {

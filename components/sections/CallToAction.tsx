@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 
 export function CallToAction() {
-    const { ref, isVisible } = useScrollAnimation()
+    const { ref, isVisible } = useScrollAnimation<HTMLDivElement>()
 
     const actions = [
         {
