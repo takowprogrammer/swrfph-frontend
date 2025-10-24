@@ -171,11 +171,11 @@ const governingOrgans = [
 ]
 
 export default function AboutPage() {
-    const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation()
-    const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation()
-    const { ref: achievementsRef, isVisible: achievementsVisible } = useScrollAnimation()
-    const { ref: timelineRef, isVisible: timelineVisible } = useScrollAnimation()
-    const { ref: keyAchievementsRef, isVisible: keyAchievementsVisible } = useScrollAnimation()
+    const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref: achievementsRef, isVisible: achievementsVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref: timelineRef, isVisible: timelineVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref: keyAchievementsRef, isVisible: keyAchievementsVisible } = useScrollAnimation<HTMLDivElement>()
 
     return (
         <div className="bg-white">
