@@ -28,10 +28,20 @@ export function AnimatedButton({
         }
     }
 
+    // Map custom sizes to Button component sizes
+    const getButtonSize = (size: 'sm' | 'md' | 'lg') => {
+        switch (size) {
+            case 'sm': return 'sm'
+            case 'md': return 'default'
+            case 'lg': return 'lg'
+            default: return 'default'
+        }
+    }
+
     return (
         <Button
             variant={variant}
-            size={size}
+            size={getButtonSize(size)}
             className={`relative overflow-hidden ${className}`}
             onClick={handleClick}
             {...props}
