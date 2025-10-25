@@ -136,7 +136,7 @@ export function OrderDetailsModal({ order, isOpen, onClose }: OrderDetailsModalP
                                                 // Remove any $ symbols and parse as number
                                                 const price = order.totalPrice;
                                                 const cleanPrice = typeof price === 'string' 
-                                                    ? parseFloat(price.replace(/[$,]/g, ''))
+                                                    ? parseFloat((price as string).replace(/[$,]/g, ''))
                                                     : Number(price);
                                                 return cleanPrice.toFixed(2);
                                             })()} FCFA
@@ -169,7 +169,7 @@ export function OrderDetailsModal({ order, isOpen, onClose }: OrderDetailsModalP
                                                     Unit Price: {(() => {
                                                         const price = item.medicine.price;
                                                         const cleanPrice = typeof price === 'string' 
-                                                            ? parseFloat(price.replace(/[$,]/g, ''))
+                                                            ? parseFloat((price as string).replace(/[$,]/g, ''))
                                                             : Number(price);
                                                         return cleanPrice.toFixed(2);
                                                     })()} FCFA
@@ -181,7 +181,7 @@ export function OrderDetailsModal({ order, isOpen, onClose }: OrderDetailsModalP
                                                 {(() => {
                                                     const price = item.medicine.price;
                                                     const cleanPrice = typeof price === 'string' 
-                                                        ? parseFloat(price.replace(/[$,]/g, ''))
+                                                        ? parseFloat((price as string).replace(/[$,]/g, ''))
                                                         : Number(price);
                                                     return (item.quantity * cleanPrice).toFixed(2);
                                                 })()} FCFA

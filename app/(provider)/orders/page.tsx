@@ -311,7 +311,7 @@ export default function OrderHistoryPage() {
                                                                 // Remove any $ symbols and parse as number
                                                                 const price = order.totalPrice;
                                                                 const cleanPrice = typeof price === 'string' 
-                                                                    ? parseFloat(price.replace(/[$,]/g, ''))
+                                                                    ? parseFloat((price as string).replace(/[$,]/g, ''))
                                                                     : Number(price);
                                                                 return cleanPrice.toFixed(2);
                                                             })()} FCFA
