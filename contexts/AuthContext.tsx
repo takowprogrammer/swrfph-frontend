@@ -18,6 +18,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [loading, setLoading] = useState(true);
     const inactivityTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+    // Utility to clear tokens from localStorage
+    const clearAuthTokens = useCallback(() => {
+        if (typeof window !== 'undefined') {
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
+            localStorage.removeItem('user_role');
+        }
+    }, []);
+
+    // Logout function
+    const logout = useCallback(async () => {
+        try {
+            // No backend call for logout, simply clear tokens and state
+            clearAuthTokens();
+        } catch (error) {
+            console.error('Logout error:', error);
+        } finally {
+            setUser(null);
+        }
+    }, [clearAuthTokens]); // Depend on clearAuthTokens
+
+    // Reset inactivity timer
     const resetInactivityTimer = useCallback(() => {
         if (inactivityTimeoutRef.current) {
             clearTimeout(inactivityTimeoutRef.current);
@@ -28,8 +50,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 logout();
             }, 3600000); // 1 hour
         }
-    }, [user, logout]);
+    }, [user, logout]); // Depend on user and logout
 
+    // Effect to set up/clean up activity listeners
     useEffect(() => {
         const handleActivity = () => {
             resetInactivityTimer();
@@ -52,9 +75,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 clearTimeout(inactivityTimeoutRef.current);
             }
         };
-    }, [user, resetInactivityTimer]);
+    }, [user, resetInactivityTimer]); // Depend on user and resetInactivityTimer
 
-    useEffect(() => {
+    useEffect(() => { // Original initAuth effect
         const initAuth = async () => {
             // Check if we're in the browser
             if (typeof window === 'undefined') {
@@ -80,7 +103,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         };
 
         initAuth();
-    }, []);
+    }, [clearAuthTokens]); // Depend on clearAuthTokens
 
     const login = async (email: string, password: string) => {
         try {
@@ -105,25 +128,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         } catch (error) {
             console.error('AuthContext - Login error:', error)
             throw new Error('Login failed. Please check your credentials.');
-        }
-    };
-
-    const clearAuthTokens = () => {
-        if (typeof window !== 'undefined') {
-            localStorage.removeItem('access_token');
-            localStorage.removeItem('refresh_token');
-            localStorage.removeItem('user_role');
-        }
-    };
-
-    const logout = async () => {
-        try {
-            // No backend call for logout, simply clear tokens and state
-            clearAuthTokens();
-        } catch (error) {
-            console.error('Logout error:', error);
-        } finally {
-            setUser(null);
         }
     };
 
