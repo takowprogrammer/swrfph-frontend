@@ -205,7 +205,7 @@ class ApiService {
     async login(credentials: LoginCredentials): Promise<AuthResponse> {
         const cleanBaseURL = this.baseURL.endsWith('/') ? this.baseURL.slice(0, -1) : this.baseURL;
         const loginURL = `${cleanBaseURL}/auth/login`;
-        
+
         console.log('API Service - Making login request to:', loginURL);
         console.log('API Service - Credentials:', credentials);
 
