@@ -134,9 +134,43 @@ class ApiService {
         const cleanEndpoint = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
         const requestURL = `${cleanBaseURL}/${cleanEndpoint}`;
 
-        const response = await fetch(requestURL, config);
+        let response;
+        try {
+            response = await fetch(requestURL, config);
+        } catch (fetchError: any) {
+            console.error('❌ Fetch Error:', {
+                error: fetchError.message,
+                type: fetchError.name,
+                requestURL,
+                stack: fetchError.stack
+            });
+            throw new Error(`Network error: ${fetchError.message}. Check if the backend is running and reachable.`);
+        }
+
+        // Log the full response details for debugging
+        console.log('📡 API Response:', {
+            status: response.status,
+            statusText: response.statusText,
+            ok: response.ok,
+            headers: Object.fromEntries(response.headers.entries())
+        });
 
         if (!response.ok) {
+            // Try to parse error details from response body
+            let errorData: any = {};
+            let rawErrorText: string | null = null;
+            try {
+                errorData = await response.json();
+            } catch (jsonError) {
+                // If JSON parsing fails, try to get raw text
+                try {
+                    rawErrorText = await response.text();
+                    console.warn('API Error: Failed to parse JSON error, raw text received:', rawErrorText);
+                } catch (textError) {
+                    console.warn('API Error: Failed to get any error body.', textError);
+                }
+            }
+
             if (response.status === 401) {
                 // Token expired, try to refresh
                 const refreshed = await this.refreshToken();
@@ -149,29 +183,24 @@ class ApiService {
                     };
                     const retryResponse = await fetch(requestURL, config);
                     if (!retryResponse.ok) {
-                        const errorData = await retryResponse.json().catch(() => ({ message: `API Error: ${retryResponse.status}` }));
-                        throw new Error(errorData.message);
+                        // Re-fetch failed after refresh, get specific error
+                        const retryErrorData = await retryResponse.json().catch(() => ({ message: `API Error: ${retryResponse.status}` }));
+                        throw new Error(retryErrorData.message || `API Error: ${retryResponse.status} after refresh`);
                     }
                     return retryResponse.json();
                 } else {
                     // Refresh failed, redirect to login
                     localStorage.removeItem('access_token');
                     localStorage.removeItem('refresh_token');
+                    localStorage.removeItem('user_role');
                     window.location.href = '/login';
-                    throw new Error('Authentication failed');
+                    throw new Error('Authentication failed or session expired.');
                 }
+            } else {
+                // Other non-401 HTTP errors
+                const message = errorData.message || rawErrorText || `API Error: ${response.status} ${response.statusText || 'Unknown Error'}`;
+                throw new Error(message);
             }
-            // Get detailed error message
-            let errorMessage = `API Error: ${response.status}`;
-            try {
-                const errorData = await response.json();
-                errorMessage = errorData.message || errorData.error || errorMessage;
-                console.error('API Error Details:', errorData);
-            } catch (e) {
-                console.error('Could not parse error response');
-            }
-
-            throw new Error(errorMessage);
         }
 
         return response.json();

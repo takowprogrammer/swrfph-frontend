@@ -24,6 +24,7 @@ import {
 } from 'lucide-react'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function ImpactPage() {
     const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>()
@@ -265,11 +266,16 @@ export default function ImpactPage() {
                                 innovative programs and dedicated service since 1989
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Button size="lg" className="bg-white text-green-600 hover:bg-green-50">
-                                    View Our Programs
-                                    <ArrowRight className="ml-2 h-5 w-5" />
-                                </Button>
-                                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-600">
+                                <Link href="/programs">
+                                    <Button size="lg" className="bg-white text-green-600 hover:bg-green-50 relative overflow-hidden group">
+                                        <span className="relative z-10 opacity-100 flex items-center">
+                                            View Our Programs
+                                            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                                        </span>
+                                        <div className="absolute inset-0 bg-green-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                                    </Button>
+                                </Link>
+                                <Button size="lg" variant="outline" className="border-white text-white bg-green-700/20 hover:bg-white hover:text-green-600">
                                     Download Report
                                 </Button>
                             </div>
@@ -483,13 +489,17 @@ export default function ImpactPage() {
                             Together, we can build a healthier future for all.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Button size="lg" className="bg-white text-green-600 hover:bg-green-50">
-                                Partner With Us
-                                <ArrowRight className="ml-2 h-5 w-5" />
-                            </Button>
-                            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-600">
-                                View Our Programs
-                            </Button>
+                            <Link href="/contact">
+                                <Button size="lg" className="bg-white text-green-600 hover:bg-green-50">
+                                    Partner With Us
+                                    <ArrowRight className="ml-2 h-5 w-5" />
+                                </Button>
+                            </Link>
+                            <Link href="/programs">
+                                <Button size="lg" variant="outline" className="border-white text-white bg-green-700/20 hover:bg-white hover:text-green-600">
+                                    View Our Programs
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </section>

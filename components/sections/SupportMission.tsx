@@ -119,13 +119,10 @@ export function SupportMission() {
                         }`}>
                         <AnimatedButton
                             size="lg"
-                            className="bg-white text-health-700 hover:bg-health-50 font-semibold px-8 py-3 text-lg group relative overflow-hidden"
+                            className="bg-white text-health-700 hover:bg-health-800 font-semibold px-8 py-3 text-lg transition-colors duration-300 flex items-center justify-center"
                         >
-                            <span className="relative z-10 flex items-center">
-                                <Heart className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                                Donate Now
-                            </span>
-                            <div className="absolute inset-0 bg-health-100 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                            <Heart className="w-5 h-5 mr-2" />
+                            Donate Now
                         </AnimatedButton>
 
                         <Link href="/about">

@@ -13,6 +13,8 @@ export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const { user } = useAuth()
 
+    console.log('Header - User state:', user)
+
     const navigation = [
         { name: 'Home', href: '/' },
         { name: 'About', href: '/about' },

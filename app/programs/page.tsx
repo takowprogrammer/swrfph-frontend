@@ -179,20 +179,24 @@ export default function ProgramsPage() {
                                 Comprehensive health initiatives serving the South West Region of Cameroon since 1989
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Button size="lg" className="bg-white text-green-600 hover:bg-green-50">
-                                    View All Programs
-                                    <ArrowRight className="ml-2 h-5 w-5" />
-                                </Button>
-                                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-600">
-                                    Partner With Us
-                                </Button>
+                                <Link href="#programs-overview">
+                                    <Button size="lg" className="bg-white text-green-600 hover:bg-green-50">
+                                        View All Programs
+                                        <ArrowRight className="ml-2 h-5 w-5" />
+                                    </Button>
+                                </Link>
+                                <Link href="/contact">
+                                    <Button size="lg" variant="outline" className="border-white text-white bg-green-700/20 hover:bg-white hover:text-green-600">
+                                        Partner With Us
+                                    </Button>
+                                </Link>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* Programs Overview */}
-                <section className="py-16 sm:py-24 bg-gray-50">
+                <section id="programs-overview" className="py-16 sm:py-24 bg-gray-50">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-16">
                             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -343,7 +347,7 @@ export default function ProgramsPage() {
                                 </button>
                             </Link>
                             <Link href="/contact">
-                                <button className="border-2 border-white text-white hover:bg-white hover:text-green-600 font-semibold px-8 py-4 rounded-lg transition-all duration-300 text-lg shadow-lg hover:shadow-xl transform hover:scale-105">
+                                <button className="border-2 border-white text-white bg-green-700/20 hover:bg-white hover:text-green-600 font-semibold px-8 py-4 rounded-lg transition-all duration-300 text-lg shadow-lg hover:shadow-xl transform hover:scale-105">
                                     Contact Us
                                 </button>
                             </Link>
