@@ -134,9 +134,10 @@ export function OrderDetailsModal({ order, isOpen, onClose }: OrderDetailsModalP
                                         <span className="font-semibold text-lg">
                                             {(() => {
                                                 // Remove any $ symbols and parse as number
-                                                const cleanPrice = typeof order.totalPrice === 'string'
-                                                    ? parseFloat(order.totalPrice.replace(/[$,]/g, ''))
-                                                    : order.totalPrice;
+                                                const price = order.totalPrice;
+                                                const cleanPrice = typeof price === 'string' 
+                                                    ? parseFloat(price.replace(/[$,]/g, ''))
+                                                    : Number(price);
                                                 return cleanPrice.toFixed(2);
                                             })()} FCFA
                                         </span>
@@ -166,9 +167,10 @@ export function OrderDetailsModal({ order, isOpen, onClose }: OrderDetailsModalP
                                                 </span>
                                                 <span className="text-sm text-gray-600">
                                                     Unit Price: {(() => {
-                                                        const cleanPrice = typeof item.medicine.price === 'string' 
-                                                            ? parseFloat(item.medicine.price.replace(/[$,]/g, ''))
-                                                            : item.medicine.price;
+                                                        const price = item.medicine.price;
+                                                        const cleanPrice = typeof price === 'string' 
+                                                            ? parseFloat(price.replace(/[$,]/g, ''))
+                                                            : Number(price);
                                                         return cleanPrice.toFixed(2);
                                                     })()} FCFA
                                                 </span>
@@ -177,9 +179,10 @@ export function OrderDetailsModal({ order, isOpen, onClose }: OrderDetailsModalP
                                         <div className="text-right">
                                             <p className="font-semibold">
                                                 {(() => {
-                                                    const cleanPrice = typeof item.medicine.price === 'string' 
-                                                        ? parseFloat(item.medicine.price.replace(/[$,]/g, ''))
-                                                        : item.medicine.price;
+                                                    const price = item.medicine.price;
+                                                    const cleanPrice = typeof price === 'string' 
+                                                        ? parseFloat(price.replace(/[$,]/g, ''))
+                                                        : Number(price);
                                                     return (item.quantity * cleanPrice).toFixed(2);
                                                 })()} FCFA
                                             </p>

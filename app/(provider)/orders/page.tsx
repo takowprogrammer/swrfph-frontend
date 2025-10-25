@@ -309,9 +309,10 @@ export default function OrderHistoryPage() {
                                                             <DollarSign className="h-4 w-4 mr-2" />
                                                             {(() => {
                                                                 // Remove any $ symbols and parse as number
-                                                                const cleanPrice = typeof order.totalPrice === 'string'
-                                                                    ? parseFloat(order.totalPrice.replace(/[$,]/g, ''))
-                                                                    : order.totalPrice;
+                                                                const price = order.totalPrice;
+                                                                const cleanPrice = typeof price === 'string' 
+                                                                    ? parseFloat(price.replace(/[$,]/g, ''))
+                                                                    : Number(price);
                                                                 return cleanPrice.toFixed(2);
                                                             })()} FCFA
                                                         </div>
