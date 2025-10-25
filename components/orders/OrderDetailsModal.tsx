@@ -8,6 +8,16 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Package, Calendar, User, CreditCard, MapPin, Phone, Mail } from 'lucide-react'
 // Using native JavaScript date formatting instead of date-fns
 
+const formatPrice = (price: string | number | undefined | null): string => {
+    if (price === undefined || price === null) {
+        return "0.00 FCFA";
+    }
+    const cleanPrice = typeof price === 'string'
+        ? parseFloat(price.replace(/[$,]/g, ''))
+        : Number(price);
+    return cleanPrice.toFixed(2) + " FCFA";
+};
+
 interface OrderItem {
     medicine: {
         name: string;
@@ -132,14 +142,7 @@ export function OrderDetailsModal({ order, isOpen, onClose }: OrderDetailsModalP
                                     <div className="flex justify-between">
                                         <span className="text-gray-600">Total Amount:</span>
                                         <span className="font-semibold text-lg">
-                                            {(() => {
-                                                // Remove any $ symbols and parse as number
-                                                const price = order.totalPrice;
-                                                const cleanPrice = typeof price === 'string' 
-                                                    ? parseFloat((price as string).replace(/[$,]/g, ''))
-                                                    : Number(price);
-                                                return cleanPrice.toFixed(2);
-                                            })()} FCFA
+                                            {formatPrice(order.totalPrice)}
                                         </span>
                                     </div>
                                 </div>
@@ -166,25 +169,13 @@ export function OrderDetailsModal({ order, isOpen, onClose }: OrderDetailsModalP
                                                     Quantity: {item.quantity}
                                                 </span>
                                                 <span className="text-sm text-gray-600">
-                                                    Unit Price: {(() => {
-                                                        const price = item.medicine.price;
-                                                        const cleanPrice = typeof price === 'string' 
-                                                            ? parseFloat((price as string).replace(/[$,]/g, ''))
-                                                            : Number(price);
-                                                        return cleanPrice.toFixed(2);
-                                                    })()} FCFA
+                                                    Unit Price: {formatPrice(item.medicine.price)}
                                                 </span>
                                             </div>
                                         </div>
                                         <div className="text-right">
                                             <p className="font-semibold">
-                                                {(() => {
-                                                    const price = item.medicine.price;
-                                                    const cleanPrice = typeof price === 'string' 
-                                                        ? parseFloat((price as string).replace(/[$,]/g, ''))
-                                                        : Number(price);
-                                                    return (item.quantity * cleanPrice).toFixed(2);
-                                                })()} FCFA
+                                                {formatPrice(item.quantity * item.medicine.price)}
                                             </p>
                                         </div>
                                     </div>

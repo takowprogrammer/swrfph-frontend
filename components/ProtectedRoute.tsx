@@ -19,20 +19,26 @@ export default function ProtectedRoute({
     const router = useRouter()
 
     useEffect(() => {
-        console.log('ProtectedRoute - loading:', loading, 'isAuthenticated:', isAuthenticated, 'user:', user, 'requiredRole:', requiredRole)
+        console.log('ProtectedRoute - EFFECT RUNNING:', {
+            loading,
+            isAuthenticated,
+            user: user ? { id: user.id, email: user.email, role: user.role } : null,
+            requiredRole,
+            redirectTo
+        })
 
         if (!loading) {
             if (!isAuthenticated) {
-                console.log('Not authenticated, redirecting to:', redirectTo)
+                console.log('ProtectedRoute - Redirecting: Not authenticated', redirectTo)
                 router.push(redirectTo)
                 return
             }
 
             if (requiredRole) {
                 const allowedRoles = Array.isArray(requiredRole) ? requiredRole : [requiredRole]
-                console.log('Checking role - user role:', user?.role, 'allowed roles:', allowedRoles)
+                console.log('ProtectedRoute - Checking role:', { userRole: user?.role, allowedRoles })
                 if (!user?.role || !allowedRoles.includes(user.role as 'ADMIN' | 'PROVIDER')) {
-                    console.log('Unauthorized, redirecting to /unauthorized')
+                    console.log('ProtectedRoute - Redirecting: Unauthorized role')
                     router.push('/unauthorized')
                     return
                 }
@@ -48,20 +54,6 @@ export default function ProtectedRoute({
         )
     }
 
-    if (!isAuthenticated) {
-        return null
-    }
-
-    if (requiredRole) {
-        const allowedRoles = Array.isArray(requiredRole) ? requiredRole : [requiredRole]
-        if (!user?.role || !allowedRoles.includes(user.role as 'ADMIN' | 'PROVIDER')) {
-            return (
-                <div className="flex items-center justify-center h-64">
-                    <div className="text-lg text-red-600">Unauthorized access</div>
-                </div>
-            )
-        }
-    }
-
+    // Render children if authenticated and authorized after loading
     return <>{children}</>
 }

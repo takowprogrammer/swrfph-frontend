@@ -5,13 +5,23 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
-import { Download, Search, Filter, Package, Calendar, DollarSign } from 'lucide-react';
+import { Download, Search, Filter, Package, Calendar } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { apiService } from '@/lib/api';
 import { toast } from 'sonner';
 import { OrderSearchFilters, OrderFilters } from '@/components/orders/OrderSearchFilters';
 import { ExportService } from '@/lib/exportService';
 import { OrderDetailsModal } from '@/components/orders/OrderDetailsModal';
+
+const formatPrice = (price: string | number | undefined | null): string => {
+    if (price === undefined || price === null) {
+        return "0.00 FCFA";
+    }
+    const cleanPrice = typeof price === 'string'
+        ? parseFloat(price.replace(/[$,]/g, ''))
+        : Number(price);
+    return cleanPrice.toFixed(2) + " FCFA";
+};
 
 interface OrderItem {
     medicine: {
@@ -60,6 +70,7 @@ export default function OrderHistoryPage() {
 
             try {
                 const data = await apiService.getUserOrders(user.id) as Order[];
+                console.log("Raw orders data from API:", data);
                 setOrders(data);
                 setFilteredOrders(data);
             } catch (error) {
@@ -306,15 +317,7 @@ export default function OrderHistoryPage() {
                                                             {order.items.length} items
                                                         </div>
                                                         <div className="flex items-center text-sm text-gray-600">
-                                                            <DollarSign className="h-4 w-4 mr-2" />
-                                                            {(() => {
-                                                                // Remove any $ symbols and parse as number
-                                                                const price = order.totalPrice;
-                                                                const cleanPrice = typeof price === 'string' 
-                                                                    ? parseFloat((price as string).replace(/[$,]/g, ''))
-                                                                    : Number(price);
-                                                                return cleanPrice.toFixed(2);
-                                                            })()} FCFA
+                                                            {formatPrice(order.totalPrice)}
                                                         </div>
                                                     </div>
 

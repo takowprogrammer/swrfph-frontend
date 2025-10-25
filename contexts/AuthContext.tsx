@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, ReactNode, useRef, useCallback } from 'react';
 import { apiService, User } from '@/lib/api';
 
 interface AuthContextType {
@@ -16,6 +16,43 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
+    const inactivityTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+    const resetInactivityTimer = useCallback(() => {
+        if (inactivityTimeoutRef.current) {
+            clearTimeout(inactivityTimeoutRef.current);
+        }
+        if (user) { // Only set timeout if user is logged in
+            inactivityTimeoutRef.current = setTimeout(() => {
+                console.log("Inactivity timeout reached, logging out...");
+                logout();
+            }, 3600000); // 1 hour
+        }
+    }, [user, logout]);
+
+    useEffect(() => {
+        const handleActivity = () => {
+            resetInactivityTimer();
+        };
+
+        if (typeof window !== 'undefined' && user) {
+            window.addEventListener("mousemove", handleActivity);
+            window.addEventListener("keydown", handleActivity);
+            window.addEventListener("scroll", handleActivity);
+            resetInactivityTimer(); // Initialize timer on login/page load
+        }
+
+        return () => {
+            if (typeof window !== 'undefined') {
+                window.removeEventListener("mousemove", handleActivity);
+                window.removeEventListener("keydown", handleActivity);
+                window.removeEventListener("scroll", handleActivity);
+            }
+            if (inactivityTimeoutRef.current) {
+                clearTimeout(inactivityTimeoutRef.current);
+            }
+        };
+    }, [user, resetInactivityTimer]);
 
     useEffect(() => {
         const initAuth = async () => {
@@ -36,9 +73,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                     localStorage.setItem('user_role', userData.role);
                 } catch (error) {
                     console.error('Auth initialization failed:', error);
-                    localStorage.removeItem('access_token');
-                    localStorage.removeItem('refresh_token');
-                    localStorage.removeItem('user_role');
+                    clearAuthTokens();
                 }
             }
             setLoading(false);
@@ -73,16 +108,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
     };
 
+    const clearAuthTokens = () => {
+        if (typeof window !== 'undefined') {
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
+            localStorage.removeItem('user_role');
+        }
+    };
+
     const logout = async () => {
         try {
-            await apiService.logout();
+            // No backend call for logout, simply clear tokens and state
+            clearAuthTokens();
         } catch (error) {
             console.error('Logout error:', error);
         } finally {
             setUser(null);
-            if (typeof window !== 'undefined') {
-                localStorage.removeItem('user_role');
-            }
         }
     };
 
