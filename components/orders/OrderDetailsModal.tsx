@@ -132,7 +132,13 @@ export function OrderDetailsModal({ order, isOpen, onClose }: OrderDetailsModalP
                                     <div className="flex justify-between">
                                         <span className="text-gray-600">Total Amount:</span>
                                         <span className="font-semibold text-lg">
-                                            {order.totalPrice.toFixed(2)} FCFA
+                                            {(() => {
+                                                // Remove any $ symbols and parse as number
+                                                const cleanPrice = typeof order.totalPrice === 'string'
+                                                    ? parseFloat(order.totalPrice.replace(/[$,]/g, ''))
+                                                    : order.totalPrice;
+                                                return cleanPrice.toFixed(2);
+                                            })()} FCFA
                                         </span>
                                     </div>
                                 </div>
@@ -159,13 +165,23 @@ export function OrderDetailsModal({ order, isOpen, onClose }: OrderDetailsModalP
                                                     Quantity: {item.quantity}
                                                 </span>
                                                 <span className="text-sm text-gray-600">
-                                                    Unit Price: {item.medicine.price.toFixed(2)} FCFA
+                                                    Unit Price: {(() => {
+                                                        const cleanPrice = typeof item.medicine.price === 'string' 
+                                                            ? parseFloat(item.medicine.price.replace(/[$,]/g, ''))
+                                                            : item.medicine.price;
+                                                        return cleanPrice.toFixed(2);
+                                                    })()} FCFA
                                                 </span>
                                             </div>
                                         </div>
                                         <div className="text-right">
                                             <p className="font-semibold">
-                                                {(item.quantity * item.medicine.price).toFixed(2)} FCFA
+                                                {(() => {
+                                                    const cleanPrice = typeof item.medicine.price === 'string' 
+                                                        ? parseFloat(item.medicine.price.replace(/[$,]/g, ''))
+                                                        : item.medicine.price;
+                                                    return (item.quantity * cleanPrice).toFixed(2);
+                                                })()} FCFA
                                             </p>
                                         </div>
                                     </div>

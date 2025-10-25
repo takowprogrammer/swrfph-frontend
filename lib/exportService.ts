@@ -1,91 +1,91 @@
 export interface ExportOptions {
-    format: 'csv' | 'pdf'
-    dateFrom?: string
-    dateTo?: string
-    status?: string
-    orderIds?: string[]
+  format: 'csv' | 'pdf'
+  dateFrom?: string
+  dateTo?: string
+  status?: string
+  orderIds?: string[]
 }
 
 export class ExportService {
-    /**
-     * Export orders to CSV format
-     */
-    static exportToCSV(orders: any[], filename: string = 'orders.csv'): void {
-        if (!orders || orders.length === 0) {
-            alert('No orders to export')
-            return
-        }
-
-        // Define CSV headers
-        const headers = [
-            'Order ID',
-            'Date',
-            'Status',
-            'Total Price (FCFA)',
-            'Items Count',
-            'Medicines',
-            'Quantities',
-            'Prices (FCFA)'
-        ]
-
-        // Convert orders to CSV rows
-        const csvRows = orders.map(order => {
-            const medicines = order.items?.map((item: any) => item.medicine?.name || 'Unknown').join('; ') || 'N/A'
-            const quantities = order.items?.map((item: any) => item.quantity).join('; ') || 'N/A'
-            const prices = order.items?.map((item: any) => item.price).join('; ') || 'N/A'
-
-            return [
-                order.id,
-                new Date(order.createdAt).toLocaleDateString(),
-                order.status,
-                order.totalPrice.toLocaleString(),
-                order.items?.length || 0,
-                medicines,
-                quantities,
-                prices
-            ]
-        })
-
-        // Create CSV content
-        const csvContent = [
-            headers.join(','),
-            ...csvRows.map(row => row.map(field => `"${field}"`).join(','))
-        ].join('\n')
-
-        // Download CSV file
-        this.downloadFile(csvContent, filename, 'text/csv')
+  /**
+   * Export orders to CSV format
+   */
+  static exportToCSV(orders: any[], filename: string = 'orders.csv'): void {
+    if (!orders || orders.length === 0) {
+      alert('No orders to export')
+      return
     }
 
-    /**
-     * Export orders to PDF format using browser print
-     */
-    static exportToPDF(orders: any[], filename: string = 'orders.pdf'): void {
-        if (!orders || orders.length === 0) {
-            alert('No orders to export')
-            return
-        }
+    // Define CSV headers
+    const headers = [
+      'Order ID',
+      'Date',
+      'Status',
+      'Total Price (FCFA)',
+      'Items Count',
+      'Medicines',
+      'Quantities',
+      'Prices (FCFA)'
+    ]
 
-        // Create HTML content for PDF
-        const htmlContent = this.generatePDFHTML(orders)
+    // Convert orders to CSV rows
+    const csvRows = orders.map(order => {
+      const medicines = order.items?.map((item: any) => item.medicine?.name || 'Unknown').join('; ') || 'N/A'
+      const quantities = order.items?.map((item: any) => item.quantity).join('; ') || 'N/A'
+      const prices = order.items?.map((item: any) => item.price).join('; ') || 'N/A'
 
-        // Open print dialog
-        const printWindow = window.open('', '_blank')
-        if (printWindow) {
-            printWindow.document.write(htmlContent)
-            printWindow.document.close()
-            printWindow.focus()
-            printWindow.print()
-        }
+      return [
+        order.id,
+        new Date(order.createdAt).toLocaleDateString(),
+        order.status,
+        order.totalPrice.toLocaleString(),
+        order.items?.length || 0,
+        medicines,
+        quantities,
+        prices
+      ]
+    })
+
+    // Create CSV content
+    const csvContent = [
+      headers.join(','),
+      ...csvRows.map(row => row.map(field => `"${field}"`).join(','))
+    ].join('\n')
+
+    // Download CSV file
+    this.downloadFile(csvContent, filename, 'text/csv')
+  }
+
+  /**
+   * Export orders to PDF format using browser print
+   */
+  static exportToPDF(orders: any[], filename: string = 'orders.pdf'): void {
+    if (!orders || orders.length === 0) {
+      alert('No orders to export')
+      return
     }
 
-    /**
-     * Generate HTML content for PDF export
-     */
-    private static generatePDFHTML(orders: any[]): string {
-        const currentDate = new Date().toLocaleDateString()
-        const totalAmount = orders.reduce((sum, order) => sum + order.totalPrice, 0)
+    // Create HTML content for PDF
+    const htmlContent = this.generatePDFHTML(orders)
 
-        return `
+    // Open print dialog
+    const printWindow = window.open('', '_blank')
+    if (printWindow) {
+      printWindow.document.write(htmlContent)
+      printWindow.document.close()
+      printWindow.focus()
+      printWindow.print()
+    }
+  }
+
+  /**
+   * Generate HTML content for PDF export
+   */
+  private static generatePDFHTML(orders: any[]): string {
+    const currentDate = new Date().toLocaleDateString()
+    const totalAmount = orders.reduce((sum, order) => sum + order.totalPrice, 0)
+
+    return `
       <!DOCTYPE html>
       <html>
         <head>
@@ -238,69 +238,69 @@ export class ExportService {
         </body>
       </html>
     `
+  }
+
+  /**
+   * Download file with given content
+   */
+  private static downloadFile(content: string, filename: string, mimeType: string): void {
+    const blob = new Blob([content], { type: mimeType })
+    const url = URL.createObjectURL(blob)
+
+    const link = document.createElement('a')
+    link.href = url
+    link.download = filename
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+
+    URL.revokeObjectURL(url)
+  }
+
+  /**
+   * Export orders with filters
+   */
+  static async exportOrders(
+    orders: any[],
+    options: ExportOptions
+  ): Promise<void> {
+    let filteredOrders = [...orders]
+
+    // Apply filters
+    if (options.dateFrom) {
+      filteredOrders = filteredOrders.filter(order =>
+        new Date(order.createdAt) >= new Date(options.dateFrom!)
+      )
     }
 
-    /**
-     * Download file with given content
-     */
-    private static downloadFile(content: string, filename: string, mimeType: string): void {
-        const blob = new Blob([content], { type: mimeType })
-        const url = URL.createObjectURL(blob)
-
-        const link = document.createElement('a')
-        link.href = url
-        link.download = filename
-        document.body.appendChild(link)
-        link.click()
-        document.body.removeChild(link)
-
-        URL.revokeObjectURL(url)
+    if (options.dateTo) {
+      filteredOrders = filteredOrders.filter(order =>
+        new Date(order.createdAt) <= new Date(options.dateTo!)
+      )
     }
 
-    /**
-     * Export orders with filters
-     */
-    static async exportOrders(
-        orders: any[],
-        options: ExportOptions
-    ): Promise<void> {
-        let filteredOrders = [...orders]
-
-        // Apply filters
-        if (options.dateFrom) {
-            filteredOrders = filteredOrders.filter(order =>
-                new Date(order.createdAt) >= new Date(options.dateFrom!)
-            )
-        }
-
-        if (options.dateTo) {
-            filteredOrders = filteredOrders.filter(order =>
-                new Date(order.createdAt) <= new Date(options.dateTo!)
-            )
-        }
-
-        if (options.status) {
-            filteredOrders = filteredOrders.filter(order =>
-                order.status.toLowerCase() === options.status!.toLowerCase()
-            )
-        }
-
-        if (options.orderIds && options.orderIds.length > 0) {
-            filteredOrders = filteredOrders.filter(order =>
-                options.orderIds!.includes(order.id)
-            )
-        }
-
-        // Generate filename with timestamp
-        const timestamp = new Date().toISOString().split('T')[0]
-        const filename = `orders_${timestamp}.${options.format}`
-
-        // Export based on format
-        if (options.format === 'csv') {
-            this.exportToCSV(filteredOrders, filename)
-        } else {
-            this.exportToPDF(filteredOrders, filename)
-        }
+    if (options.status) {
+      filteredOrders = filteredOrders.filter(order =>
+        order.status.toLowerCase() === options.status!.toLowerCase()
+      )
     }
+
+    if (options.orderIds && options.orderIds.length > 0) {
+      filteredOrders = filteredOrders.filter(order =>
+        options.orderIds!.includes(order.id)
+      )
+    }
+
+    // Generate filename with timestamp
+    const timestamp = new Date().toISOString().split('T')[0]
+    const filename = `orders_${timestamp}.${options.format}`
+
+    // Export based on format
+    if (options.format === 'csv') {
+      this.exportToCSV(filteredOrders, filename)
+    } else {
+      this.exportToPDF(filteredOrders, filename)
+    }
+  }
 }
 

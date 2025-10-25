@@ -18,6 +18,7 @@ import { Badge } from '@/components/ui/badge'
 import { useAuth } from '@/contexts/AuthContext'
 import { useState, useEffect } from 'react'
 import { apiService } from '@/lib/api'
+import { SWRFPHLogo } from '@/components/ui/SWRFPHLogo'
 
 const navigation = [
     {
@@ -86,9 +87,8 @@ export function ProviderSidebar() {
         <div className="flex h-full flex-col bg-white border-r border-gray-200">
             {/* Logo */}
             <div className="flex h-16 items-center px-6 border-b border-gray-200">
-                <Link href="/" className="flex items-center space-x-2">
-                    <HeartPulse className="h-8 w-8 text-green-600" />
-                    <span className="font-bold text-xl text-gray-800">HealthFirst</span>
+                <Link href="/">
+                    <SWRFPHLogo size="md" showText={true} />
                 </Link>
             </div>
 

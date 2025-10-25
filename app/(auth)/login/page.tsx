@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { useAuth } from '@/contexts/AuthContext'
 import { toast } from 'sonner'
+import { SWRFPHLogo } from '@/components/ui/SWRFPHLogo'
 
 export default function LoginPage() {
     const [email, setEmail] = useState('')
@@ -48,9 +49,14 @@ export default function LoginPage() {
 
     return (
         <div className="flex flex-col items-center justify-center py-20">
-            <div className="w-full max-w-md text-center">
-                <h1 className="text-3xl font-bold text-gray-900">Welcome to HealthFirst</h1>
-                <div className="mt-8 text-left bg-white p-8 shadow-lg rounded-lg">
+            <div className="w-full max-w-md">
+                {/* Logo */}
+                <div className="flex justify-center mb-8">
+                    <SWRFPHLogo size="xl" showText={true} />
+                </div>
+
+                {/* Login Card */}
+                <div className="bg-white p-8 shadow-lg rounded-lg">
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
                             <label htmlFor="email" className="sr-only">Email</label>
