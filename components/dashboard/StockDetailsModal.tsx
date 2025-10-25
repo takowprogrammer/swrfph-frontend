@@ -141,7 +141,7 @@ export function StockDetailsModal({ isOpen, onClose, medicineId }: StockDetailsM
                                     </div>
                                     <div>
                                         <p className="text-sm text-gray-500">Price</p>
-                                        <p className="text-2xl font-bold text-green-600">{details.medicine.price.toLocaleString()} FCFA</p>
+                                        <p className="text-2xl font-bold text-green-600">{details.medicine.price.toFixed(2)} FCFA</p>
                                     </div>
                                     <div>
                                         <p className="text-sm text-gray-500">Daily Usage</p>

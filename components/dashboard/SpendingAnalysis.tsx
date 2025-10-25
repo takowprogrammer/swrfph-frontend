@@ -60,7 +60,7 @@ export function SpendingAnalysis({ data, className }: SpendingAnalysisProps) {
                                 ))}
                             </Pie>
                             <Tooltip
-                                formatter={(value: number) => [`${value.toLocaleString()} FCFA`, 'Amount']}
+                                formatter={(value: number) => [`${value.toFixed(2)} FCFA`, 'Amount']}
                                 contentStyle={{
                                     backgroundColor: 'white',
                                     border: '1px solid #e5e7eb',
@@ -91,7 +91,7 @@ export function SpendingAnalysis({ data, className }: SpendingAnalysisProps) {
                             </div>
                             <div className="text-right">
                                 <p className="text-sm font-semibold text-gray-900">
-                                    {item.totalSpent.toLocaleString()} FCFA
+                                    {item.totalSpent.toFixed(2)} FCFA
                                 </p>
                                 <p className="text-xs text-gray-500">
                                     {item.percentage.toFixed(1)}%

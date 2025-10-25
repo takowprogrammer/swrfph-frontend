@@ -193,7 +193,7 @@ export class ExportService {
                 <div class="summary-label">Total Orders</div>
               </div>
               <div class="summary-item">
-                <div class="summary-value">${totalAmount.toLocaleString()} FCFA</div>
+                <div class="summary-value">${totalAmount.toFixed(2)} FCFA</div>
                 <div class="summary-label">Total Amount</div>
               </div>
               <div class="summary-item">
@@ -224,7 +224,7 @@ export class ExportService {
                       ${order.status}
                     </span>
                   </td>
-                  <td>${order.totalPrice.toLocaleString()} FCFA</td>
+                  <td>${order.totalPrice.toFixed(2)} FCFA</td>
                   <td>${order.items?.length || 0}</td>
                   <td>${order.items?.map((item: any) => `${item.medicine?.name || 'Unknown'} (${item.quantity})`).join(', ') || 'N/A'}</td>
                 </tr>

@@ -115,7 +115,7 @@ export function NewMedicinesSection({ onAddToCart, className }: NewMedicinesSect
                             <div className="flex items-center justify-between mb-3">
                                 <div>
                                     <p className="text-lg font-bold text-gray-900">
-                                        {medicine.price.toLocaleString()} FCFA
+                                        {medicine.price.toFixed(2)} FCFA
                                     </p>
                                     <p className="text-xs text-gray-500">
                                         {medicine.quantity} in stock

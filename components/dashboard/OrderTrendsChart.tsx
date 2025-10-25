@@ -49,7 +49,7 @@ export function OrderTrendsChart({ data, className }: OrderTrendsChartProps) {
                         fontSize={12}
                         tickLine={false}
                         axisLine={false}
-                        tickFormatter={(value) => `${value.toLocaleString()} FCFA`}
+                        tickFormatter={(value) => `${value.toFixed(0)} FCFA`}
                     />
                     <Tooltip
                         contentStyle={{
@@ -62,7 +62,7 @@ export function OrderTrendsChart({ data, className }: OrderTrendsChartProps) {
                             if (name === 'orders') {
                                 return [value, 'Orders']
                             }
-                            return [`${value.toLocaleString()} FCFA`, 'Revenue']
+                            return [`${value.toFixed(2)} FCFA`, 'Revenue']
                         }}
                         labelStyle={{ color: '#374151', fontWeight: '500' }}
                     />

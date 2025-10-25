@@ -359,7 +359,7 @@ export default function CatalogPage() {
                                                     <p className="text-gray-600 text-sm mb-4 line-clamp-2">{med.description}</p>
                                                     <div className="flex justify-between items-center">
                                                         <span className="text-2xl font-bold text-green-600">
-                                                            {med.price.toLocaleString()} FCFA
+                                                            {med.price.toFixed(2)} FCFA
                                                         </span>
                                                         <Button
                                                             onClick={() => handleAddToCart(med)}
@@ -387,7 +387,7 @@ export default function CatalogPage() {
                                                         <div className="flex items-center space-x-4">
                                                             <div className="text-right">
                                                                 <p className="text-2xl font-bold text-green-600">
-                                                                    {med.price.toLocaleString()} FCFA
+                                                                    {med.price.toFixed(2)} FCFA
                                                                 </p>
                                                                 <p className="text-sm text-gray-500">
                                                                     {med.quantity} in stock
@@ -496,7 +496,7 @@ export default function CatalogPage() {
                                             <div key={item.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                                                 <div className="flex-1">
                                                     <p className="font-semibold text-sm">{item.name}</p>
-                                                    <p className="text-xs text-gray-500">{item.price.toLocaleString()} FCFA</p>
+                                                    <p className="text-xs text-gray-500">{item.price.toFixed(2)} FCFA</p>
                                                 </div>
                                                 <div className="flex items-center space-x-2">
                                                     <Button size="sm" variant="ghost" onClick={() => handleUpdateQuantity(item.id, item.orderQuantity - 1)}>
@@ -515,7 +515,7 @@ export default function CatalogPage() {
                                         <hr className="my-4" />
                                         <div className="flex justify-between font-bold text-lg">
                                             <span>Total:</span>
-                                            <span className="text-green-600">{cartTotal.toLocaleString()} FCFA</span>
+                                            <span className="text-green-600">{cartTotal.toFixed(2)} FCFA</span>
                                         </div>
                                         <Button
                                             className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white"

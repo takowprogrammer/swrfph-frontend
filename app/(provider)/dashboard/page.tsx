@@ -256,7 +256,7 @@ export default function ProviderDashboardPage() {
         },
         {
             title: "Total Spent",
-            value: `${stats.overview.totalSpent.toLocaleString()} FCFA`,
+            value: `${stats.overview.totalSpent.toFixed(2)} FCFA`,
             icon: BarChart,
             trend: {
                 value: Math.abs(stats.overview.totalSpentChange),
@@ -313,7 +313,7 @@ export default function ProviderDashboardPage() {
         ),
         date: formatDate(order.createdAt),
         status: <StatusPill status={order.status} />,
-        total: `${order.totalPrice.toLocaleString()} FCFA`,
+        total: `${order.totalPrice.toFixed(2)} FCFA`,
     }))
 
     return (

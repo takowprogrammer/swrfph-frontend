@@ -36,7 +36,7 @@ export function SpendingChart({ data, className }: SpendingChartProps) {
                         fontSize={12}
                         tickLine={false}
                         axisLine={false}
-                        tickFormatter={(value) => `${value.toLocaleString()} FCFA`}
+                        tickFormatter={(value) => `${value.toFixed(0)} FCFA`}
                     />
                     <Tooltip
                         contentStyle={{
@@ -45,7 +45,7 @@ export function SpendingChart({ data, className }: SpendingChartProps) {
                             borderRadius: '8px',
                             boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
                         }}
-                        formatter={(value: number) => [`${value.toLocaleString()} FCFA`, 'Amount']}
+                        formatter={(value: number) => [`${value.toFixed(2)} FCFA`, 'Amount']}
                         labelStyle={{ color: '#374151', fontWeight: '500' }}
                     />
                     <Line
