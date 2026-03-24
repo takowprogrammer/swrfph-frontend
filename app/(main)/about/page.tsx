@@ -2,530 +2,286 @@
 
 import React from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
-import { Calendar, Users, Shield, Award, Heart, Globe, Building, Target, CheckCircle, ArrowRight } from 'lucide-react'
+import { Eye, Target, Star, Heart, Shield, Building, Award, Quote } from 'lucide-react'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
-
-const values = [
-    {
-        icon: Heart,
-        title: 'Compassion',
-        description: 'We approach every challenge with empathy and understanding, putting the needs of patients and healthcare providers first.'
-    },
-    {
-        icon: Target,
-        title: 'Excellence',
-        description: 'We maintain the highest standards in everything we do, from medicine quality to service delivery.'
-    },
-    {
-        icon: Users,
-        title: 'Collaboration',
-        description: 'We work closely with healthcare facilities, communities, and partners to achieve our shared goals.'
-    },
-    {
-        icon: Award,
-        title: 'Integrity',
-        description: 'We operate with transparency, honesty, and accountability in all our interactions and decisions.'
-    }
-]
-
-const achievements = [
-    { number: '21', label: 'Health Districts Covered' },
-    { number: '500,000+', label: 'People Reached' },
-    { number: '35+', label: 'Years of Service' },
-    { number: '94%', label: 'Program Success Rate' }
-]
+import { motion } from 'framer-motion'
 
 const timeline = [
     {
         year: '1989',
-        title: 'Primary Health Care Essential Drug Program',
-        description: 'Established with technical assistance from GTZ (German Technical Agency). Personnel and infrastructure provided by Ministry of Public Health, with Pharmacy Attendants from local authorities.',
-        icon: Building,
-        color: 'from-green-500 to-emerald-500'
+        title: 'Foundation',
+        description: 'Established as the Primary Health Care Essential Drug Program to ensure a constant supply of quality essential medicines with technical assistance provided by GTZ.',
+        icon: Heart,
+        color: 'from-brand-green-500 to-brand-green-600'
     },
     {
         year: '1992',
-        title: 'South West Provincial Special Fund for Health',
-        description: 'Evolved to become an Association with legal personality, expanding its scope and formalizing its operations.',
+        title: 'Transformation',
+        description: 'Transformed into South West Provincial Special Fund for Health with a legal personality as an Association following the promulgation of laws bearing on freedom of association.',
         icon: Shield,
-        color: 'from-blue-500 to-cyan-500'
+        color: 'from-brand-blue-400 to-brand-blue-500'
     },
     {
         year: '2010',
-        title: 'Public Interest Group (PIG) Law',
-        description: 'Signing of the PIG Law on December 21, 2010, followed by Convention on June 10, 2010, establishing the legal framework for transformation.',
+        title: 'PIG Law Signed',
+        description: 'Signing of the PIG Law on December 21, 2010, and Convention on June 10, 2010, establishing the legal framework for the transformation of the Fund.',
         icon: Award,
-        color: 'from-purple-500 to-indigo-500'
+        color: 'from-brand-blue-500 to-brand-blue-600'
     },
     {
         year: '2013',
-        title: 'South West Regional Fund for Health Promotion',
-        description: 'Created through Prime Ministerial Decree of January 21, 2013, marking the official establishment of SWRFHP as we know it today.',
-        icon: Globe,
-        color: 'from-orange-500 to-yellow-500'
-    }
-]
-
-const keyAchievements = [
-    {
-        title: 'Essential Medicine Availability',
-        description: 'Availability of affordable essential medicines and medical materials for all public health structures and commodities for priority health programs such as HIV, Tuberculosis, NTDs, Reproductive Health, Cholera and Disinfectants to the South West population, contributing to the attainment of the SDG.',
-        icon: Heart
-    },
-    {
-        title: 'Comprehensive Distribution Network',
-        description: 'Storage and distribution of pharmaceutical products for health facilities (public, private, para-public and confessional) in all 21 health districts of the region.',
-        icon: Globe
-    },
-    {
-        title: 'Maternal and Child Health',
-        description: 'Contribute to the improvement of Maternal and Child Health through the provision of obstetric kits and Health Voucher Mechanism.',
-        icon: Users
-    },
-    {
-        title: 'Technical and Financial Partnerships',
-        description: 'Collaborate with technical and financial partners (GIZ, World Bank) in the execution of health promotion activities.',
-        icon: Shield
-    },
-    {
-        title: 'Dialogue Structure Strengthening',
-        description: 'Strengthening of the dialogue structures through technical and financial support for enhancement of dialogue structure activities.',
-        icon: Target
-    },
-    {
-        title: 'Performance Based Financing',
-        description: 'Provide technical assistance for the execution of Performance Based Financing within the South West Region.',
-        icon: Award
-    },
-    {
-        title: 'Multi-Partner Collaboration',
-        description: 'Collaborate with partners such as GIZ, GLOBAL FUND, CHEMONICS, CAMNAFAW, CARE International etc in the execution of health promotional activities.',
-        icon: Building
-    },
-    {
-        title: 'Universal Health Coverage Phase 1',
-        description: 'Coordinate the implementation of Universal Health Coverage Phase 1 (Consultation of Children 0-5 years, HIV User fees, TB User fees, Haemodialysis and Health Voucher) through verification, validation reimbursement of health facility declared bills for all the UHC phase 1 packages and sensitization with respect to the UHC Phase 1 services at the community and health facility level.',
-        icon: CheckCircle
-    },
-    {
-        title: 'Community Health Education',
-        description: 'Promote community sensitization, and health education on various priority health issues and aspects of nutrition.',
-        icon: Heart
-    }
-]
-
-
-const partnerCategories = [
-    {
-        title: 'State',
-        description: 'Government representatives and administrative authorities',
-        members: [
-            'Ministry of Public Health',
-            'Administrative Council Authorities',
-            'Municipal Council Authorities'
-        ],
+        title: 'Public Interest Group',
+        description: 'Fund officially created as a Public Interest Group through Prime Ministerial Decree of January 21, 2013. Constitutive General Assembly held to establish the Management Committee.',
         icon: Building,
-        color: 'from-blue-500 to-cyan-500'
-    },
-    {
-        title: 'Technical and Financial Partners',
-        description: 'International development organizations providing technical and financial support',
-        members: [
-            'GIZ (German Technical Agency)',
-            'AFD (French Development Agency)',
-            'KFW (German Development Bank)',
-            'World Bank'
-        ],
-        icon: Globe,
-        color: 'from-green-500 to-emerald-500'
-    },
-    {
-        title: 'Community',
-        description: 'Regional representation and community health services',
-        members: [
-            '6 Divisions of the SWR represented by 21 Health Districts in rotating manner',
-            '3 Representatives from Confessional Health Services'
-        ],
-        icon: Users,
-        color: 'from-purple-500 to-indigo-500'
+        color: 'from-brand-blue-600 to-brand-blue-800'
     }
+]
+
+const pillars = [
+    {
+        icon: Eye,
+        title: 'Our Vision',
+        text: 'To provide sustainable quality health care for the population of the South West Region.',
+        gradient: 'from-brand-blue-500 to-brand-blue-600',
+        bg: 'bg-gradient-to-br from-brand-blue-50 to-white',
+        border: 'border-brand-blue-100'
+    },
+    {
+        icon: Target,
+        title: 'Our Mission',
+        text: 'To ensure better health for the population by improving on the performance of the health system in the South West Region.',
+        gradient: 'from-brand-green-500 to-brand-green-600',
+        bg: 'bg-gradient-to-br from-brand-green-50 to-white',
+        border: 'border-brand-green-100'
+    },
+    {
+        icon: Star,
+        title: 'Our Values',
+        text: 'Collaboration, communication, openness, respect, partnership, and outcome-focused decision making.',
+        gradient: 'from-brand-red-500 to-brand-red-600',
+        bg: 'bg-gradient-to-br from-brand-red-50 to-white',
+        border: 'border-brand-red-100'
+    }
+]
+
+const values = [
+    { icon: Heart, title: 'Compassion', description: 'We approach every challenge with empathy and understanding, putting the needs of patients and healthcare providers first.' },
+    { icon: Target, title: 'Excellence', description: 'We maintain the highest standards in everything we do, from medicine quality to service delivery.' },
+    { icon: Shield, title: 'Integrity', description: 'We operate with transparency, honesty, and accountability in all our interactions and decisions.' },
+    { icon: Star, title: 'Partnership', description: 'We work closely with healthcare facilities, communities, and partners to achieve our shared goals.' },
 ]
 
 const governingOrgans = [
     {
         title: 'The General Assembly',
         description: 'The highest decision-making body of SWRFHP, responsible for strategic oversight, policy direction, and major organizational decisions.',
-        members: 'Representatives from Ministry of Public Health, Regional Council, Partner Organizations, and key stakeholders'
     },
     {
         title: 'Management Committee',
         description: 'Oversees day-to-day operations, implementation of policies, and coordination of health programs across the South West Region.',
-        members: 'Senior management team including technical directors, department heads, and program coordinators'
     },
     {
         title: 'The Administrator',
         description: 'Chief executive officer responsible for overall leadership, strategic implementation, and representation of SWRFHP.',
-        members: 'Mrs. Ngondo W. Musenja - Administrator of SWRFHP'
     }
 ]
 
 export default function AboutPage() {
-    const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>()
-    const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation<HTMLDivElement>()
-    const { ref: achievementsRef, isVisible: achievementsVisible } = useScrollAnimation<HTMLDivElement>()
-    const { ref: timelineRef, isVisible: timelineVisible } = useScrollAnimation<HTMLDivElement>()
-    const { ref: keyAchievementsRef, isVisible: keyAchievementsVisible } = useScrollAnimation<HTMLDivElement>()
+    const { ref, isVisible } = useScrollAnimation<HTMLDivElement>()
 
     return (
         <div className="bg-white">
-            <main>
-                {/* Enhanced Hero Section */}
-                <div className="relative h-[70vh] overflow-hidden">
-                    <div className="absolute inset-0">
-                        <Image
-                            src="https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg"
-                            alt="Healthcare professionals in Cameroon"
-                            fill
-                            className="object-cover brightness-75"
-                            priority
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60" />
-                    </div>
-
-                    <div ref={heroRef} className="relative h-full flex items-center justify-center">
-                        <div className={`text-center transition-all duration-1000 transform ${heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                            }`}>
-                            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-                                About <span className="text-green-400">SWRFHP</span>
-                            </h1>
-                            <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-                                Serving the South West Region of Cameroon since 1989 through comprehensive health promotion and essential medicine distribution
-                            </p>
-                        </div>
-                    </div>
+            {/* Page Hero */}
+            <div className="relative h-[65vh] min-h-[500px] overflow-hidden">
+                <div className="absolute inset-0">
+                    <Image
+                        src="/front-view-of-office.jpeg"
+                        alt="SWRFHP Front View"
+                        fill
+                        className="object-cover brightness-[0.7]"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-blue-950/60 via-brand-blue-900/40 to-brand-green-950/60" />
                 </div>
-
-                {/* Administrator Message */}
-                <div className="bg-gradient-to-br from-green-600 to-blue-600 text-white py-16 sm:py-24">
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="max-w-6xl mx-auto">
-                            <div className="text-center mb-8">
-                                <h2 className="text-3xl font-bold mb-4">Message from the Administrator</h2>
-                            </div>
-
-                            <div className="flex flex-col lg:flex-row items-start gap-8">
-                                {/* Administrator Photo */}
-                                <div className="flex-shrink-0 mx-auto lg:mx-0">
-                                    <div className="relative w-48 h-48 lg:w-56 lg:h-56 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
-                                        <Image
-                                            src="https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg"
-                                            alt="Mrs. Ngondo W. Musenja, Administrator - SWRFHP"
-                                            fill
-                                            className="object-cover"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                                    </div>
-                                    <div className="text-center mt-4">
-                                        <p className="text-xl font-semibold">Mrs. Ngondo W. Musenja</p>
-                                        <p className="text-green-200">Administrator – SWRFHP</p>
-                                    </div>
-                                </div>
-
-                                {/* Message Text */}
-                                <div className="flex-1">
-                                    <blockquote className="text-lg leading-relaxed text-green-100">
-                                        "Welcome to our official website! As the Administrator, I am thrilled to have you explore all that our institution has to offer.
-                                        This website serves as a gateway to exploring the different health services offered by the South West Regional Fund such as the
-                                        availability of affordable quality essential medicines; quality control of medicines; Health Promotion, Dialogue Structure;
-                                        Universal Health Coverage Phase 1 and much more.
-                                        <br /><br />
-                                        The Fund is deeply committed to ensure better health for the population by improving the performance of the health system in the
-                                        South West Region in the following domains:
-                                        <br /><br />
-                                        • Strengthening multi-sectoral participation in health governance<br />
-                                        • Mobilization and management of resources for health care financing<br />
-                                        • Management and distribution of good quality pharmaceutical products<br />
-                                        • Maintenance of health facilities medical equipment and infrastructure<br />
-                                        • Participation in the regional medicines regional observatory<br />
-                                        • Enhancing the quality of health care provision<br />
-                                        • Decentralization and deconcentration of the health system<br />
-                                        • Promotion of health education and nutrition
-                                        <br /><br />
-                                        As you navigate through this website, I encourage you to get a glimpse of our achievements, unique identity, and tremendous visions for the future.
-                                        I hope our journey will inspire you to connect with us whether as a prospective customer or as a valued partner. Together we can shape a brighter
-                                        tomorrow and continue to ensure quality health for the people of the SWR as a premier institution of public health."
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Mission, Vision, History Section */}
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-                    <div className="max-w-4xl mx-auto">
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                            <div className={`transition-all duration-700 transform ${heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                }`} style={{ transitionDelay: '200ms' }}>
-                                <div className="bg-gradient-to-br from-green-50 to-white p-8 rounded-2xl shadow-lg border border-green-100">
-                                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                                        <Target className="h-6 w-6 text-green-700" />
-                                    </div>
-                                    <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h2>
-                                    <p className="text-gray-600 leading-relaxed">
-                                        Ensure better health for the population by improving the performance of the health system in the South West Region through comprehensive health promotion, essential medicine distribution, and health system strengthening.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className={`transition-all duration-700 transform ${heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                }`} style={{ transitionDelay: '400ms' }}>
-                                <div className="bg-gradient-to-br from-green-50 to-white p-8 rounded-2xl shadow-lg border border-green-100">
-                                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                                        <Heart className="h-6 w-6 text-green-700" />
-                                    </div>
-                                    <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h2>
-                                    <p className="text-gray-600 leading-relaxed">
-                                        A South West Region where every citizen has access to quality healthcare services, essential medicines, and health promotion programs, contributing to the achievement of Universal Health Coverage.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className={`transition-all duration-700 transform ${heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                }`} style={{ transitionDelay: '600ms' }}>
-                                <div className="bg-gradient-to-br from-green-50 to-white p-8 rounded-2xl shadow-lg border border-green-100">
-                                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                                        <Award className="h-6 w-6 text-green-700" />
-                                    </div>
-                                    <h2 className="text-2xl font-bold text-gray-900 mb-4">Our History</h2>
-                                    <p className="text-gray-600 leading-relaxed">
-                                        From Primary Health Care Essential Drug Program in 1989 to South West Regional Fund for Health Promotion in 2013, we've evolved to serve all 21 health districts.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Historical Timeline */}
-                <div className="bg-gray-50 py-16 sm:py-24">
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-16">
-                            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                                Our Historical Journey
-                            </h2>
-                            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                                From a small essential drug program to a comprehensive health promotion fund serving the entire South West Region
-                            </p>
-                        </div>
-
-                        <div ref={timelineRef} className="relative">
-                            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-green-500 to-blue-500 rounded-full"></div>
-
-                            <div className="space-y-12">
-                                {timeline.map((milestone, index) => (
-                                    <div key={milestone.year} className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                                        <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                                            <div className={`transition-all duration-700 transform ${timelineVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                                }`} style={{ transitionDelay: `${index * 200}ms` }}>
-                                                <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-                                                    <div className="flex items-center space-x-4 mb-4">
-                                                        <div className={`w-12 h-12 bg-gradient-to-br ${milestone.color} rounded-lg flex items-center justify-center`}>
-                                                            <milestone.icon className="h-6 w-6 text-white" />
-                                                        </div>
-                                                        <div>
-                                                            <div className="text-2xl font-bold text-gray-900">{milestone.year}</div>
-                                                            <div className="text-lg font-semibold text-gray-700">{milestone.title}</div>
-                                                        </div>
-                                                    </div>
-                                                    <p className="text-gray-600 leading-relaxed">{milestone.description}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="w-8 h-8 bg-white border-4 border-green-500 rounded-full flex items-center justify-center z-10">
-                                            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                                        </div>
-
-                                        <div className="w-1/2"></div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Key Achievements */}
-                <div className="py-16 sm:py-24 bg-white">
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-16">
-                            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                                Our Key Achievements
-                            </h2>
-                            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                                Significant contributions to health outcomes across the South West Region
-                            </p>
-                        </div>
-
-                        <div ref={keyAchievementsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {keyAchievements.map((achievement, index) => (
-                                <div key={achievement.title} className={`transition-all duration-700 transform ${keyAchievementsVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                    }`} style={{ transitionDelay: `${index * 100}ms` }}>
-                                    <div className="bg-gradient-to-br from-green-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-                                        <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                                            <achievement.icon className="h-6 w-6 text-green-700" />
-                                        </div>
-                                        <h3 className="text-xl font-bold text-gray-900 mb-3">{achievement.title}</h3>
-                                        <p className="text-gray-600 leading-relaxed">{achievement.description}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                {/* Core Values Section */}
-                <div className="bg-gray-50 py-16 sm:py-24">
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                        <div ref={valuesRef} className="text-center mb-16">
-                            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                                Our Core Values
-                            </h2>
-                            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                                The principles that guide our work and define our commitment to the community
-                            </p>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            {values.map((value, index) => (
-                                <div key={value.title} className={`transition-all duration-700 transform ${valuesVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                    }`} style={{ transitionDelay: `${index * 150}ms` }}>
-                                    <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center h-full">
-                                        <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                                            <value.icon className="h-8 w-8 text-green-700" />
-                                        </div>
-                                        <h3 className="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
-                                        <p className="text-gray-600 leading-relaxed">{value.description}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                {/* Statistics Section */}
-                <div className="py-16 sm:py-24 bg-gradient-to-br from-green-600 to-blue-600 text-white">
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                        <div ref={achievementsRef} className="text-center mb-16">
-                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                                Our Impact in Numbers
-                            </h2>
-                            <p className="text-xl text-green-100 max-w-3xl mx-auto">
-                                The measurable impact of our health programs across the South West Region
-                            </p>
-                        </div>
-
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                            {achievements.map((achievement, index) => (
-                                <div key={achievement.label} className={`text-center transition-all duration-700 transform ${achievementsVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                    }`} style={{ transitionDelay: `${index * 150}ms` }}>
-                                    <div className="text-4xl font-bold mb-2">{achievement.number}</div>
-                                    <div className="text-green-200">{achievement.label}</div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                {/* Partners Section */}
-                <div className="py-16 sm:py-24 bg-white">
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-16">
-                            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                                Our Partners
-                            </h2>
-                            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                                Working together with government, international organizations, and community representatives to improve health outcomes
-                            </p>
-                        </div>
-
-                        {/* Partner Categories */}
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-                            {partnerCategories.map((category, index) => (
-                                <div key={category.title} className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-                                    <div className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-2xl flex items-center justify-center mx-auto mb-6`}>
-                                        <category.icon className="h-8 w-8 text-white" />
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{category.title}</h3>
-                                    <p className="text-gray-600 mb-6 text-center">{category.description}</p>
-                                    <div className="space-y-3">
-                                        {category.members.map((member, memberIndex) => (
-                                            <div key={memberIndex} className="flex items-start space-x-3">
-                                                <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                                                <span className="text-sm text-gray-700">{member}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                    </div>
-                </div>
-
-                {/* Governing Organs */}
-                <div className="bg-gray-50 py-16 sm:py-24">
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-16">
-                            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                                Governing Organs
-                            </h2>
-                            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                                The organizational structure that ensures effective governance and management
-                            </p>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {governingOrgans.map((organ, index) => (
-                                <div key={organ.title} className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-                                    <h3 className="text-xl font-bold text-gray-900 mb-4">{organ.title}</h3>
-                                    <p className="text-gray-600 mb-4">{organ.description}</p>
-                                    <div className="text-sm text-gray-500">
-                                        <strong>Members:</strong> {organ.members}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                {/* Call to Action */}
-                <div className="py-16 sm:py-24 bg-gradient-to-br from-green-600 to-blue-600 text-white">
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-                            Join Our Mission
-                        </h2>
-                        <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto">
-                            Help us continue making a positive impact on health outcomes across the South West Region.
-                            Together, we can build a healthier future for all.
+                <div className="relative h-full flex items-center justify-center text-center px-4">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <span className="inline-block text-sm font-bold tracking-[0.2em] text-brand-green-300 uppercase mb-4">Who We Are</span>
+                        <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight">
+                            About <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-green-300 to-brand-blue-300">SWRFHP</span>
+                        </h1>
+                        <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
+                            Serving the South West Region of Cameroon since 1989 through comprehensive health promotion and essential medicine distribution.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link href="/contact">
-                                <button className="bg-white text-green-600 hover:bg-green-50 font-semibold px-8 py-3 rounded-lg transition-all duration-300 flex items-center justify-center">
-                                    Partner With Us
-                                    <ArrowRight className="ml-2 h-5 w-5" />
-                                </button>
-                            </Link>
-                            <Link href="/programs">
-                                <button className="border-2 border-white text-white hover:bg-white hover:text-green-600 font-semibold px-8 py-3 rounded-lg transition-all duration-300">
-                                    Learn More
-                                </button>
-                            </Link>
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* Vision / Mission / Values Cards */}
+            <section className="py-24 sm:py-32 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-50 rounded-full blur-3xl opacity-40 -translate-y-1/2 translate-x-1/3" />
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-28">
+                        {pillars.map((pillar, index) => (
+                            <motion.div
+                                key={pillar.title}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.15 }}
+                                className={`relative group ${pillar.bg} p-8 rounded-[2rem] shadow-sm border ${pillar.border} card-hover hover:shadow-brand-blue-900/5`}
+                            >
+                                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${pillar.gradient} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                                    <pillar.icon className="w-7 h-7 text-white" />
+                                </div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-3">{pillar.title}</h3>
+                                <p className="text-gray-600 leading-relaxed">{pillar.text}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Core Values Grid */}
+                    <div className="text-center mb-14">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Core Values</h2>
+                        <div className="w-20 h-1 bg-gradient-to-r from-brand-blue-500 to-brand-green-500 mx-auto rounded-full" />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-28">
+                        {values.map((value, index) => (
+                            <motion.div
+                                key={value.title}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                                className="bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100/80 hover:shadow-2xl hover:-translate-y-2 hover:shadow-brand-blue-900/5 transition-all duration-500 text-center group"
+                            >
+                                <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                                    <value.icon className="w-7 h-7 text-emerald-600" />
+                                </div>
+                                <h3 className="text-lg font-bold text-gray-900 mb-2">{value.title}</h3>
+                                <p className="text-gray-500 text-sm leading-relaxed">{value.description}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Timeline */}
+            <section className="bg-slate-50/50 py-24 sm:py-32">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <span className="text-sm font-bold tracking-[0.2em] text-emerald-600 uppercase mb-4 block">Our History</span>
+                        <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">Our Journey</h2>
+                        <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto rounded-full" />
+                    </div>
+
+                    <div ref={ref} className="relative max-w-4xl mx-auto">
+                        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-300 via-teal-300 to-blue-300 hidden md:block" />
+                        <div className="space-y-16">
+                            {timeline.map((item, index) => (
+                                <motion.div
+                                    key={item.year}
+                                    initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: index * 0.15 }}
+                                    className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                                >
+                                    <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center justify-center">
+                                        <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center shadow-lg z-10`}>
+                                            <item.icon className="w-6 h-6 text-white" />
+                                        </div>
+                                    </div>
+                                    <div className={`w-full md:w-[calc(50%-3rem)] ${index % 2 === 0 ? 'md:pr-4' : 'md:pl-4'}`}>
+                                        <div className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-2 hover:shadow-brand-blue-900/5 transition-all duration-500 border border-gray-100/80 group">
+                                            <span className={`inline-block text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r ${item.color} mb-2`}>{item.year}</span>
+                                            <h4 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-emerald-700 transition-colors">{item.title}</h4>
+                                            <p className="text-gray-600 leading-relaxed text-sm">{item.description}</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
                 </div>
-            </main>
+            </section>
+
+            {/* Administrator Message */}
+            <section className="py-24 sm:py-32">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-gray-900 via-emerald-950 to-slate-900 p-1"
+                    >
+                        <div className="relative bg-gradient-to-br from-gray-900/95 via-emerald-950/95 to-slate-900/95 backdrop-blur-xl p-10 md:p-16 rounded-[calc(2rem-4px)]">
+                            <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl" />
+                            <div className="absolute bottom-0 left-0 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl" />
+                            <Quote className="absolute top-10 right-10 w-32 h-32 text-white/[0.03] rotate-180" />
+
+                            <div className="relative z-10">
+                                <div className="text-center mb-12">
+                                    <span className="text-sm font-bold tracking-[0.2em] text-emerald-400 uppercase">Welcome Message</span>
+                                    <h3 className="text-3xl md:text-4xl font-bold text-white mt-3">From the Administrator</h3>
+                                </div>
+                                <div className="flex flex-col md:flex-row items-center md:items-start gap-12">
+                                    <div className="flex-shrink-0 text-center">
+                                        <div className="w-44 h-44 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/10 relative group">
+                                            <Image src="https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg" alt="Administrator" fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                                        </div>
+                                        <div className="mt-5">
+                                            <p className="font-bold text-white text-lg">Mrs. Ngondo W. Musenja</p>
+                                            <p className="text-emerald-400 text-sm font-medium">Administrator</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex-1 space-y-5">
+                                        <p className="text-gray-300 text-lg leading-relaxed font-light italic">
+                                            &ldquo;Welcome to our Fund official website! As the Administrator, I am thrilled to have you explore all that our institution has to offer. This website serves as a gateway to vital health educational resources, community sensitization activities and quality, affordable essential medicines.&rdquo;
+                                        </p>
+                                        <p className="text-gray-400 leading-relaxed">
+                                            The Fund is deeply committed to ensure better health for the population by improving the performance of the health system in the South West Region.
+                                        </p>
+                                        <p className="text-white/80 font-medium leading-relaxed">
+                                            I hope our journey inspires you to connect with us as a valued partner. Together we can shape a brighter tomorrow and continue to ensure quality health for the people of the SWR as a premier institution of public health.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Governing Organs */}
+            <section className="bg-slate-50 py-24 sm:py-32">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Governing Organs</h2>
+                        <p className="text-gray-500 max-w-2xl mx-auto">The organizational structure that ensures effective governance and management of the Fund.</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        {governingOrgans.map((organ, index) => (
+                            <motion.div
+                                key={organ.title}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.15 }}
+                                className="bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100/80 hover:shadow-2xl hover:-translate-y-2 hover:shadow-brand-blue-900/5 transition-all duration-500"
+                            >
+                                <h3 className="text-xl font-bold text-gray-900 mb-3">{organ.title}</h3>
+                                <p className="text-gray-500 leading-relaxed text-sm">{organ.description}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
         </div>
     )
 }

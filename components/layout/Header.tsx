@@ -1,113 +1,166 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { TransitionLink } from '@/components/ui/TransitionLink'
 import { SWRFPHLogo } from '@/components/ui/SWRFPHLogo'
-import { Menu, X, Shield, Heart } from 'lucide-react'
+import { Menu, X, Heart } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useAuth } from '@/contexts/AuthContext'
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const { user } = useAuth()
+    const [scrolled, setScrolled] = useState(false)
+    const pathname = usePathname()
 
-    console.log('Header - User state:', user)
+    useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 20)
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        handleScroll()
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
+    // Close mobile menu on route change
+    useEffect(() => {
+        setIsMenuOpen(false)
+    }, [pathname])
 
     const navigation = [
         { name: 'Home', href: '/' },
-        { name: 'About', href: '/about' },
-        { name: 'Programs', href: '/programs' },
-        { name: 'Impact', href: '/impact' },
-        { name: 'Catalog', href: '/catalog' },
+        { name: 'About Us', href: '/about' },
+        { name: 'Intervention', href: '/intervention' },
+        { name: 'Operational Pillars', href: '/sections' },
+        { name: 'Team', href: '/team' },
         { name: 'Contact', href: '/contact' },
     ]
 
+    const isHomePage = pathname === '/'
+
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-sm">
+        <motion.header
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className={`fixed top-0 z-50 w-full transition-all duration-500 ${
+                scrolled || !isHomePage
+                    ? 'bg-white/80 backdrop-blur-2xl shadow-[0_1px_3px_rgba(0,0,0,0.05),0_20px_25px_-5px_rgba(0,0,0,0.02)] border-b border-gray-200/50'
+                    : 'bg-transparent'
+            }`}
+        >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex h-16 items-center justify-between">
-                    <div className="flex items-center">
-                        <Link href="/" className="flex-shrink-0">
-                            <SWRFPHLogo size="md" showText={true} />
-                        </Link>
-                    </div>
-                    <div className="hidden md:block">
-                        <div className="ml-10 flex items-baseline space-x-4">
-                            {navigation.map((item) => (
-                                <TransitionLink
+                <div className="flex h-20 items-center justify-between">
+                    {/* Logo */}
+                    <Link href="/" className="flex-shrink-0 group">
+                        <SWRFPHLogo size="md" showText={true} />
+                    </Link>
+
+                    {/* Desktop Navigation */}
+                    <nav className="hidden lg:flex items-center gap-1">
+                        {navigation.map((item) => {
+                            const isActive = pathname === item.href
+                            return (
+                                <Link
                                     key={item.name}
                                     href={item.href}
-                                    className="text-gray-600 hover:text-health-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                                    className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                                        isActive
+                                            ? 'text-brand-blue-700'
+                                            : scrolled || !isHomePage
+                                                ? 'text-gray-600 hover:text-brand-blue-700'
+                                                : 'text-white/90 hover:text-white'
+                                    }`}
                                 >
-                                    {item.name}
-                                </TransitionLink>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="hidden md:flex items-center space-x-2">
-                        <Button variant="health" size="sm" className="flex items-center">
-                            <Heart className="w-4 h-4 mr-2" />
-                            Partner With Us
-                        </Button>
-                        {!user && (
-                            <Button asChild variant="outline" size="sm">
-                                <Link href="/login">Provider Portal</Link>
+                                    {isActive && (
+                                        <motion.div
+                                            layoutId="activeNav"
+                                            className="absolute inset-0 bg-brand-blue-50 rounded-full"
+                                            transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                                        />
+                                    )}
+                                    <span className="relative z-10">{item.name}</span>
+                                </Link>
+                            )
+                        })}
+                    </nav>
+
+                    {/* Desktop CTA */}
+                    <div className="hidden lg:flex items-center">
+                        <Link href="/contact">
+                            <Button
+                                size="sm"
+                                className={`rounded-full px-6 font-semibold transition-all duration-300 ${
+                                    scrolled || !isHomePage
+                                        ? 'bg-brand-blue-600 hover:bg-brand-blue-700 text-white shadow-lg shadow-brand-blue-200'
+                                        : 'bg-white/15 hover:bg-white/25 text-white backdrop-blur-sm border border-white/20'
+                                }`}
+                            >
+                                <Heart className="w-4 h-4 mr-2" />
+                                Partner With Us
                             </Button>
+                        </Link>
+                    </div>
+
+                    {/* Mobile menu toggle */}
+                    <button
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        className={`lg:hidden inline-flex items-center justify-center rounded-xl p-2.5 transition-colors ${
+                            scrolled || !isHomePage
+                                ? 'text-gray-700 hover:bg-gray-100'
+                                : 'text-white hover:bg-white/10'
+                        }`}
+                    >
+                        <span className="sr-only">Toggle menu</span>
+                        {isMenuOpen ? (
+                            <X className="h-6 w-6" />
+                        ) : (
+                            <Menu className="h-6 w-6" />
                         )}
-                    </div>
-                    <div className="-mr-2 flex md:hidden">
-                        <button
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="inline-flex items-center justify-center rounded-md bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                        >
-                            <span className="sr-only">Open main menu</span>
-                            {isMenuOpen ? (
-                                <X className="block h-6 w-6" aria-hidden="true" />
-                            ) : (
-                                <Menu className="block h-6 w-6" aria-hidden="true" />
-                            )}
-                        </button>
-                    </div>
+                    </button>
                 </div>
             </div>
 
+            {/* Mobile Menu */}
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        className="lg:hidden overflow-hidden"
                     >
-                        <div className="md:hidden space-y-1 px-2 pt-2 pb-3 sm:px-3">
-                            {navigation.map((item) => (
-                                <TransitionLink
+                        <div className="bg-white/95 backdrop-blur-2xl border-t border-gray-100 px-4 py-6 space-y-1">
+                            {navigation.map((item, index) => (
+                                <motion.div
                                     key={item.name}
-                                    href={item.href}
-                                    onClick={() => setIsMenuOpen(false)}
-                                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-health-600"
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: index * 0.05 }}
                                 >
-                                    {item.name}
-                                </TransitionLink>
+                                    <Link
+                                        href={item.href}
+                                        className={`block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
+                                            pathname === item.href
+                                                ? 'bg-brand-blue-50 text-brand-blue-700'
+                                                : 'text-gray-700 hover:bg-gray-50 hover:text-brand-blue-700'
+                                        }`}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </motion.div>
                             ))}
-                        </div>
-                        <div className="border-t border-gray-200 pt-4 pb-3">
-                            <div className="flex flex-col space-y-2 px-2">
-                                <Button variant="health" className="w-full flex items-center justify-center">
-                                    <Heart className="w-4 h-4 mr-2" />
-                                    Partner With Us
-                                </Button>
-                                {!user && (
-                                    <Button asChild variant="outline" className="w-full">
-                                        <Link href="/login">Provider Portal</Link>
+                            <div className="pt-4">
+                                <Link href="/contact">
+                                    <Button className="w-full rounded-xl bg-brand-blue-600 hover:bg-brand-blue-700 text-white font-semibold py-3">
+                                        <Heart className="w-4 h-4 mr-2" />
+                                        Partner With Us
                                     </Button>
-                                )}
+                                </Link>
                             </div>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </header>
+        </motion.header>
     )
 }

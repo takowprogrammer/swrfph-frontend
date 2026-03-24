@@ -12,7 +12,7 @@ const contactDetails = [
     {
         icon: Phone,
         title: 'Phone',
-        value: '+237 677 123 456',
+        value: '+237 33 32 29 43',
         description: 'Call us during business hours',
         color: 'from-blue-500 to-blue-600'
     },
@@ -77,6 +77,7 @@ export default function ContactPage() {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        phone: '',
         subject: '',
         message: ''
     })
@@ -107,22 +108,30 @@ export default function ContactPage() {
         // Reset form after 3 seconds
         setTimeout(() => {
             setIsSubmitted(false)
-            setFormData({ name: '', email: '', subject: '', message: '' })
+            setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
         }, 3000)
     }
 
     return (
-        <div className="bg-gradient-to-br from-health-50 to-white min-h-screen">
-            {/* Hero Section */}
-            <div className="bg-gradient-to-r from-health-600 to-health-700 text-white py-20">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div ref={heroRef} className="text-center max-w-4xl mx-auto">
+        <div className="bg-slate-50 min-h-screen">
+            {/* Page Hero */}
+            <div className="relative h-[65vh] min-h-[500px] overflow-hidden">
+                <div className="absolute inset-0">
+                    <img
+                        src="/front-view-of-office.jpeg"
+                        alt="Contact SWRFHP"
+                        className="object-cover w-full h-full brightness-[0.7]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-blue-950/80 via-brand-blue-900/60 to-brand-green-950/80" />
+                </div>
+                <div className="relative h-full flex items-center justify-center text-center px-4">
+                    <div ref={heroRef} className="max-w-4xl mx-auto">
                         <div className={`transition-all duration-1000 transform ${heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                             }`}>
-                            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                                Get in <span className="text-health-300">Touch</span>
+                            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white tracking-tighter">
+                                Get in <span className="text-brand-green-300">Touch</span>
                             </h1>
-                            <p className="text-xl md:text-2xl text-health-100 mb-8 leading-relaxed">
+                            <p className="text-xl md:text-2xl text-brand-blue-100 mb-8 leading-relaxed">
                                 We're here to help and answer any questions you might have.
                                 We'd love to hear from you.
                             </p>
@@ -138,14 +147,14 @@ export default function ContactPage() {
                         {stats.map((stat, index) => (
                             <div
                                 key={index}
-                                className={`text-center p-6 bg-gradient-to-br from-health-50 to-white rounded-2xl shadow-lg border border-health-100 transition-all duration-700 transform hover:scale-105 ${statsVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                                className={`text-center p-6 bg-white rounded-[2rem] shadow-sm border border-slate-100 transition-all duration-700 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-blue-900/5 ${statsVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                     }`}
                                 style={{ transitionDelay: `${index * 150}ms` }}
                             >
-                                <div className="w-16 h-16 bg-health-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                    <stat.icon className="h-8 w-8 text-health-700" />
+                                <div className="w-16 h-16 bg-slate-50 rounded-[1.5rem] flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-blue-50 transition-colors">
+                                    <stat.icon className="h-8 w-8 text-brand-blue-700" />
                                 </div>
-                                <div className="text-3xl font-bold text-health-700 mb-2">{stat.value}</div>
+                                <div className="text-3xl font-extrabold text-brand-blue-950 mb-2 tracking-tighter">{stat.value}</div>
                                 <div className="text-gray-600 font-medium">{stat.label}</div>
                             </div>
                         ))}
@@ -187,7 +196,7 @@ export default function ContactPage() {
                                                 onChange={handleInputChange}
                                                 placeholder="Enter your full name"
                                                 required
-                                                className="w-full rounded-xl border border-gray-300 bg-white shadow-sm focus:border-health-500 focus:ring-health-500 transition-all duration-300 p-4 text-gray-900 placeholder-gray-500"
+                                                className="w-full rounded-[1.5rem] border border-slate-200 bg-white shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500 transition-all duration-300 p-4 text-brand-blue-950 placeholder-slate-400"
                                             />
                                         </div>
                                         <div>
@@ -202,9 +211,24 @@ export default function ContactPage() {
                                                 onChange={handleInputChange}
                                                 placeholder="Enter your email address"
                                                 required
-                                                className="w-full rounded-xl border border-gray-300 bg-white shadow-sm focus:border-health-500 focus:ring-health-500 transition-all duration-300 p-4 text-gray-900 placeholder-gray-500"
+                                                className="w-full rounded-[1.5rem] border border-slate-200 bg-white shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500 transition-all duration-300 p-4 text-brand-blue-950 placeholder-slate-400"
                                             />
                                         </div>
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                                            Phone Number
+                                        </label>
+                                        <input
+                                            type="tel"
+                                            id="phone"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleInputChange}
+                                            placeholder="Enter your phone number"
+                                            className="w-full rounded-[1.5rem] border border-slate-200 bg-white shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500 transition-all duration-300 p-4 text-brand-blue-950 placeholder-slate-400"
+                                        />
                                     </div>
 
                                     <div>
@@ -235,17 +259,15 @@ export default function ContactPage() {
                                             rows={6}
                                             placeholder="Tell us how we can help you..."
                                             required
-                                            className="w-full rounded-xl border border-gray-300 bg-white shadow-sm focus:border-health-500 focus:ring-health-500 transition-all duration-300 p-4 text-gray-900 placeholder-gray-500 resize-none"
+                                            className="w-full rounded-[1.5rem] border border-slate-200 bg-white shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500 transition-all duration-300 p-4 text-brand-blue-950 placeholder-slate-400 resize-none"
                                         />
                                     </div>
 
                                     <div className="text-right">
                                         <AnimatedButton
                                             type="submit"
-                                            variant="health"
-                                            size="lg"
                                             disabled={isSubmitting}
-                                            className="px-8 py-4 text-lg font-semibold"
+                                            className="px-8 py-4 text-lg font-semibold rounded-full bg-gradient-to-r from-brand-green-500 to-brand-green-600 hover:from-brand-green-600 hover:to-brand-green-700 text-white shadow-xl shadow-brand-green-900/20 active:scale-[0.98] transition-all duration-300"
                                         >
                                             {isSubmitting ? (
                                                 <div className="flex items-center">
@@ -274,7 +296,7 @@ export default function ContactPage() {
                                 {contactDetails.map((item, index) => (
                                     <div
                                         key={item.title}
-                                        className={`group bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${contactVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                                        className={`group bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-2xl hover:shadow-brand-blue-900/5 transition-all duration-300 transform hover:-translate-y-2 ${contactVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                             }`}
                                         style={{ transitionDelay: `${(index + 1) * 150}ms` }}
                                     >
@@ -296,15 +318,15 @@ export default function ContactPage() {
                         <div ref={faqRef} className={`transition-all duration-700 transform ${faqVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                             }`} style={{ transitionDelay: '400ms' }}>
                             <h2 className="text-3xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
-                            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                            <div className="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden">
                                 <Accordion type="single" collapsible className="w-full">
                                     {faqs.map((faq, index) => (
                                         <AccordionItem
                                             key={index}
                                             value={`item-${index}`}
-                                            className="border-b border-gray-100 last:border-b-0"
+                                            className="border-b border-slate-100 last:border-b-0"
                                         >
-                                            <AccordionTrigger className="px-6 py-4 text-left font-semibold text-gray-900 hover:text-health-600 transition-colors duration-200">
+                                            <AccordionTrigger className="px-6 py-4 text-left font-semibold text-brand-blue-950 hover:text-brand-green-600 transition-colors duration-200">
                                                 {faq.question}
                                             </AccordionTrigger>
                                             <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
@@ -320,17 +342,17 @@ export default function ContactPage() {
             </main>
 
             {/* CTA Section */}
-            <div className="bg-gradient-to-r from-health-600 to-health-700 text-white py-16">
+            <div className="bg-gradient-to-r from-brand-blue-950 via-brand-blue-900 to-brand-green-950 text-white py-16 shadow-inner">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-3xl font-bold mb-4">Ready to Make a Difference?</h2>
-                    <p className="text-xl text-health-100 mb-8 max-w-2xl mx-auto">
+                    <p className="text-xl text-brand-blue-100 mb-8 max-w-2xl mx-auto">
                         Join us in our mission to improve healthcare access across Southwest Cameroon.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link href="/donate">
                             <AnimatedButton
                                 size="lg"
-                                className="bg-white text-health-700 hover:bg-health-50 font-semibold px-8 py-3"
+                                className="bg-white text-brand-blue-950 hover:bg-slate-50 font-semibold px-8 py-3 rounded-full active:scale-[0.98] transition-all duration-300"
                             >
                                 Donate Now
                             </AnimatedButton>
@@ -339,7 +361,7 @@ export default function ContactPage() {
                             <AnimatedButton
                                 size="lg"
                                 variant="outline"
-                                className="border-white/30 text-white hover:bg-white hover:text-health-700 font-semibold px-8 py-3 bg-white/10 backdrop-blur-sm"
+                                className="border-white/30 text-white hover:bg-white hover:text-brand-blue-950 font-semibold px-8 py-3 bg-white/10 backdrop-blur-sm rounded-full active:scale-[0.98] transition-all duration-300"
                             >
                                 Learn More
                             </AnimatedButton>

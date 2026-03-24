@@ -9,18 +9,18 @@ export function ScrollProgress() {
         const updateScrollProgress = () => {
             const scrollTop = window.scrollY
             const docHeight = document.documentElement.scrollHeight - window.innerHeight
-            const progress = (scrollTop / docHeight) * 100
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
             setScrollProgress(progress)
         }
 
-        window.addEventListener('scroll', updateScrollProgress)
+        window.addEventListener('scroll', updateScrollProgress, { passive: true })
         return () => window.removeEventListener('scroll', updateScrollProgress)
     }, [])
 
     return (
-        <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
+        <div className="fixed top-0 left-0 w-full h-[3px] z-[60] bg-transparent">
             <div
-                className="h-full bg-gradient-to-r from-health-500 to-health-600 transition-all duration-150 ease-out"
+                className="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500 transition-all duration-150 ease-out shadow-[0_0_10px_rgba(16,185,129,0.5)]"
                 style={{ width: `${scrollProgress}%` }}
             />
         </div>

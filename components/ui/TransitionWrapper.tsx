@@ -42,9 +42,9 @@ export function TransitionWrapper({ children }: TransitionWrapperProps) {
             </div>
 
             {/* Page content */}
-            <div className={`transition-all duration-500 ease-out ${isTransitioning
-                    ? 'opacity-0 transform translate-y-8 scale-95'
-                    : 'opacity-100 transform translate-y-0 scale-100'
+            <div className={`transition-opacity duration-500 ease-out ${isTransitioning
+                    ? 'opacity-0'
+                    : 'opacity-100'
                 }`}>
                 {displayChildren}
             </div>
