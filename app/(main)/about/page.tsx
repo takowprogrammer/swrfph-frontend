@@ -2,44 +2,65 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { Eye, Target, Star, Heart, Shield, Building, Award, Quote } from 'lucide-react'
+import { Quote } from 'lucide-react'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 import { motion } from 'framer-motion'
+
+const VisionIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" fill="currentColor" fillOpacity={0.1} />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6M9 12h6" strokeWidth={1.5} opacity={0.6} />
+  </svg>
+)
+
+const MissionIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" fill="currentColor" fillOpacity={0.1} />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M7 12l3 3 4-6 3 3" strokeWidth={2} />
+  </svg>
+)
+
+const ValuesIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" fill="currentColor" fillOpacity={0.1} />
+  </svg>
+)
 
 const timeline = [
     {
         year: '1989',
         title: 'Foundation',
         description: 'Established as the Primary Health Care Essential Drug Program to ensure a constant supply of quality essential medicines with technical assistance provided by GTZ.',
-        icon: Heart,
+        step: '01',
         color: 'from-brand-green-500 to-brand-green-600'
     },
     {
         year: '1992',
         title: 'Transformation',
         description: 'Transformed into South West Provincial Special Fund for Health with a legal personality as an Association following the promulgation of laws bearing on freedom of association.',
-        icon: Shield,
+        step: '02',
         color: 'from-brand-blue-400 to-brand-blue-500'
     },
     {
         year: '2010',
         title: 'PIG Law Signed',
         description: 'Signing of the PIG Law on December 21, 2010, and Convention on June 10, 2010, establishing the legal framework for the transformation of the Fund.',
-        icon: Award,
+        step: '03',
         color: 'from-brand-blue-500 to-brand-blue-600'
     },
     {
         year: '2013',
         title: 'Public Interest Group',
         description: 'Fund officially created as a Public Interest Group through Prime Ministerial Decree of January 21, 2013. Constitutive General Assembly held to establish the Management Committee.',
-        icon: Building,
+        step: '04',
         color: 'from-brand-blue-600 to-brand-blue-800'
     }
 ]
 
 const pillars = [
     {
-        icon: Eye,
+        icon: VisionIcon,
         title: 'Our Vision',
         text: 'To provide sustainable quality health care for the population of the South West Region.',
         gradient: 'from-brand-blue-500 to-brand-blue-600',
@@ -47,7 +68,7 @@ const pillars = [
         border: 'border-brand-blue-100'
     },
     {
-        icon: Target,
+        icon: MissionIcon,
         title: 'Our Mission',
         text: 'To ensure better health for the population by improving on the performance of the health system in the South West Region.',
         gradient: 'from-brand-green-500 to-brand-green-600',
@@ -55,7 +76,7 @@ const pillars = [
         border: 'border-brand-green-100'
     },
     {
-        icon: Star,
+        icon: ValuesIcon,
         title: 'Our Values',
         text: 'Collaboration, communication, openness, respect, partnership, and outcome-focused decision making.',
         gradient: 'from-brand-red-500 to-brand-red-600',
@@ -65,10 +86,10 @@ const pillars = [
 ]
 
 const values = [
-    { icon: Heart, title: 'Compassion', description: 'We approach every challenge with empathy and understanding, putting the needs of patients and healthcare providers first.' },
-    { icon: Target, title: 'Excellence', description: 'We maintain the highest standards in everything we do, from medicine quality to service delivery.' },
-    { icon: Shield, title: 'Integrity', description: 'We operate with transparency, honesty, and accountability in all our interactions and decisions.' },
-    { icon: Star, title: 'Partnership', description: 'We work closely with healthcare facilities, communities, and partners to achieve our shared goals.' },
+    { number: '01', title: 'Compassion', description: 'We approach every challenge with empathy and understanding, putting the needs of patients and healthcare providers first.' },
+    { number: '02', title: 'Excellence', description: 'We maintain the highest standards in everything we do, from medicine quality to service delivery.' },
+    { number: '03', title: 'Integrity', description: 'We operate with transparency, honesty, and accountability in all our interactions and decisions.' },
+    { number: '04', title: 'Partnership', description: 'We work closely with healthcare facilities, communities, and partners to achieve our shared goals.' },
 ]
 
 const governingOrgans = [
@@ -92,7 +113,7 @@ export default function AboutPage() {
     return (
         <div className="bg-white">
             {/* Page Hero */}
-            <div className="relative h-[65vh] min-h-[500px] overflow-hidden">
+            <div className="relative h-[50vh] min-h-[400px] overflow-hidden">
                 <div className="absolute inset-0">
                     <Image
                         src="/front-view-of-office.jpeg"
@@ -121,10 +142,17 @@ export default function AboutPage() {
             </div>
 
             {/* Vision / Mission / Values Cards */}
-            <section className="py-24 sm:py-32 relative overflow-hidden">
+            <section className="py-16 sm:py-20 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-50 rounded-full blur-3xl opacity-40 -translate-y-1/2 translate-x-1/3" />
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-28">
+                    
+                    <div className="text-center mb-16">
+                        <span className="text-sm font-bold tracking-[0.2em] text-brand-green-500 uppercase mb-4 block">Strategic Foundation</span>
+                        <h2 className="text-3xl md:text-5xl font-extrabold text-brand-blue-950 tracking-tight mb-4">Our Guiding Principles</h2>
+                        <div className="w-20 h-1 bg-gradient-to-r from-brand-green-500 to-brand-blue-500 mx-auto rounded-full" />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                         {pillars.map((pillar, index) => (
                             <motion.div
                                 key={pillar.title}
@@ -148,7 +176,7 @@ export default function AboutPage() {
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Core Values</h2>
                         <div className="w-20 h-1 bg-gradient-to-r from-brand-blue-500 to-brand-green-500 mx-auto rounded-full" />
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-28">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {values.map((value, index) => (
                             <motion.div
                                 key={value.title}
@@ -156,13 +184,17 @@ export default function AboutPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className="bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100/80 hover:shadow-2xl hover:-translate-y-2 hover:shadow-brand-blue-900/5 transition-all duration-500 text-center group"
+                                className="relative bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden hover:shadow-2xl hover:-translate-y-2 hover:shadow-brand-blue-900/5 transition-all duration-500 group"
                             >
-                                <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
-                                    <value.icon className="w-7 h-7 text-emerald-600" />
+                                {/* Giant Background Number */}
+                                <span className="absolute -top-6 -right-2 text-[8rem] font-black text-slate-50 opacity-80 z-0 select-none group-hover:text-brand-green-50 transition-colors duration-500">
+                                    {value.number}
+                                </span>
+                                
+                                <div className="relative z-10">
+                                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-green-600 transition-colors">{value.title}</h3>
+                                    <p className="text-gray-500 text-sm leading-relaxed">{value.description}</p>
                                 </div>
-                                <h3 className="text-lg font-bold text-gray-900 mb-2">{value.title}</h3>
-                                <p className="text-gray-500 text-sm leading-relaxed">{value.description}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -170,7 +202,7 @@ export default function AboutPage() {
             </section>
 
             {/* Timeline */}
-            <section className="bg-slate-50/50 py-24 sm:py-32">
+            <section className="bg-slate-50/50 py-16 sm:py-20">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <span className="text-sm font-bold tracking-[0.2em] text-emerald-600 uppercase mb-4 block">Our History</span>
@@ -180,7 +212,7 @@ export default function AboutPage() {
 
                     <div ref={ref} className="relative max-w-4xl mx-auto">
                         <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-300 via-teal-300 to-blue-300 hidden md:block" />
-                        <div className="space-y-16">
+                        <div className="space-y-8">
                             {timeline.map((item, index) => (
                                 <motion.div
                                     key={item.year}
@@ -192,13 +224,13 @@ export default function AboutPage() {
                                 >
                                     <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center justify-center">
                                         <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center shadow-lg z-10`}>
-                                            <item.icon className="w-6 h-6 text-white" />
+                                            <span className="text-xl font-black text-white">{item.step}</span>
                                         </div>
                                     </div>
                                     <div className={`w-full md:w-[calc(50%-3rem)] ${index % 2 === 0 ? 'md:pr-4' : 'md:pl-4'}`}>
-                                        <div className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:-translate-y-2 hover:shadow-brand-blue-900/5 transition-all duration-500 border border-gray-100/80 group">
-                                            <span className={`inline-block text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r ${item.color} mb-2`}>{item.year}</span>
-                                            <h4 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-emerald-700 transition-colors">{item.title}</h4>
+                                        <div className="bg-white rounded-3xl p-6 shadow-sm hover:shadow-2xl hover:-translate-y-2 hover:shadow-brand-blue-900/5 transition-all duration-500 border border-gray-100/80 group">
+                                            <span className={`inline-block text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r ${item.color} mb-1`}>{item.year}</span>
+                                            <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors">{item.title}</h4>
                                             <p className="text-gray-600 leading-relaxed text-sm">{item.description}</p>
                                         </div>
                                     </div>
@@ -210,7 +242,7 @@ export default function AboutPage() {
             </section>
 
             {/* Administrator Message */}
-            <section className="py-24 sm:py-32">
+            <section className="py-16 sm:py-20">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}

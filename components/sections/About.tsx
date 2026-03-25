@@ -68,7 +68,7 @@ export function About() {
     ]
 
     return (
-        <section id="about" className="relative bg-white py-24 sm:py-32 overflow-hidden">
+        <section id="about" className="relative bg-white py-16 sm:py-20 overflow-hidden">
             {/* Subtle background decoration */}
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-50 rounded-full blur-3xl opacity-40 -translate-y-1/2 translate-x-1/3" />
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-50 rounded-full blur-3xl opacity-40 translate-y-1/2 -translate-x-1/3" />

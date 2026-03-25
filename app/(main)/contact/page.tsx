@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle, MessageCircle, Users, Globe, Award } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Phone, Mail, MapPin, Send, CheckCircle } from 'lucide-react'
 import { AnimatedButton } from '@/components/ui/AnimatedButton'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import { motion, AnimatePresence, Variants } from 'framer-motion'
 import { useScrollAnimation } from '@/hooks/useScrollAnimation'
 
 const contactDetails = [
@@ -13,29 +13,19 @@ const contactDetails = [
         icon: Phone,
         title: 'Phone',
         value: '+237 33 32 29 43',
-        description: 'Call us during business hours',
-        color: 'from-blue-500 to-blue-600'
+        description: 'Mon - Fri, 8am - 6pm',
     },
     {
         icon: Mail,
         title: 'Email',
         value: 'info@swrfhp.org',
         description: 'Send us an email anytime',
-        color: 'from-green-500 to-green-600'
     },
     {
         icon: MapPin,
         title: 'Address',
-        value: 'Buea, Southwest Region, Cameroon',
+        value: 'Buea, Southwest Region',
         description: 'Visit our main office',
-        color: 'from-red-500 to-red-600'
-    },
-    {
-        icon: Clock,
-        title: 'Business Hours',
-        value: 'Mon - Fri: 8:00 AM - 6:00 PM',
-        description: 'Saturday: 9:00 AM - 2:00 PM',
-        color: 'from-purple-500 to-purple-600'
     }
 ]
 
@@ -66,29 +56,10 @@ const faqs = [
     }
 ]
 
-const stats = [
-    { icon: Users, value: '100+', label: 'Healthcare Facilities Served' },
-    { icon: MessageCircle, value: '24/7', label: 'Support Available' },
-    { icon: Globe, value: '35+', label: 'Years of Service' },
-    { icon: Award, value: '95%', label: 'Satisfaction Rate' }
-]
-
 export default function ContactPage() {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-    })
+    const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSubmitted, setIsSubmitted] = useState(false)
-
-    const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>()
-    const { ref: formRef, isVisible: formVisible } = useScrollAnimation<HTMLDivElement>()
-    const { ref: contactRef, isVisible: contactVisible } = useScrollAnimation<HTMLDivElement>()
-    const { ref: faqRef, isVisible: faqVisible } = useScrollAnimation<HTMLDivElement>()
-    const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation<HTMLDivElement>()
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target
@@ -98,275 +69,261 @@ export default function ContactPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmitting(true)
-
-        // Simulate form submission
         await new Promise(resolve => setTimeout(resolve, 2000))
-
         setIsSubmitting(false)
         setIsSubmitted(true)
-
-        // Reset form after 3 seconds
         setTimeout(() => {
             setIsSubmitted(false)
             setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
         }, 3000)
     }
 
+    const containerVariants: Variants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.15 }
+        }
+    }
+
+    const itemVariants: Variants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+    }
+
+    // scroll variants for FAQ
+    const { ref: faqRef, isVisible: faqVisible } = useScrollAnimation<HTMLDivElement>()
+
     return (
-        <div className="bg-slate-50 min-h-screen">
-            {/* Page Hero */}
-            <div className="relative h-[65vh] min-h-[500px] overflow-hidden">
-                <div className="absolute inset-0">
-                    <img
-                        src="/front-view-of-office.jpeg"
-                        alt="Contact SWRFHP"
-                        className="object-cover w-full h-full brightness-[0.7]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-br from-brand-blue-950/80 via-brand-blue-900/60 to-brand-green-950/80" />
-                </div>
-                <div className="relative h-full flex items-center justify-center text-center px-4">
-                    <div ref={heroRef} className="max-w-4xl mx-auto">
-                        <div className={`transition-all duration-1000 transform ${heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                            }`}>
-                            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white tracking-tighter">
-                                Get in <span className="text-brand-green-300">Touch</span>
-                            </h1>
-                            <p className="text-xl md:text-2xl text-brand-blue-100 mb-8 leading-relaxed">
-                                We're here to help and answer any questions you might have.
-                                We'd love to hear from you.
-                            </p>
-                        </div>
+        <div className="bg-slate-50 min-h-screen pt-20">
+            {/* 50/50 Split Section */}
+            <div className="flex flex-col lg:flex-row min-h-[calc(100vh-80px)]">
+                
+                {/* LEFT SIDE: Photography & Glassmorphic Details */}
+                <div className="relative w-full lg:w-[55%] flex flex-col justify-center p-6 sm:p-12 lg:p-16 xl:p-24 overflow-hidden">
+                    {/* Background Images */}
+                    <div className="absolute inset-0">
+                        <img 
+                            src="/front-view-of-office.jpeg" 
+                            alt="Office view" 
+                            className="object-cover w-full h-full scale-105" 
+                        />
+                        {/* Deep Navy/Green gradient overlay */}
+                        <div className="absolute inset-0 bg-brand-blue-950/80 mix-blend-multiply" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-brand-blue-950/90 via-brand-blue-900/80 to-brand-green-950/80" />
                     </div>
-                </div>
-            </div>
 
-            {/* Stats Section */}
-            <div className="py-16 bg-white">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        {stats.map((stat, index) => (
-                            <div
-                                key={index}
-                                className={`text-center p-6 bg-white rounded-[2rem] shadow-sm border border-slate-100 transition-all duration-700 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-blue-900/5 ${statsVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                    }`}
-                                style={{ transitionDelay: `${index * 150}ms` }}
-                            >
-                                <div className="w-16 h-16 bg-slate-50 rounded-[1.5rem] flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-blue-50 transition-colors">
-                                    <stat.icon className="h-8 w-8 text-brand-blue-700" />
-                                </div>
-                                <div className="text-3xl font-extrabold text-brand-blue-950 mb-2 tracking-tighter">{stat.value}</div>
-                                <div className="text-gray-600 font-medium">{stat.label}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
+                    <motion.div 
+                        variants={containerVariants} 
+                        initial="hidden" 
+                        animate="visible" 
+                        className="relative z-10 w-full max-w-2xl mx-auto lg:mx-0"
+                    >
+                        <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tighter mb-6 leading-[1.1]">
+                            Let's Drive <span className="text-brand-green-400">Health</span> Forward.
+                        </motion.h1>
+                        
+                        <motion.p variants={itemVariants} className="text-lg sm:text-xl text-brand-blue-100 mb-12 max-w-xl leading-relaxed">
+                            Partner with SWRFHP to optimize healthcare delivery and secure essential medicine supplies across the Southwest Region.
+                        </motion.p>
 
-            <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                    {/* Contact Form Section */}
-                    <div ref={formRef}>
-                        <div className={`transition-all duration-700 transform ${formVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                            }`}>
-                            <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-4">
-                                Send us a Message
-                            </h2>
-                            <p className="text-lg text-gray-600 mb-8">
-                                Fill out the form below and we'll get back to you as soon as possible.
-                            </p>
-
-                            {isSubmitted ? (
-                                <div className="bg-green-50 border border-green-200 rounded-2xl p-8 text-center">
-                                    <CheckCircle className="h-16 w-16 text-green-600 mx-auto mb-4" />
-                                    <h3 className="text-xl font-semibold text-green-800 mb-2">Message Sent!</h3>
-                                    <p className="text-green-600">Thank you for contacting us. We'll get back to you soon.</p>
-                                </div>
-                            ) : (
-                                <form onSubmit={handleSubmit} className="space-y-6">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div>
-                                            <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                                                Your Name *
-                                            </label>
-                                            <input
-                                                type="text"
-                                                id="name"
-                                                name="name"
-                                                value={formData.name}
-                                                onChange={handleInputChange}
-                                                placeholder="Enter your full name"
-                                                required
-                                                className="w-full rounded-[1.5rem] border border-slate-200 bg-white shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500 transition-all duration-300 p-4 text-brand-blue-950 placeholder-slate-400"
-                                            />
+                        {/* Dunamis-Style Floating Glassmorphic Grid */}
+                        <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 lg:gap-6">
+                            {contactDetails.map((item, idx) => (
+                                <motion.div 
+                                    key={idx} 
+                                    variants={itemVariants} 
+                                    className="group relative bg-white/10 backdrop-blur-md border border-white/20 p-6 sm:p-8 rounded-[2rem] hover:bg-white/20 hover:border-brand-green-400/50 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                                >
+                                    {/* Shadow Bloom on Hover */}
+                                    <div className="absolute inset-0 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_40px_-10px_rgba(19,177,75,0.4)] pointer-events-none" />
+                                    
+                                    <div className="flex flex-col xl:flex-row items-start xl:items-center gap-4 relative z-10">
+                                        <div className="w-12 h-12 shrink-0 rounded-2xl bg-brand-green-500/20 flex items-center justify-center border border-brand-green-400/30 group-hover:scale-110 transition-transform duration-500">
+                                            <item.icon className="h-5 w-5 text-brand-green-400" />
                                         </div>
                                         <div>
-                                            <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                                                Your Email *
-                                            </label>
-                                            <input
-                                                type="email"
-                                                id="email"
-                                                name="email"
-                                                value={formData.email}
-                                                onChange={handleInputChange}
-                                                placeholder="Enter your email address"
-                                                required
-                                                className="w-full rounded-[1.5rem] border border-slate-200 bg-white shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500 transition-all duration-300 p-4 text-brand-blue-950 placeholder-slate-400"
-                                            />
+                                            <h3 className="text-xs uppercase tracking-widest text-brand-blue-200 font-semibold mb-1">{item.title}</h3>
+                                            <p className="text-white font-medium text-lg mb-0.5">{item.value}</p>
                                         </div>
                                     </div>
+                                    <p className="text-white/60 text-sm mt-4 relative z-10">{item.description}</p>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    </motion.div>
+                </div>
 
-                                    <div>
-                                        <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            Phone Number
-                                        </label>
-                                        <input
-                                            type="tel"
-                                            id="phone"
-                                            name="phone"
-                                            value={formData.phone}
-                                            onChange={handleInputChange}
-                                            placeholder="Enter your phone number"
-                                            className="w-full rounded-[1.5rem] border border-slate-200 bg-white shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500 transition-all duration-300 p-4 text-brand-blue-950 placeholder-slate-400"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            Subject *
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="subject"
-                                            name="subject"
-                                            value={formData.subject}
-                                            onChange={handleInputChange}
-                                            placeholder="What's this about?"
-                                            required
-                                            className="w-full rounded-xl border border-gray-300 bg-white shadow-sm focus:border-health-500 focus:ring-health-500 transition-all duration-300 p-4 text-gray-900 placeholder-gray-500"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                                            Message *
-                                        </label>
-                                        <textarea
-                                            id="message"
-                                            name="message"
-                                            value={formData.message}
-                                            onChange={handleInputChange}
-                                            rows={6}
-                                            placeholder="Tell us how we can help you..."
-                                            required
-                                            className="w-full rounded-[1.5rem] border border-slate-200 bg-white shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500 transition-all duration-300 p-4 text-brand-blue-950 placeholder-slate-400 resize-none"
-                                        />
-                                    </div>
-
-                                    <div className="text-right">
-                                        <AnimatedButton
-                                            type="submit"
-                                            disabled={isSubmitting}
-                                            className="px-8 py-4 text-lg font-semibold rounded-full bg-gradient-to-r from-brand-green-500 to-brand-green-600 hover:from-brand-green-600 hover:to-brand-green-700 text-white shadow-xl shadow-brand-green-900/20 active:scale-[0.98] transition-all duration-300"
-                                        >
-                                            {isSubmitting ? (
-                                                <div className="flex items-center">
-                                                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                                                    Sending...
-                                                </div>
-                                            ) : (
-                                                <div className="flex items-center">
-                                                    <Send className="w-5 h-5 mr-2" />
-                                                    Send Message
-                                                </div>
-                                            )}
-                                        </AnimatedButton>
-                                    </div>
-                                </form>
-                            )}
-                        </div>
-                    </div>
-
-                    {/* Contact Details & FAQ Section */}
-                    <div ref={contactRef} className="space-y-12">
-                        <div className={`transition-all duration-700 transform ${contactVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                            }`} style={{ transitionDelay: '200ms' }}>
-                            <h2 className="text-3xl font-bold text-gray-900 mb-8">Other Ways to Reach Us</h2>
-                            <div className="space-y-6">
-                                {contactDetails.map((item, index) => (
-                                    <div
-                                        key={item.title}
-                                        className={`group bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-2xl hover:shadow-brand-blue-900/5 transition-all duration-300 transform hover:-translate-y-2 ${contactVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                            }`}
-                                        style={{ transitionDelay: `${(index + 1) * 150}ms` }}
+                {/* RIGHT SIDE: Luptek-Style Dark Form Card */}
+                <div className="w-full lg:w-[45%] bg-slate-50 flex items-center justify-center p-6 sm:p-12 lg:p-16 relative">
+                    {/* Subtle background element */}
+                    <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-blue-900/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+                    
+                    <motion.div 
+                        initial={{ opacity: 0, x: 40 }} 
+                        animate={{ opacity: 1, x: 0 }} 
+                        transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }} 
+                        className="w-full max-w-lg relative z-10"
+                    >
+                        <div className="bg-brand-blue-950 rounded-[2.5rem] shadow-2xl p-8 sm:p-10 relative overflow-hidden border border-brand-blue-800/50">
+                            {/* Card internal glow */}
+                            <div className="absolute -top-32 -right-32 w-64 h-64 bg-brand-green-500/20 rounded-full blur-3xl pointer-events-none" />
+                            
+                            <h2 className="text-3xl font-bold text-white mb-2 relative z-10 tracking-tight">Send a Message</h2>
+                            <p className="text-brand-blue-200/80 mb-8 relative z-10 text-sm">Fill out the form below and our team will get back to you promptly.</p>
+                            
+                            <AnimatePresence mode="wait">
+                                {isSubmitted ? (
+                                    <motion.div 
+                                        key="success"
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.95 }}
+                                        className="bg-brand-green-500/10 border border-brand-green-500/20 rounded-3xl p-8 text-center"
                                     >
-                                        <div className="flex items-start space-x-4">
-                                            <div className={`flex-shrink-0 h-14 w-14 flex items-center justify-center bg-gradient-to-r ${item.color} rounded-2xl group-hover:scale-110 transition-transform duration-300`}>
-                                                <item.icon className="h-7 w-7 text-white" />
+                                        <div className="w-16 h-16 bg-brand-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                            <CheckCircle className="h-8 w-8 text-brand-green-400" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-white mb-2">Message Sent!</h3>
+                                        <p className="text-brand-blue-200 text-sm">Thank you for reaching out. We'll be in touch shortly.</p>
+                                    </motion.div>
+                                ) : (
+                                    <motion.form 
+                                        key="form"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        onSubmit={handleSubmit} 
+                                        className="space-y-5 relative z-10"
+                                    >
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                            <div className="space-y-1.5">
+                                                <label className="text-xs font-semibold uppercase tracking-wider text-brand-blue-200">Name</label>
+                                                <input
+                                                    type="text"
+                                                    name="name"
+                                                    required
+                                                    value={formData.name}
+                                                    onChange={handleInputChange}
+                                                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-brand-green-500 focus:border-transparent transition-all"
+                                                    placeholder="John Doe"
+                                                />
                                             </div>
-                                            <div className="flex-1">
-                                                <h3 className="text-lg font-semibold text-gray-900 mb-1">{item.title}</h3>
-                                                <p className="text-gray-900 font-medium mb-1">{item.value}</p>
-                                                <p className="text-gray-600 text-sm">{item.description}</p>
+                                            <div className="space-y-1.5">
+                                                <label className="text-xs font-semibold uppercase tracking-wider text-brand-blue-200">Email</label>
+                                                <input
+                                                    type="email"
+                                                    name="email"
+                                                    required
+                                                    value={formData.email}
+                                                    onChange={handleInputChange}
+                                                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-brand-green-500 focus:border-transparent transition-all"
+                                                    placeholder="john@example.com"
+                                                />
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
 
-                        <div ref={faqRef} className={`transition-all duration-700 transform ${faqVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                            }`} style={{ transitionDelay: '400ms' }}>
-                            <h2 className="text-3xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
-                            <div className="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden">
-                                <Accordion type="single" collapsible className="w-full">
-                                    {faqs.map((faq, index) => (
-                                        <AccordionItem
-                                            key={index}
-                                            value={`item-${index}`}
-                                            className="border-b border-slate-100 last:border-b-0"
-                                        >
-                                            <AccordionTrigger className="px-6 py-4 text-left font-semibold text-brand-blue-950 hover:text-brand-green-600 transition-colors duration-200">
-                                                {faq.question}
-                                            </AccordionTrigger>
-                                            <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
-                                                {faq.answer}
-                                            </AccordionContent>
-                                        </AccordionItem>
-                                    ))}
-                                </Accordion>
-                            </div>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                            <div className="space-y-1.5">
+                                                <label className="text-xs font-semibold uppercase tracking-wider text-brand-blue-200">Phone</label>
+                                                <input
+                                                    type="tel"
+                                                    name="phone"
+                                                    value={formData.phone}
+                                                    onChange={handleInputChange}
+                                                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-brand-green-500 focus:border-transparent transition-all"
+                                                    placeholder="+237 XXXXXXXX"
+                                                />
+                                            </div>
+                                            <div className="space-y-1.5">
+                                                <label className="text-xs font-semibold uppercase tracking-wider text-brand-blue-200">Subject</label>
+                                                <input
+                                                    type="text"
+                                                    name="subject"
+                                                    required
+                                                    value={formData.subject}
+                                                    onChange={handleInputChange}
+                                                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-brand-green-500 focus:border-transparent transition-all"
+                                                    placeholder="Inquiry"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-1.5">
+                                            <label className="text-xs font-semibold uppercase tracking-wider text-brand-blue-200">Message</label>
+                                            <textarea
+                                                name="message"
+                                                required
+                                                rows={4}
+                                                value={formData.message}
+                                                onChange={handleInputChange}
+                                                className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-brand-green-500 focus:border-transparent transition-all resize-none"
+                                                placeholder="How can we help you?"
+                                            />
+                                        </div>
+
+                                        <div className="pt-2">
+                                            <AnimatedButton
+                                                type="submit"
+                                                disabled={isSubmitting}
+                                                className="w-full rounded-full py-4 text-base font-bold bg-brand-green-500 hover:bg-brand-green-400 text-brand-blue-950 shadow-[0_0_20px_rgba(19,177,75,0.3)] hover:shadow-[0_0_30px_rgba(19,177,75,0.5)] transition-all duration-300"
+                                            >
+                                                {isSubmitting ? 'Sending...' : (
+                                                    <span className="flex items-center justify-center">
+                                                        Send Message <Send className="w-4 h-4 ml-2" />
+                                                    </span>
+                                                )}
+                                            </AnimatedButton>
+                                        </div>
+                                    </motion.form>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* FAQs Section */}
+            <div className="py-24 bg-white">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+                    <div ref={faqRef} className={`transition-all duration-1000 transform ${faqVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-5xl font-extrabold text-brand-blue-950 tracking-tight mb-4">Frequently Asked Questions</h2>
+                            <p className="text-lg text-gray-500">Everything you need to know about partnering with SWRFHP.</p>
+                        </div>
+                        
+                        <div className="bg-slate-50 rounded-[2.5rem] p-6 sm:p-10 border border-slate-100 shadow-sm">
+                            <Accordion type="single" collapsible className="w-full">
+                                {faqs.map((faq, index) => (
+                                    <AccordionItem
+                                        key={index}
+                                        value={`item-${index}`}
+                                        className="border-b border-slate-200 last:border-b-0 py-2"
+                                    >
+                                        <AccordionTrigger className="px-2 text-left font-bold text-lg text-brand-blue-950 hover:text-brand-green-600 transition-colors duration-200">
+                                            {faq.question}
+                                        </AccordionTrigger>
+                                        <AccordionContent className="px-2 pt-2 pb-6 text-gray-600 leading-relaxed text-base">
+                                            {faq.answer}
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                ))}
+                            </Accordion>
                         </div>
                     </div>
                 </div>
-            </main>
-
-            {/* CTA Section */}
-            <div className="bg-gradient-to-r from-brand-blue-950 via-brand-blue-900 to-brand-green-950 text-white py-16 shadow-inner">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-bold mb-4">Ready to Make a Difference?</h2>
-                    <p className="text-xl text-brand-blue-100 mb-8 max-w-2xl mx-auto">
-                        Join us in our mission to improve healthcare access across Southwest Cameroon.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link href="/donate">
-                            <AnimatedButton
-                                size="lg"
-                                className="bg-white text-brand-blue-950 hover:bg-slate-50 font-semibold px-8 py-3 rounded-full active:scale-[0.98] transition-all duration-300"
-                            >
-                                Donate Now
-                            </AnimatedButton>
-                        </Link>
-                        <Link href="/about">
-                            <AnimatedButton
-                                size="lg"
-                                variant="outline"
-                                className="border-white/30 text-white hover:bg-white hover:text-brand-blue-950 font-semibold px-8 py-3 bg-white/10 backdrop-blur-sm rounded-full active:scale-[0.98] transition-all duration-300"
-                            >
-                                Learn More
-                            </AnimatedButton>
-                        </Link>
-                    </div>
+            </div>
+            
+            {/* Minimal CTA */}
+            <div className="bg-brand-blue-950 text-white py-20 text-center relative overflow-hidden">
+                <div className="absolute inset-0 opacity-10 bg-[url('/front-view-of-office.jpeg')] bg-cover bg-center mix-blend-overlay" />
+                <div className="relative z-10 container mx-auto px-4">
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">Ready to make an impact?</h2>
+                    <Link href="/intervention">
+                        <AnimatedButton className="bg-brand-green-500 text-brand-blue-950 hover:bg-brand-green-400 font-bold px-8 py-3 rounded-full">
+                            Explore Our Interventions
+                        </AnimatedButton>
+                    </Link>
                 </div>
             </div>
         </div>

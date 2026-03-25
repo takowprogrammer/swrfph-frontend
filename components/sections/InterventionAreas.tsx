@@ -89,7 +89,7 @@ export function InterventionAreas() {
     ]
 
     return (
-        <section id="areas" className="relative bg-gray-50 py-24 sm:py-32 overflow-hidden">
+        <section id="areas" className="relative bg-gray-50 py-16 sm:py-20 overflow-hidden">
             {/* Background pattern */}
             <div className="absolute inset-0 health-pattern" />
 

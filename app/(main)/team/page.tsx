@@ -9,7 +9,7 @@ export default function TeamPage() {
     return (
         <div className="bg-white">
             {/* Page Hero */}
-            <div className="relative h-[65vh] min-h-[500px] overflow-hidden">
+            <div className="relative h-[50vh] min-h-[400px] overflow-hidden">
                 <div className="absolute inset-0">
                     <Image
                         src="/front-view-of-office.jpeg"

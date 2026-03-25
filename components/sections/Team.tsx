@@ -10,7 +10,7 @@ export function Team() {
     const { ref, isVisible } = useScrollAnimation<HTMLDivElement>()
 
     return (
-        <section id="team" className="relative bg-gray-50 py-24 sm:py-32 overflow-hidden">
+        <section id="team" className="relative bg-gray-50 py-16 sm:py-20 overflow-hidden">
             {/* Decorative */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-emerald-50 rounded-full blur-3xl opacity-50" />
 

@@ -9,7 +9,7 @@ export function OurSections() {
     const { ref, isVisible } = useScrollAnimation<HTMLDivElement>()
 
     return (
-        <section id="sections" className="relative bg-white py-24 sm:py-32 overflow-hidden">
+        <section id="sections" className="relative bg-white py-16 sm:py-20 overflow-hidden">
             {/* Background accent */}
             <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-emerald-50 rounded-full blur-3xl opacity-30 -translate-y-1/2 -translate-x-1/2" />
 

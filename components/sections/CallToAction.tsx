@@ -50,7 +50,7 @@ export function CallToAction() {
     }
 
     return (
-        <section className="bg-gradient-to-br from-green-600 to-blue-600 py-16 sm:py-24">
+        <section className="bg-gradient-to-br from-green-600 to-blue-600 py-12 sm:py-16">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div ref={ref} className={`text-center transition-all duration-1000 transform ${isVisible
                     ? 'translate-y-0 opacity-100'

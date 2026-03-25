@@ -46,7 +46,7 @@ export function HomePreview() {
     ]
 
     return (
-        <section className="bg-slate-50/50 py-24 sm:py-32">
+        <section className="bg-slate-50/50 py-16 sm:py-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Section Header */}
