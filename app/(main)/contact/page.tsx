@@ -283,6 +283,31 @@ export default function ContactPage() {
                 </div>
             </div>
 
+            {/* Interactive Map Section */}
+            <section className="relative w-full h-[50vh] min-h-[400px] bg-slate-200">
+                <iframe
+                    src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=563M+4FP,Buea+(South%20West%20Regional%20Fund%20for%20Health%20Promotion)&t=&z=16&ie=UTF8&iwloc=B&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="SWRFHP Location in Buea"
+                    className="absolute inset-0 select-none pointer-events-auto grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-1000"
+                />
+                
+                {/* Overlay Gradient for seamless integration */}
+                <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-50 to-transparent pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+                
+                {/* Floating Location Badge */}
+                <div className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full shadow-[0_10px_40px_-10px_rgba(36,60,138,0.3)] border border-gray-100 flex items-center gap-3 pointer-events-none">
+                    <div className="w-2.5 h-2.5 rounded-full bg-brand-green-500 animate-pulse shadow-[0_0_10px_rgba(19,177,75,0.8)]" />
+                    <span className="font-bold text-brand-blue-950 text-sm tracking-widest uppercase">Buea, Southwest Region</span>
+                </div>
+            </section>
+
             {/* FAQs Section */}
             <div className="py-24 bg-white">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
