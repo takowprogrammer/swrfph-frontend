@@ -47,12 +47,12 @@ export const Hero = () => {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   // Fast, snapping transition settings
-  const snapTransition = {
+ const snapTransition = {
     type: "spring",
-    stiffness: 120, // High tension for "fast" feel
-    damping: 18,    // Low damping for a crisp snap
+    stiffness: 120,
+    damping: 18,
     mass: 0.8
-  }
+  } as const;
 
   const goTo = useCallback((index: number) => {
     if (transitioning) return
