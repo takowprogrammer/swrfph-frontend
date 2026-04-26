@@ -15,7 +15,7 @@ export function ContactSection() {
               <h2 
               data-aos="slide-right"
                 data-aos-duration="1000"
-                data-aos-delay="100"
+                // data-aos-delay="100"
               className="text-3xl text-center lg:text-5xl font-bold  leading-tight mb-6">
                 Connect with our
                 <span className="text-emerald-900 ml-2">support.</span>
@@ -23,7 +23,7 @@ export function ContactSection() {
               <p 
               data-aos="fade-up"
                 data-aos-duration="1000"
-                data-aos-delay="300"
+                data-aos-delay="200"
               className=" text-lg max-w-md leading-relaxed text-center">
                 Our administrative and logistics teams are available to assist
                 with supply inquiries, partnership proposals, and healthcare
@@ -34,7 +34,7 @@ export function ContactSection() {
             <div 
              data-aos="zoom-in"
                 data-aos-duration="1000"
-                data-aos-delay="400"
+                data-aos-delay="300"
             className="flex flex-col md:flex-row gap-8 justify-center">
               {/* <ContactInfo 
                 icon={<MapPin className="text-emerald-400" size={24} />}
@@ -64,7 +64,7 @@ export function ContactSection() {
           <div
             data-aos="flip-left"
             data-aos-duration="1000"
-            data-aos-delay="200"
+            data-aos-delay="400"
             className="bg-gradient-to-br from-emerald-600 to-emerald-900 p-6 md:p-8 lg:p-12 shadow-2xl"
           >
             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
@@ -89,7 +89,20 @@ export function ContactSection() {
                     placeholder="john@hospital.org"
                   />
                 </div>
+
+                
               </div>
+
+              <div className="space-y-2">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                    Phone Number
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-3 border-b border-slate-200 py-3 focus:border-[#064E3B] outline-none transition-colors text-slate-800 placeholder:text-slate-300"
+                    placeholder="+237 XXX XXX XXX"
+                  />
+                </div>
 
               <div className="space-y-2">
                 <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">

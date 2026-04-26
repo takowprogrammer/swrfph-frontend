@@ -21,6 +21,9 @@ const nextConfig = {
     env: {
         NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000',
     },
+
+    allowedDevOrigins: ['172.18.32.1', '172.19.173.36'],
+    devIndicators: false,
 }
 
 module.exports = nextConfig

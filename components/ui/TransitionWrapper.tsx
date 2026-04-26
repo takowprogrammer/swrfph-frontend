@@ -28,7 +28,7 @@ export function TransitionWrapper({ children }: TransitionWrapperProps) {
     return (
         <div className="relative min-h-screen">
             {/* Transition overlay */}
-            <div className={`fixed inset-0 bg-gradient-to-br from-health-50 to-white z-40 transition-all duration-300 ${isTransitioning ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            <div className={`fixed inset-0 bg-gradient-to-br from-health-50 to-white z-80 transition-all duration-300 ${isTransitioning ? 'opacity-100' : 'opacity-0 pointer-events-none'
                 }`}>
                 <div className="flex items-center justify-center h-full">
                     <div className="text-center">

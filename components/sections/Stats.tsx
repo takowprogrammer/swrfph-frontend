@@ -19,8 +19,16 @@ export function Stats() {
   ]
 
   return (
-    <section ref={ref} className="bg-[#064E3B] py-12 border-y border-white/5">
-      <div className="container mx-auto px-6">
+    <section ref={ref} className="bg-[#064E3B] py-12 border-y relative border-white/5">
+      <img
+        src="/health-education.jpg"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-emerald-950/80" />
+
+      <div className="container mx-auto relative px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
           {stats.map((stat, index) => (
             <div 
@@ -47,7 +55,7 @@ export function Stats() {
                   )}
                 </span>
               </div>
-              <p className="text-base md:text-lg font-semibold  -tracking-normal text-emerald-400/60">
+              <p className="text-base md:text-lg font-semibold  -tracking-normal text-emerald-300/60">
                 {stat.label}
               </p>
             </div>
