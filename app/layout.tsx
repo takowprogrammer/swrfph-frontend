@@ -49,6 +49,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`scroll-smooth ${figtree.variable} ${notoSans.variable}`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <body

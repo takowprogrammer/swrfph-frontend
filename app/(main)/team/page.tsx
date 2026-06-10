@@ -49,6 +49,7 @@ export default function TeamPage() {
                   src="https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg"
                   alt="Mrs. Ngondo W. Musenja"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover border-2 border-slate-300 transition-all duration-700"
                 />
               </div>
@@ -167,6 +168,7 @@ export default function TeamPage() {
                       src={member.image}
                       alt={member.name}
                       fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                     />
                   )}
@@ -238,6 +240,7 @@ export default function TeamPage() {
                   src="/eko.png"
                   alt="Mrs. Ngondo W. Musenja"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover border-2 border-slate-300 transition-all duration-700"
                 />
               </div>
