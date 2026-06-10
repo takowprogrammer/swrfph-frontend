@@ -46,7 +46,7 @@ export default function TeamPage() {
             <div className="w-full lg:w-2/5 max-w-md">
               <div className="relative aspect-[4/5] rounded-sm bg-slate-100 overflow-hidden border border-slate-200">
                 <Image
-                  src="/ngondo.png"
+                  src="https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg"
                   alt="Mrs. Ngondo W. Musenja"
                   fill
                   className="object-cover border-2 border-slate-300 transition-all duration-700"
@@ -113,7 +113,7 @@ export default function TeamPage() {
 
         <div className="container md:hidden mx-auto px-6 max-w-6xl text-center">
           <div className="max-w-2xl mx-auto flex flex-col items-center">
-            <img src="/ngondo.png" alt="" className="w-44 h-44 rounded-full" />
+            <img src="https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg" alt="" className="w-44 h-44 rounded-full object-cover" />
             <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">
               Strategic Oversight
             </h4>
