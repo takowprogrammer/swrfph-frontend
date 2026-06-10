@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Figtree, Noto_Sans } from "next/font/google";
 import "aos/dist/aos.css";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { TransitionWrapper } from "@/components/ui/TransitionWrapper";
 
-const inter = Inter({
+const figtree = Figtree({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-figtree",
   display: "swap",
 });
 
-const jakarta = Plus_Jakarta_Sans({
+const notoSans = Noto_Sans({
   subsets: ["latin"],
-  variable: "--font-jakarta",
+  variable: "--font-noto-sans",
   display: "swap",
+  weight: ["300", "400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -47,11 +48,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`scroll-smooth ${inter.variable} ${jakarta.variable}`}
+      className={`scroll-smooth ${figtree.variable} ${notoSans.variable}`}
       suppressHydrationWarning
     >
       <body
-        className={`${jakarta.className} antialiased`}
+        className={`${notoSans.className} antialiased`}
         suppressHydrationWarning
       >
         <AuthProvider>

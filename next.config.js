@@ -4,6 +4,8 @@ const nextConfig = {
     reactStrictMode: false,
 
     // Essential configuration for external images
+    output: 'standalone',
+
     images: {
         remotePatterns: [
             {

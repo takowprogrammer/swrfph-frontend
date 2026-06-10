@@ -48,7 +48,7 @@ export function CookieBanner() {
             <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
               <div className="flex items-center gap-2.5">
                 <span className="text-base">🍪</span>
-                <p className="text-xs font-black text-emerald-950 uppercase tracking-[0.15em]">Cookie Preferences</p>
+                <p className="text-xs font-black text-primary-950 uppercase tracking-[0.15em]">Cookie Preferences</p>
               </div>
               <button
                 onClick={acceptNecessary}
@@ -62,7 +62,7 @@ export function CookieBanner() {
             <div className="px-5 py-5">
               <p className="text-slate-500 text-xs leading-relaxed mb-5">
                 We use cookies to improve your experience on our site. Some are essential for the site to work, others help us understand how you use it.{' '}
-                <a href="/privacy" className="text-emerald-700 font-bold underline underline-offset-2">
+                <a href="/privacy" className="text-primary-700 font-bold underline underline-offset-2">
                   Privacy Policy
                 </a>
               </p>
@@ -82,10 +82,10 @@ export function CookieBanner() {
                       {/* Necessary — always on */}
                       <div className="flex items-center justify-between py-3 border-t border-slate-100">
                         <div>
-                          <p className="text-xs font-black text-emerald-950 tracking-tight">Necessary</p>
+                          <p className="text-xs font-black text-primary-950 tracking-tight">Necessary</p>
                           <p className="text-[10px] text-slate-400 mt-0.5">Required for the site to function.</p>
                         </div>
-                        <div className="w-9 h-5 bg-emerald-600 rounded-full flex items-center justify-end px-0.5 shrink-0">
+                        <div className="w-9 h-5 bg-primary-600 rounded-full flex items-center justify-end px-0.5 shrink-0">
                           <div className="w-4 h-4 bg-white rounded-full" />
                         </div>
                       </div>
@@ -93,12 +93,12 @@ export function CookieBanner() {
                       {/* Analytics */}
                       <div className="flex items-center justify-between py-3 border-t border-slate-100">
                         <div>
-                          <p className="text-xs font-black text-emerald-950 tracking-tight">Analytics</p>
+                          <p className="text-xs font-black text-primary-950 tracking-tight">Analytics</p>
                           <p className="text-[10px] text-slate-400 mt-0.5">Helps us understand site usage.</p>
                         </div>
                         <button
                           onClick={() => setPrefs(p => ({ ...p, analytics: !p.analytics }))}
-                          className={`w-9 h-5 rounded-full flex items-center px-0.5 transition-colors duration-200 shrink-0 ${prefs.analytics ? 'bg-emerald-600 justify-end' : 'bg-slate-200 justify-start'}`}
+                          className={`w-9 h-5 rounded-full flex items-center px-0.5 transition-colors duration-200 shrink-0 ${prefs.analytics ? 'bg-primary-600 justify-end' : 'bg-slate-200 justify-start'}`}
                         >
                           <div className="w-4 h-4 bg-white rounded-full shadow-sm" />
                         </button>
@@ -107,12 +107,12 @@ export function CookieBanner() {
                       {/* Marketing */}
                       <div className="flex items-center justify-between py-3 border-t border-slate-100">
                         <div>
-                          <p className="text-xs font-black text-emerald-950 tracking-tight">Marketing</p>
+                          <p className="text-xs font-black text-primary-950 tracking-tight">Marketing</p>
                           <p className="text-[10px] text-slate-400 mt-0.5">Used for relevant communications.</p>
                         </div>
                         <button
                           onClick={() => setPrefs(p => ({ ...p, marketing: !p.marketing }))}
-                          className={`w-9 h-5 rounded-full flex items-center px-0.5 transition-colors duration-200 shrink-0 ${prefs.marketing ? 'bg-emerald-600 justify-end' : 'bg-slate-200 justify-start'}`}
+                          className={`w-9 h-5 rounded-full flex items-center px-0.5 transition-colors duration-200 shrink-0 ${prefs.marketing ? 'bg-primary-600 justify-end' : 'bg-slate-200 justify-start'}`}
                         >
                           <div className="w-4 h-4 bg-white rounded-full shadow-sm" />
                         </button>
@@ -128,14 +128,14 @@ export function CookieBanner() {
                 {customizing ? (
                   <button
                     onClick={saveCustom}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-black uppercase tracking-[0.2em] py-3 transition-colors duration-200"
+                    className="w-full bg-primary-600 hover:bg-primary-700 text-white text-[10px] font-black uppercase tracking-[0.2em] py-3 transition-colors duration-200"
                   >
                     Save Preferences
                   </button>
                 ) : (
                   <button
                     onClick={acceptAll}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-black uppercase tracking-[0.2em] py-3 transition-colors duration-200"
+                    className="w-full bg-primary-600 hover:bg-primary-700 text-white text-[10px] font-black uppercase tracking-[0.2em] py-3 transition-colors duration-200"
                   >
                     Accept All
                   </button>

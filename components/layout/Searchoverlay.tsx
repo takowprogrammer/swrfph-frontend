@@ -35,7 +35,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[100] bg-emerald-950/95 backdrop-blur-sm flex flex-col items-center justify-center px-6"
+          className="fixed inset-0 z-[100] bg-primary-950/95 backdrop-blur-sm flex flex-col items-center justify-center px-6"
           onClick={onClose}
         >
           <motion.div
@@ -46,9 +46,9 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
             className="w-full max-w-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <p className="text-[10px] font-black text-amber-400 uppercase tracking-[0.25em] mb-6">Search</p>
+            <p className="text-[10px] font-black text-accent-400 uppercase tracking-[0.25em] mb-6">Search</p>
 
-            <form onSubmit={handleSubmit} className="flex items-center gap-4 border-b-2 border-white/20 pb-4 focus-within:border-amber-400 transition-colors duration-300">
+            <form onSubmit={handleSubmit} className="flex items-center gap-4 border-b-2 border-white/20 pb-4 focus-within:border-accent-400 transition-colors duration-300">
               <Search size={20} className="text-white/40 shrink-0" />
               <input
                 ref={inputRef}

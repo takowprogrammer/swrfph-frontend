@@ -89,7 +89,7 @@ export const Hero = () => {
         />
       ))}
 
-      <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/55 to-emerald-950/90" />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary-950/55 to-primary-950/90" />
 
       {/* Content Area */}
       <div className="absolute inset-0 flex flex-col items-center justify-center px-10 md:px-16 text-center z-20">
@@ -122,12 +122,12 @@ export const Hero = () => {
                 animate={activeSlide.variants.animate}
                 exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
                 transition={{ ...snapTransition, delay: 0.25 }}
-                className="hidden md:flex gap-2.5 flex-wrap justify-center"
+                className="hidden md:flex gap-4 flex-wrap justify-center"
               >
-                <button className="text-xs font-semibold bg-emerald-600 text-white px-5 py-2.5 hover:bg-emerald-700 transition-colors">
+                <button className="text-xs font-semibold bg-primary-600 text-white px-5 py-2.5 transition-all duration-200 hover:-translate-y-1 active:scale-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/50 shadow-sm">
                   Contact Us
                 </button>
-                <button className="text-xs font-bold bg-white text-gray-900 border-[1.5px] border-white px-5 py-2.5 hover:bg-white/90 transition-colors">
+                <button className="text-xs font-bold bg-white text-gray-900 border-[1.5px] border-white px-5 py-2.5 transition-all duration-200 hover:bg-white/90 hover:-translate-y-1 active:scale-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/50 shadow-sm">
                   Learn More
                 </button>
               </motion.div>

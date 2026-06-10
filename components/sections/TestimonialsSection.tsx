@@ -34,8 +34,8 @@ const testimonials = [
 
 const RatingStars = ({ rating }: { rating: number }) => (
   <div className="flex gap-1 mb-6">
-    {[...Array(Math.floor(rating))].map((_, i) => <FaStar key={i} size={16} className="text-amber-400" />)}
-    {rating % 1 !== 0 && <FaStarHalfAlt size={16} className="text-amber-400" />}
+    {[...Array(Math.floor(rating))].map((_, i) => <FaStar key={i} size={16} className="text-accent-400" />)}
+    {rating % 1 !== 0 && <FaStarHalfAlt size={16} className="text-accent-400" />}
     {[...Array(5 - Math.ceil(rating))].map((_, i) => <FaStar key={i} size={16} className="text-slate-200" />)}
   </div>
 )
@@ -84,7 +84,7 @@ export function TestimonialsSection() {
         >
           {testimonials.map((t, i) => (
             <SwiperSlide key={i}>
-              <div className="message-card relative bg-white p-8 md:p-12 border border-slate-900 shadow-xl shadow-emerald-900/5 flex flex-col justify-center min-h-[280px]">
+              <div className="message-card relative bg-white p-8 md:p-12 border border-slate-900 shadow-xl shadow-primary-900/5 flex flex-col justify-center min-h-[280px]">
                 <RatingStars rating={t.rating} />
                 <p className="text-slate-800 text-lg md:text-xl italic leading-relaxed mb-8">"{t.quote}"</p>
                 <div>

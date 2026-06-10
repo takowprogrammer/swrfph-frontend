@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer'
 import { MapPin, Building2, Users2, Truck } from 'lucide-react'
 
 export function Stats() {
-  const { ref, inView } = useInView({
+  const { ref } = useInView({
     triggerOnce: true,
     threshold: 0.3,
   })
@@ -19,14 +19,14 @@ export function Stats() {
   ]
 
   return (
-    <section ref={ref} className="bg-[#064E3B] py-12 border-y relative border-white/5">
+    <section ref={ref} className="bg-primary-900 py-12 border-y relative border-white/5">
       <img
         src="/health-education.jpg"
         alt=""
         className="absolute inset-0 w-full h-full object-cover"
       />
       {/* Overlay */}
-      <div className="absolute inset-0 bg-emerald-950/80" />
+      <div className="absolute inset-0 bg-primary-950/80" />
 
       <div className="container mx-auto relative px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
@@ -42,20 +42,18 @@ export function Stats() {
               <div className="flex items-center gap-2 mb-1">
                 {stat.icon}
                 <span className="text-4xl md:text-5xl font-black text-white tracking-normal">
-                  {inView ? (
-                    <CountUp 
-                      end={stat.value} 
-                      duration={2.5} 
-                      decimals={stat.decimals || 0}
-                      suffix={stat.suffix}
-                      prefix={stat.prefix}
-                    />
-                  ) : (
-                    0
-                  )}
+                  <CountUp 
+                    end={stat.value} 
+                    duration={2.5} 
+                    decimals={stat.decimals || 0}
+                    suffix={stat.suffix || ""}
+                    prefix={stat.prefix || ""}
+                    enableScrollSpy={true}
+                    scrollSpyOnce={true}
+                  />
                 </span>
               </div>
-              <p className="text-base md:text-lg font-semibold  -tracking-normal text-emerald-300/60">
+              <p className="text-base md:text-lg font-semibold  -tracking-normal text-primary-300/60">
                 {stat.label}
               </p>
             </div>

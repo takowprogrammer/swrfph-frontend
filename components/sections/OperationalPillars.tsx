@@ -30,7 +30,7 @@ export function OperationalPillars() {
         
         {/* Header - No Animations */}
         <div className="max-w-7xl mb-8 md:mb-12 text-center">
-          <p className="text-amber-400 font-black uppercase mb-3">
+          <p className="text-accent-400 font-black uppercase mb-3">
             Our Core Mandate
           </p>
           <h2 className="text-3xl md:text-5xl mx-auto max-w-3xl lg:text-6xl font-black text-gray-800/80 tracking-tight leading-[1.05]">
@@ -66,7 +66,7 @@ export function OperationalPillars() {
                 data-aos-delay={(index * 200) + 150}
                 data-aos-duration="800"
               >
-                <h3 className="text-xl md:text-2xl font-black text-emerald-950 tracking-tight leading-tight">
+                <h3 className="text-xl md:text-2xl font-black text-primary-950 tracking-tight leading-tight">
                   {pillar.title}
                 </h3>
                 <p className="text-slate-600 leading-relaxed line-clamp-3">

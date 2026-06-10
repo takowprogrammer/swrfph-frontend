@@ -15,14 +15,14 @@ export function About() {
             title: 'Foundation',
             description: 'Established as the Primary Health Care Essential Drug Program to ensure a constant supply of quality essential medicines with technical assistance provided by GTZ.',
             icon: Heart,
-            color: 'from-emerald-500 to-teal-500'
+            color: 'from-primary-500 to-accent-500'
         },
         {
             year: '1992',
             title: 'Transformation',
             description: 'Transformed into South West Provincial Special Fund for Health with a legal personality as an Association following the promulgation of laws bearing on freedom of association.',
             icon: Shield,
-            color: 'from-teal-500 to-cyan-500'
+            color: 'from-accent-500 to-cyan-500'
         },
         {
             year: '2013',
@@ -53,24 +53,24 @@ export function About() {
             icon: Target,
             title: 'Our Mission',
             text: 'To ensure better health for the population by improving on the performance of the health system in the South West Region.',
-            gradient: 'from-emerald-500 to-teal-500',
-            bg: 'bg-gradient-to-br from-emerald-50 to-teal-50',
-            border: 'border-emerald-100'
+            gradient: 'from-primary-500 to-accent-500',
+            bg: 'bg-gradient-to-br from-primary-50 to-accent-50',
+            border: 'border-primary-100'
         },
         {
             icon: Star,
             title: 'Our Values',
             text: 'Collaboration, communication, openness, respect, partnership, and outcome-focused decision making.',
-            gradient: 'from-amber-500 to-orange-500',
-            bg: 'bg-gradient-to-br from-amber-50 to-orange-50',
-            border: 'border-amber-100'
+            gradient: 'from-accent-500 to-orange-500',
+            bg: 'bg-gradient-to-br from-accent-50 to-orange-50',
+            border: 'border-accent-100'
         }
     ]
 
     return (
         <section id="about" className="relative bg-white py-16 sm:py-20 overflow-hidden">
             {/* Subtle background decoration */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-50 rounded-full blur-3xl opacity-40 -translate-y-1/2 translate-x-1/3" />
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-50 rounded-full blur-3xl opacity-40 -translate-y-1/2 translate-x-1/3" />
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-50 rounded-full blur-3xl opacity-40 translate-y-1/2 -translate-x-1/3" />
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -81,7 +81,7 @@ export function About() {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-block text-sm font-bold tracking-[0.2em] text-emerald-600 uppercase mb-4"
+                        className="inline-block text-sm font-bold tracking-[0.2em] text-primary-600 uppercase mb-4"
                     >
                         Who We Are
                     </motion.span>
@@ -93,7 +93,7 @@ export function About() {
                         className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight"
                     >
                         Serving communities
-                        <span className="block bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-500">since 1989</span>
+                        <span className="block bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500">since 1989</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -130,12 +130,12 @@ export function About() {
                 <div ref={ref} className="mb-28">
                     <div className="text-center mb-16">
                         <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Journey</h3>
-                        <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto rounded-full" />
+                        <div className="w-20 h-1 bg-gradient-to-r from-primary-500 to-cyan-500 mx-auto rounded-full" />
                     </div>
 
                     <div className="relative max-w-4xl mx-auto">
                         {/* Timeline line */}
-                        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-300 via-teal-300 to-blue-300 hidden md:block" />
+                        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary-300 via-accent-300 to-blue-300 hidden md:block" />
 
                         <div className="space-y-16">
                             {timeline.map((item, index) => (
@@ -158,7 +158,7 @@ export function About() {
                                     <div className={`w-full md:w-[calc(50%-3rem)] ${index % 2 === 0 ? 'md:pr-4' : 'md:pl-4'}`}>
                                         <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 group">
                                             <span className={`inline-block text-sm font-bold bg-clip-text text-transparent bg-gradient-to-r ${item.color} mb-2`}>{item.year}</span>
-                                            <h4 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-emerald-700 transition-colors">{item.title}</h4>
+                                            <h4 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary-700 transition-colors">{item.title}</h4>
                                             <p className="text-gray-600 leading-relaxed text-sm">{item.description}</p>
                                         </div>
                                     </div>
@@ -174,17 +174,17 @@ export function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-gray-900 via-emerald-950 to-slate-900 p-1"
+                    className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-gray-900 via-primary-950 to-slate-900 p-1"
                 >
-                    <div className="relative bg-gradient-to-br from-gray-900/95 via-emerald-950/95 to-slate-900/95 backdrop-blur-xl p-10 md:p-16 rounded-[calc(2rem-4px)]">
+                    <div className="relative bg-gradient-to-br from-gray-900/95 via-primary-950/95 to-slate-900/95 backdrop-blur-xl p-10 md:p-16 rounded-[calc(2rem-4px)]">
                         {/* Decorative elements */}
-                        <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl" />
+                        <div className="absolute top-0 right-0 w-72 h-72 bg-primary-500/10 rounded-full blur-3xl" />
                         <div className="absolute bottom-0 left-0 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl" />
                         <Quote className="absolute top-10 right-10 w-32 h-32 text-white/[0.03] rotate-180" />
 
                         <div className="relative z-10">
                             <div className="text-center mb-12">
-                                <span className="text-sm font-bold tracking-[0.2em] text-emerald-400 uppercase">Welcome Message</span>
+                                <span className="text-sm font-bold tracking-[0.2em] text-primary-400 uppercase">Welcome Message</span>
                                 <h3 className="text-3xl md:text-4xl font-bold text-white mt-3">From the Administrator</h3>
                             </div>
 
@@ -201,7 +201,7 @@ export function About() {
                                     </div>
                                     <div className="mt-5">
                                         <p className="font-bold text-white text-lg">Mrs. Ngondo W. Musenja</p>
-                                        <p className="text-emerald-400 text-sm font-medium">Administrator</p>
+                                        <p className="text-primary-400 text-sm font-medium">Administrator</p>
                                     </div>
                                 </div>
 

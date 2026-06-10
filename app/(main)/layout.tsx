@@ -22,7 +22,7 @@ export default function MainLayout({
   useEffect(() => {
     AOS.init({
       // Global settings for that "dense/smooth" feel
-      duration: 1000, // 1 second for softness
+      duration: 400, // Reduced from 1000ms for snappier UX
       once: true, // Only animate once
       easing: "ease-out-quad", // Smooth deceleration
       delay: 100, // Slight delay before starting

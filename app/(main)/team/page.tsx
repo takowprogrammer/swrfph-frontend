@@ -145,14 +145,14 @@ export default function TeamPage() {
           <div className="mb-12 text-center">
             <p
               data-aos="fade-up"
-              className="text-[10px] font-black text-amber-400 uppercase tracking-[0.25em] mb-3"
+              className="text-[10px] font-black text-accent-400 uppercase tracking-[0.25em] mb-3"
             >
               See our
             </p>
             <h2
               data-aos="fade-up"
               data-aos-delay="100"
-              className="text-3xl md:text-5xl font-black text-emerald-950 tracking-tight leading-tight"
+              className="text-3xl md:text-5xl font-black text-primary-950 tracking-tight leading-tight"
             >
               Heads of Sections
             </h2>
@@ -162,12 +162,14 @@ export default function TeamPage() {
             {teamMembers.map((member, idx) => (
               <div key={idx} className="group">
                 <div className="relative aspect-square bg-slate-200 rounded-sm overflow-hidden mb-4 border border-slate-200">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                  />
+                  {member.image && (
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                    />
+                  )}
                   {/* Subtle Overlaid Socials for Team */}
                   <div className="absolute bottom-2 left-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <a

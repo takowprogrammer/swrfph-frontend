@@ -26,7 +26,7 @@ export function Footer2() {
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row w-full">
 
         {/* ── LEFT: Brand ── */}
-        <div className="bg-emerald-950 px-6 md:px-8 py-16 lg:w-[35%] flex flex-col justify-between">
+        <div className="bg-primary-950 px-6 md:px-8 py-16 lg:w-[35%] flex flex-col justify-between">
           <div>
             <Link href="/" className="flex items-center gap-3 group mb-6">
               <Image
@@ -34,13 +34,13 @@ export function Footer2() {
                 alt="SWRFHP Logo"
                 width={48}
                 height={48}
-                className="rounded-full ring-2 ring-emerald-800 group-hover:ring-amber-400 transition-all"
+                className="rounded-full ring-2 ring-primary-800 group-hover:ring-accent-400 transition-all"
               />
               <div>
                 <span className="font-normal text-sm block tracking-tighter leading-none">
                   SouthWest Region Fund For Health Promotion
                 </span>
-                <span className="text-[9px] text-emerald-200 uppercase font-bold tracking-[0.2em]">
+                <span className="text-[9px] text-primary-200 uppercase font-bold tracking-[0.2em]">
                   Buea, Cameroon
                 </span>
               </div>
@@ -66,24 +66,24 @@ export function Footer2() {
           {/* Contact */}
           <div>
             <h3 className="text-sm font-black uppercase tracking-[0.2em] mb-2">Get In Touch</h3>
-            <div className="h-px w-12 bg-amber-400 mb-8" />
+            <div className="h-px w-12 bg-accent-400 mb-8" />
             <ul className="space-y-5 text-zinc-400">
               <li className="flex gap-3 items-start">
-                <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-accent-400 shrink-0 mt-0.5" />
                 <span className="text-sm">Buea, South West Region, Cameroon</span>
               </li>
               <li className="flex gap-3 items-center">
-                <Mail className="w-4 h-4 text-amber-400 shrink-0" />
+                <Mail className="w-4 h-4 text-accent-400 shrink-0" />
                 <span className="text-sm">info@swrfhp.cm</span>
               </li>
               <li className="flex gap-3 items-center">
-                <Phone className="w-4 h-4 text-amber-400 shrink-0" />
+                <Phone className="w-4 h-4 text-accent-400 shrink-0" />
                 <span className="text-sm">(+237) 633 322 943</span>
               </li>
             </ul>
             <div className="flex gap-3 mt-8">
               {[Twitter, Facebook, Linkedin, Instagram].map((Icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 bg-zinc-800 hover:bg-amber-400 flex items-center justify-center transition-colors duration-200 group">
+                <a key={i} href="#" className="w-9 h-9 bg-zinc-800 hover:bg-accent-400 flex items-center justify-center transition-colors duration-200 group">
                   <Icon className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 transition-colors" />
                 </a>
               ))}
@@ -93,7 +93,7 @@ export function Footer2() {
           {/* About */}
           <div>
             <h3 className="text-sm font-black uppercase tracking-[0.2em] mb-2">About Us</h3>
-            <div className="h-px w-12 bg-amber-400 mb-8" />
+            <div className="h-px w-12 bg-accent-400 mb-8" />
             <ul className="space-y-3">
               {aboutLinks.map((item) => (
                 <li key={item.label}>
@@ -108,7 +108,7 @@ export function Footer2() {
           {/* Popular */}
           <div>
             <h3 className="text-sm font-black uppercase tracking-[0.2em] mb-2">Popular Links</h3>
-            <div className="h-px w-12 bg-amber-400 mb-8" />
+            <div className="h-px w-12 bg-accent-400 mb-8" />
             <ul className="space-y-3">
               {popularLinks.map((item) => (
                 <li key={item.label}>

@@ -9,7 +9,7 @@ export function ResourcesSection() {
       title: "Optimizing Personnel for Last-Mile Delivery",
       desc: "How we train and deploy specialized health workers to ensure supply integrity in remote regional zones.",
       image: "/hr-training.webp",
-      date: "Apri 21 2026",
+      date: "April 21 2026",
       author: { name: "Dr. Njume F.", role: "HR Director", avatar: "/avatar1.jpg" }
     },
     {
@@ -17,7 +17,7 @@ export function ResourcesSection() {
       title: "Warehouse Management Standards 2026",
       desc: "Updated protocols for biomedical equipment handling and sterile environment maintenance for staff.",
       image: "/warehouse-staff.jpeg",
-      date: "Apri 07 2026",
+      date: "April 07 2026",
       author: { name: "Sarah M.", role: "Logistics Lead", avatar: "/avatar2.jpg" }
     },
     {
@@ -25,7 +25,7 @@ export function ResourcesSection() {
       title: "Community Health Worker Integration",
       desc: "Bridging the gap between regional distribution centers and local community health representatives.",
       image: "/community-hr.jpeg",
-      date: "Apri 21 2026",
+      date: "April 21 2026",
       author: { name: "Paul Atabong", role: "Field Coordinator", avatar: "/avatar3.jpg" }
     },
     {
@@ -45,7 +45,7 @@ export function ResourcesSection() {
         {/* Header - Simple Fade Up */}
         <div className="max-w-7xl mb-8 md:mb-12 text-center">
           <p 
-            className="text-amber-400 font-black uppercase mb-3"
+            className="text-accent-400 font-black uppercase mb-3"
           >
               Reports from SWRFHP
           </p>
