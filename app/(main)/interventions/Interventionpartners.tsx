@@ -6,7 +6,7 @@ const logos = [
   { name: 'Global Fund', src: '/logos/global-fund.jpg' },
   { name: 'Chemonics', src: '/logos/chemonics.jfif' },
   { name: 'CAMNAFAW', src: '/logos/camnafaw.png' },
-  { name: 'CARE', src: '/logos/care.png' },
+  { name: 'CARE', src: '/logos/CARE.png' },
   { name: 'Médecins Sans Frontières', src: '/logos/msf.png' },
   { name: 'World Bank', src: '/logos/world-bank.png' },
   { name: 'AFD', src: '/logos/AFD.png' },
