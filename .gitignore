@@ -81,3 +81,12 @@ jspm_packages/
 # site doc
 swrfhp-doc.txt
 SKILL.md
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+
+!.env.example
