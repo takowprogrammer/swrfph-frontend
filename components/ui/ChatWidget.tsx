@@ -24,12 +24,12 @@ export function ChatWidget() {
             {/* Header */}
             <div className="bg-[#064E3B] p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 border border-emerald-600 overflow-hidden flex items-center justify-center rounded-full">
+                <div className="w-8 h-8 border border-primary-600 overflow-hidden flex items-center justify-center rounded-full">
                    <img src="/swrfph-logo.png" alt="Logo" className=" w-8 h-8 object-contain" />
                 </div>
                 <div>
                   <p className="text-white text-sm font-bold leading-none">SWRFHP Support</p>
-                  <p className="text-emerald-400/80 text-[10px] uppercase tracking-widest mt-1">Online</p>
+                  <p className="text-primary-400/80 text-[10px] uppercase tracking-widest mt-1">Online</p>
                 </div>
               </div>
               <button 
@@ -52,10 +52,10 @@ export function ChatWidget() {
               <input 
                 type="text" 
                 placeholder="Type your message..."
-                className="flex-grow text-sm bg-slate-50 border border-slate-200 px-3 py-2 focus:outline-none focus:border-emerald-600 transition-colors"
+                className="flex-grow text-sm bg-slate-50 border border-slate-200 px-3 py-2 focus:outline-none focus:border-primary-600 transition-colors"
                 style={{ borderRadius: '2px' }}
               />
-              <button className="bg-[#064E3B] text-white p-2 hover:bg-emerald-800 transition-colors" style={{ borderRadius: '2px' }}>
+              <button className="bg-[#064E3B] text-white p-2 hover:bg-primary-800 transition-colors" style={{ borderRadius: '2px' }}>
                 <Send size={18} />
               </button>
             </div>
@@ -66,7 +66,7 @@ export function ChatWidget() {
       {/* Floating Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-[#064E3B] !rounded-full text-white w-14 h-14 shadow-xl flex items-center justify-center hover:bg-emerald-800 transition-all active:scale-95"
+        className="bg-[#064E3B] !rounded-full text-white w-14 h-14 shadow-xl flex items-center justify-center hover:bg-primary-800 transition-all active:scale-95"
         style={{ borderRadius: '2px' }}
       >
         <AnimatePresence mode="wait">

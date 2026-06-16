@@ -36,7 +36,6 @@ export function PageTransition({ children }: PageTransitionProps) {
                             <div className="w-16 h-16 border-4 border-health-200 rounded-full"></div>
                             <div className="absolute top-0 left-0 w-16 h-16 border-4 border-health-600 rounded-full border-t-transparent animate-spin"></div>
                         </div>
-                        <div className="text-health-600 font-medium">Loading...</div>
                     </div>
                 </div>
             </div>

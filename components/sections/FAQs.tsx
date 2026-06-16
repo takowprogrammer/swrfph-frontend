@@ -46,7 +46,7 @@ export function FAQs() {
                 data-aos-duration="1000"
                 data-aos-delay="400"
         className="mb-16">
-          <h2 className="text-3xl font-bold text-[#064E3B] mb-4 text-center">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold text-primary-800 mb-4 text-center">Frequently Asked Questions</h2>
           <p className="text-slate-500 text-base text-center">Quick answers to common inquiries about our regional operations.</p>
         </div>
 
@@ -71,7 +71,7 @@ export function FAQs() {
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="w-full py-3 flex items-center justify-between text-left group transition-all"
                 >
-                  <span className={`text-base font-semibold transition-colors duration-300 ${isOpen ? '' : 'text-slate-800 group-hover:text-[#064E3B]'}`}>
+                  <span className={`text-base font-semibold transition-colors duration-300 ${isOpen ? '' : 'text-slate-800 group-hover:text-primary-600'}`}>
                     {faq.question}
                   </span>
                   
@@ -88,6 +88,7 @@ export function FAQs() {
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
+                      key="content"
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -99,7 +100,7 @@ export function FAQs() {
                         {faq.url && (
                           <a 
                             href={faq.url} 
-                            className="text-emerald-500 font-bold underline underline-offset-4 hover:text-emerald-500 transition-colors inline-block ml-1"
+                            className="text-primary-600 font-bold underline underline-offset-4 hover:text-primary-500 transition-colors inline-block ml-1"
                           >
                             {faq.linkText}
                           </a>

@@ -34,9 +34,9 @@ const statusConfig = {
         dot: 'bg-purple-400'
     },
     delivered: {
-        bg: 'bg-emerald-100',
-        text: 'text-emerald-800',
-        dot: 'bg-emerald-400'
+        bg: 'bg-primary-100',
+        text: 'text-primary-800',
+        dot: 'bg-primary-400'
     }
 }
 

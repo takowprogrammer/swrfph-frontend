@@ -20,15 +20,15 @@ export function InterventionAreas() {
             title: 'Health Financing',
             description: 'Health financing through Universal Health Coverage aimed at strengthening of the health system.',
             icon: ShieldCheck,
-            gradient: 'from-emerald-500 to-teal-600',
-            glow: 'group-hover:shadow-emerald-200'
+            gradient: 'from-primary-500 to-accent-600',
+            glow: 'group-hover:shadow-primary-200'
         },
         {
             title: 'Community Participation',
             description: 'Community participation with emphasis on dialogue structures.',
             icon: Users,
-            gradient: 'from-amber-500 to-orange-600',
-            glow: 'group-hover:shadow-amber-200'
+            gradient: 'from-accent-500 to-orange-600',
+            glow: 'group-hover:shadow-accent-200'
         },
         {
             title: 'Essential Medicines',
@@ -48,8 +48,8 @@ export function InterventionAreas() {
             title: 'Health Education',
             description: 'Facilitate capacity building throughout the medicines supply chain system in the Region, sensitization of priority health programs.',
             icon: Stethoscope,
-            gradient: 'from-teal-500 to-cyan-600',
-            glow: 'group-hover:shadow-teal-200'
+            gradient: 'from-accent-500 to-cyan-600',
+            glow: 'group-hover:shadow-accent-200'
         },
         {
             title: 'Maternal & Child Health',
@@ -71,7 +71,7 @@ export function InterventionAreas() {
         {
             title: 'The State',
             description: 'Includes Administrative and Local Authorities, regional actors, managers of health facilities, and representatives of district health services.',
-            gradient: 'from-emerald-500 to-green-600',
+            gradient: 'from-primary-500 to-green-600',
             icon: '🏛️'
         },
         {
@@ -83,7 +83,7 @@ export function InterventionAreas() {
         {
             title: 'The Community',
             description: 'Community representatives from the six divisions in the South West Region as well as representatives from Confessional Health Services.',
-            gradient: 'from-amber-500 to-orange-600',
+            gradient: 'from-accent-500 to-orange-600',
             icon: '🤝'
         }
     ]
@@ -101,7 +101,7 @@ export function InterventionAreas() {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-block text-sm font-bold tracking-[0.2em] text-emerald-600 uppercase mb-4"
+                        className="inline-block text-sm font-bold tracking-[0.2em] text-primary-600 uppercase mb-4"
                     >
                         Our Focus Areas
                     </motion.span>
@@ -113,14 +113,14 @@ export function InterventionAreas() {
                         className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight"
                     >
                         Areas of
-                        <span className="block bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-500">Intervention</span>
+                        <span className="block bg-clip-text text-transparent bg-gradient-to-r from-primary-600 via-accent-500 to-cyan-500">Intervention</span>
                     </motion.h2>
                     <motion.div
                         initial={{ scaleX: 0 }}
                         whileInView={{ scaleX: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2, duration: 0.6 }}
-                        className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto rounded-full"
+                        className="w-20 h-1 bg-gradient-to-r from-primary-500 to-cyan-500 mx-auto rounded-full"
                     />
                 </div>
 
@@ -141,7 +141,7 @@ export function InterventionAreas() {
                             <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
                                 <item.icon className="w-6 h-6 text-white" />
                             </div>
-                            <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-emerald-700 transition-colors">{item.title}</h3>
+                            <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-primary-700 transition-colors">{item.title}</h3>
                             <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
                         </motion.div>
                     ))}
@@ -156,7 +156,7 @@ export function InterventionAreas() {
                         transition={{ duration: 0.6 }}
                         className="relative overflow-hidden rounded-[2rem] bg-white p-10 md:p-16 shadow-sm border border-gray-100"
                     >
-                        <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-50 rounded-full blur-3xl opacity-60" />
+                        <div className="absolute top-0 right-0 w-80 h-80 bg-primary-50 rounded-full blur-3xl opacity-60" />
                         <div className="absolute bottom-0 left-0 w-60 h-60 bg-cyan-50 rounded-full blur-3xl opacity-60" />
 
                         <div className="relative z-10">
