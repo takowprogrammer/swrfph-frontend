@@ -23,7 +23,7 @@ export default function TermsOfServicePage() {
             transition={{ delay: 0.1 }}
             className="text-primary-300 text-lg uppercase tracking-wider font-semibold"
           >
-            Last updated: October 2026
+            Last updated: July 2026
           </motion.p>
         </div>
       </section>
