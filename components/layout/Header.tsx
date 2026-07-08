@@ -5,9 +5,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Menu, X, Search, Facebook, Linkedin, MessageCircle, ChevronDown } from 'lucide-react'
+import { Menu, X, Facebook, Linkedin, MessageCircle, ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { SearchOverlay } from './Searchoverlay'
 
 // ─── NAV CONFIG ─────────────────────────────────────────────────────────────
 
@@ -23,7 +22,6 @@ const nav = [
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null)
   const pathname = usePathname()
 
@@ -74,11 +72,8 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Right: search + CTA */}
+          {/* Right: CTA */}
           <div className="flex items-center gap-3">
-            <button onClick={() => setSearchOpen(true)} className="p-2 text-primary-950 hover:text-accent-500 transition-colors focus-visible:ring-2 focus-visible:ring-primary-500/50 outline-none rounded-sm">
-              <Search size={20} />
-            </button>
             <Link href="/contact">
               <Button className="bg-primary-600 hover:bg-primary-700 text-white rounded-none px-6 h-11 font-semibold text-[11px] uppercase tracking-[0.15em] hidden md:flex hover:-translate-y-0.5 active:scale-95 duration-200 transition-all focus-visible:ring-4 focus-visible:ring-primary-500/50">
                 Partner with Us
@@ -138,8 +133,6 @@ export function Header() {
         </AnimatePresence>
       </header>
 
-      {/* ── SEARCH OVERLAY ── */}
-      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   )
 }
