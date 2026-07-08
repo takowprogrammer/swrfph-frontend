@@ -20,7 +20,7 @@ const slides = [
     image: '/cargo.jpeg',
     heading: 'Reaching Every District With Essential Health Supplies',
     body: 'Our distribution network spans all 21 health districts, ensuring no community is left without critical medicines.',
-    cta: false,
+    cta: true,
     // AOS "Zoom In" Aura: Sharp scale up from 0.85
     variants: {
       initial: { opacity: 0, scale: 0.85 },
@@ -31,7 +31,7 @@ const slides = [
     image: '/test.jpeg',
     heading: 'Professionals Committed to Public Health Excellence',
     body: 'Dedicated health officers and staff driving impact across the South West Region every single day.',
-    cta: false,
+    cta: true,
     // AOS "Fade Left" Aura: High X offset
     variants: {
       initial: { opacity: 0, x: 80 },
