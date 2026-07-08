@@ -22,7 +22,7 @@ export default function AuthLayout({
                         </div>
                         <nav className="hidden md:flex items-center space-x-4">
                             <Link href="/about" className="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">About</Link>
-                            <Link href="/services" className="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Services</Link>
+                            <Link href="/our-work" className="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Our Work</Link>
                             <Link href="/contact" className="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Contact</Link>
                             <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white">Login</Button>
                         </nav>

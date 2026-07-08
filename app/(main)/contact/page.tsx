@@ -15,7 +15,6 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import Image from "next/image";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { FAQs } from "@/components/sections/FAQs";
-import { InterventionPartners } from "../interventions/Interventionpartners";
 
 const contactDetails = [
   {
@@ -193,7 +192,6 @@ export default function ContactPage() {
         </div>
       </div> */}
       <FAQs />
-      <InterventionPartners />
 
       {/* Minimal CTA */}
       {/* <div className="bg-brand-blue-950 text-white py-20 text-center relative overflow-hidden">

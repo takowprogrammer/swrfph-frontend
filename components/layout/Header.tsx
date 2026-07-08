@@ -14,17 +14,8 @@ import { SearchOverlay } from './Searchoverlay'
 const nav = [
   { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
-  {name: "Contact", href: "/contact"},
-  {
-    name: 'Our Work',
-    children: [
-      { name: 'Area Interventions', href: '/interventions' },
-      { name: 'Our Services', href: '/services' },
-      { name: 'Sections', href: '/sections' },
-    ],
-  },
-  { name: 'Team', href: '/team' },
-  { name: 'Resources', href: '/resources' },
+  { name: 'Our Work', href: '/our-work' },
+  { name: 'Contact', href: '/contact' },
 ]
 
 // ─── DROPDOWN ────────────────────────────────────────────────────────────────

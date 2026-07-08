@@ -9,20 +9,18 @@ const footerLinks = {
     'About': [
         { name: 'Our History', href: '/about' },
         { name: 'Vision & Mission', href: '/about' },
-        { name: 'Partners', href: '/intervention' },
-        { name: 'Our Team', href: '/team' },
+        { name: 'Leadership', href: '/about' },
     ],
-    'Operational Pillars': [
-        { name: 'Pharmaceutical Management', href: '/sections' },
-        { name: 'Administration & Finance', href: '/sections' },
-        { name: 'Partnership & Promotion', href: '/sections' },
-        { name: 'Universal Health Coverage', href: '/sections' },
+    'Our Work': [
+        { name: 'Areas of Intervention', href: '/our-work' },
+        { name: 'Our Sections', href: '/our-work' },
+        { name: 'Universal Health Coverage', href: '/our-work' },
+        { name: 'Our Partners', href: '/our-work' },
     ],
-    'Programs': [
-        { name: 'Essential Medicines', href: '/intervention' },
-        { name: 'Health Education', href: '/intervention' },
-        { name: 'Maternal & Child Health', href: '/intervention' },
-        { name: 'Disease Management', href: '/sections' },
+    'Legal': [
+        { name: 'Privacy Policy', href: '/privacy' },
+        { name: 'Terms of Service', href: '/terms' },
+        { name: 'Contact Us', href: '/contact' },
     ],
 }
 

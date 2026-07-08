@@ -1,16 +1,13 @@
 "use client";
 
 import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { ScrollProgress } from "@/components/ui/ScrollProgress";
-import { BackToTop } from "@/components/ui/BackToTop";
 import { Footer2 } from "@/components/layout/Footer2";
 import { LocateUs } from "@/components/sections/LocateUs";
+import { CallToActionBanner } from "@/components/sections/CallToActionBanner";
+import { CookieBanner } from "@/components/ui/CookieBanner";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import AOS from "aos";
-import { InterventionCTA } from "./interventions/Interventioncta";
-import { CookieBanner } from "@/components/ui/CookieBanner";
 
 export default function MainLayout({
   children,
@@ -21,11 +18,10 @@ export default function MainLayout({
 
   useEffect(() => {
     AOS.init({
-      // Global settings for that "dense/smooth" feel
-      duration: 400, // Reduced from 1000ms for snappier UX
-      once: true, // Only animate once
-      easing: "ease-out-quad", // Smooth deceleration
-      delay: 100, // Slight delay before starting
+      duration: 400,
+      once: true,
+      easing: "ease-out-quad",
+      delay: 100,
     });
   }, []);
 
@@ -39,14 +35,13 @@ export default function MainLayout({
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* <ScrollProgress /> */}
       <Header />
       <main className="flex-1">{children}</main>
-      <InterventionCTA />
+      <CallToActionBanner />
       <LocateUs />
       <Footer2 />
       <CookieBanner />
-      {/* <BackToTop /> */}
     </div>
   );
 }
+
