@@ -20,7 +20,7 @@ const contactDetails = [
   {
     icon: Phone,
     title: "Phone",
-    value: "+237 33 32 29 43",
+    value: "+237 333 322 943",
     description: "Mon - Fri, 8am - 6pm",
   },
   {

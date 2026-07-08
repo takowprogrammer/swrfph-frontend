@@ -57,7 +57,7 @@ export function ContactSection() {
               <ContactInfo
                 icon={<Phone className="text-primary-500" size={24} />}
                 title="Direct Support Line"
-                detail="+237 6XX XXX XXX"
+                detail="+237 333 322 943"
                
               />
               <ContactInfo

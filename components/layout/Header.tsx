@@ -30,7 +30,7 @@ export function Header() {
       {/* ── TOP BAR ── */}
       <div className="bg-accent-600 text-white px-6 md:px-8 py-2">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <p className="text-sm">Emergency Supply Line: +237 333 322 943</p>
+          <p className="text-sm">Contact us: +237 333 322 943</p>
           <div className="items-center gap-3 hidden md:flex">
             {[Facebook, Linkedin, MessageCircle].map((Icon, i) => (
               <a key={i} href="#" className="text-white bg-white/20 p-2 rounded-full hover:text-accent-200 transition-colors focus-visible:ring-2 focus-visible:ring-white outline-none">
@@ -124,7 +124,7 @@ export function Header() {
                 </nav>
 
                 <div className="p-6 border-t border-slate-100">
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Emergency Supply Line</p>
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Contact us</p>
                   <p className="text-primary-950 font-black text-lg">+237 333 322 943</p>
                 </div>
               </motion.div>
