@@ -18,52 +18,7 @@ const nav = [
   { name: 'Contact', href: '/contact' },
 ]
 
-// ─── DROPDOWN ────────────────────────────────────────────────────────────────
-
-function Dropdown({ item }: { item: typeof nav[number] }) {
-  const [open, setOpen] = useState(false)
-  const timeout = useRef<ReturnType<typeof setTimeout> | null>(null)
-
-  const show = () => {
-    if (timeout.current) clearTimeout(timeout.current)
-    setOpen(true)
-  }
-  const hide = () => {
-    timeout.current = setTimeout(() => setOpen(false), 120)
-  }
-
-  return (
-    <div onMouseEnter={show} onMouseLeave={hide} className="relative">
-      <button className="flex items-center gap-1 px-5 py-2 text-[13px] font-bold uppercase tracking-wider text-primary-950 hover:text-accent-500 transition-colors focus-visible:ring-2 focus-visible:ring-primary-500/50 outline-none rounded-sm">
-        {item.name}
-        <ChevronDown size={13} className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
-      </button>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
-            transition={{ duration: 0.18 }}
-            className="absolute top-full left-0 mt-1 w-48 bg-white border border-slate-100 shadow-lg shadow-slate-200/60 z-50"
-          >
-            {item.children!.map((child) => (
-              <Link
-                key={child.href}
-                href={child.href}
-                className="block px-5 py-3 text-[12px] font-bold uppercase tracking-wider text-primary-950 hover:bg-slate-50 hover:text-accent-500 transition-colors border-b border-slate-50 last:border-0"
-              >
-                {child.name}
-              </Link>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  )
-}
-
+// ─── DROPDOWN REMOVED ─────────────────────────────────────────────────────────
 // ─── HEADER ──────────────────────────────────────────────────────────────────
 
 export function Header() {
@@ -108,19 +63,15 @@ export function Header() {
 
           {/* Center: desktop nav */}
           <nav className="hidden lg:flex items-center gap-1">
-            {nav.map((item) =>
-              item.children ? (
-                <Dropdown key={item.name} item={item} />
-              ) : (
-                <Link
-                  key={item.name}
-                  href={item.href!}
-                  className={`px-5 py-2 text-[13px] font-bold uppercase tracking-wider transition-colors hover:text-accent-500 focus-visible:ring-2 focus-visible:ring-primary-500/50 outline-none rounded-sm ${pathname === item.href ? 'text-accent-500' : 'text-primary-950'}`}
-                >
-                  {item.name}
-                </Link>
-              )
-            )}
+            {nav.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`px-5 py-2 text-[13px] font-bold uppercase tracking-wider transition-colors hover:text-accent-500 focus-visible:ring-2 focus-visible:ring-primary-500/50 outline-none rounded-sm ${pathname === item.href ? 'text-accent-500' : 'text-primary-950'}`}
+              >
+                {item.name}
+              </Link>
+            ))}
           </nav>
 
           {/* Right: search + CTA */}
@@ -151,14 +102,12 @@ export function Header() {
                 className="fixed inset-0  bg-white/30 backdrop-blur-md z-40 lg:hidden"
                 onClick={() => setMenuOpen(false)}
               />
-              {
-                menuOpen && <motion.div
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                 className='fixed top-4 right-4 z-50 bg-white rounded-full p-2' onClick={() => setMenuOpen(false)}><X className='text-gray-700'/> </motion.div>
-              }
+                className='fixed top-4 right-4 z-50 bg-white rounded-full p-2' onClick={() => setMenuOpen(false)}><X className='text-gray-700'/> </motion.div>
               <motion.div
                 initial={{ x: '-100%' }}
                 animate={{ x: 0 }}
@@ -167,50 +116,16 @@ export function Header() {
                 className="fixed top-0 left-0 bottom-0 w-[280px] bg-white z-50 lg:hidden flex flex-col shadow-xl overflow-y-auto"
               >
                 <nav className="flex-1 py-6 divide-y divide-slate-50">
-                  {nav.map((item) =>
-                    item.children ? (
-                      <div key={item.name}>
-                        <button
-                          onClick={() => setMobileExpanded(mobileExpanded === item.name ? null : item.name)}
-                          className="w-full flex items-center justify-between px-6 py-4 text-[13px] font-black uppercase tracking-wider text-primary-950"
-                        >
-                          {item.name}
-                          <ChevronDown size={14} className={`transition-transform duration-200 ${mobileExpanded === item.name ? 'rotate-180' : ''}`} />
-                        </button>
-                        <AnimatePresence>
-                          {mobileExpanded === item.name && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="overflow-hidden bg-slate-50"
-                            >
-                              {item.children.map((child) => (
-                                <Link
-                                  key={child.href}
-                                  href={child.href}
-                                  onClick={() => setMenuOpen(false)}
-                                  className="block px-8 py-3 text-[12px] font-bold uppercase tracking-wider text-slate-500 hover:text-accent-500 transition-colors"
-                                >
-                                  {child.name}
-                                </Link>
-                              ))}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    ) : (
-                      <Link
-                        key={item.name}
-                        href={item.href!}
-                        onClick={() => setMenuOpen(false)}
-                        className={`block px-6 py-4 text-[13px] font-black uppercase tracking-wider transition-colors hover:text-accent-500 ${pathname === item.href ? 'text-accent-500' : 'text-primary-950'}`}
-                      >
-                        {item.name}
-                      </Link>
-                    )
-                  )}
+                  {nav.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      className={`block px-6 py-4 text-[13px] font-black uppercase tracking-wider transition-colors hover:text-accent-500 ${pathname === item.href ? 'text-accent-500' : 'text-primary-950'}`}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
                 </nav>
 
                 <div className="p-6 border-t border-slate-100">
