@@ -132,15 +132,11 @@ export function ImageCarousel() {
                                     </p>
 
                                     <div className="flex space-x-4">
-                                        <Link href="/about">
-                                            <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300">
-                                                Learn More
-                                            </button>
+                                        <Link href="/about" className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300 text-center flex items-center justify-center">
+                                            Learn More
                                         </Link>
-                                        <Link href="/programs">
-                                            <button className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-6 py-3 rounded-lg font-semibold transition-colors duration-300">
-                                                Our Programs
-                                            </button>
+                                        <Link href="/programs" className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-6 py-3 rounded-lg font-semibold transition-colors duration-300 text-center flex items-center justify-center">
+                                            Our Programs
                                         </Link>
                                     </div>
                                 </div>
