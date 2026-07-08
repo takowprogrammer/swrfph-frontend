@@ -7,17 +7,13 @@ export function Footer2() {
     { label: 'Our History', href: '/about#history' },
     { label: 'Our Vision', href: '/about#vision' },
     { label: 'Our Mission', href: '/about#mission' },
-    { label: 'Meet the Team', href: '/team' },
-    { label: 'Our Partners', href: '/interventions#partners' },
     { label: 'Testimonials', href: '/#testimonials' },
   ]
 
   const popularLinks = [
     { label: 'Home Page', href: '/' },
-    { label: 'Operational Sections', href: '/sections' },
+    { label: 'Our Work', href: '/our-work' },
     { label: 'Contact Us', href: '/contact' },
-    { label: 'Resources', href: '/resources' },
-    { label: 'Districts', href: '/districts' },
     { label: 'Locate Us', href: '/#locate' },
   ]
 
