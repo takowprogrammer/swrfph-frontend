@@ -9,32 +9,30 @@ const footerLinks = {
     'About': [
         { name: 'Our History', href: '/about' },
         { name: 'Vision & Mission', href: '/about' },
-        { name: 'Partners', href: '/intervention' },
-        { name: 'Our Team', href: '/team' },
+        { name: 'Leadership', href: '/about' },
     ],
-    'Operational Pillars': [
-        { name: 'Pharmaceutical Management', href: '/sections' },
-        { name: 'Administration & Finance', href: '/sections' },
-        { name: 'Partnership & Promotion', href: '/sections' },
-        { name: 'Universal Health Coverage', href: '/sections' },
+    'Our Work': [
+        { name: 'Areas of Intervention', href: '/our-work' },
+        { name: 'Our Sections', href: '/our-work' },
+        { name: 'Universal Health Coverage', href: '/our-work' },
+        { name: 'Our Partners', href: '/our-work' },
     ],
-    'Programs': [
-        { name: 'Essential Medicines', href: '/intervention' },
-        { name: 'Health Education', href: '/intervention' },
-        { name: 'Maternal & Child Health', href: '/intervention' },
-        { name: 'Disease Management', href: '/sections' },
+    'Legal': [
+        { name: 'Privacy Policy', href: '/privacy' },
+        { name: 'Terms of Service', href: '/terms' },
+        { name: 'Contact Us', href: '/contact' },
     ],
 }
 
 export function Footer() {
     return (
-        <footer className="relative bg-[#0c132b] text-white overflow-hidden">
+        <footer className="relative bg-primary-950 text-white overflow-hidden">
             {/* Gradient accent line */}
-            <div className="h-px bg-gradient-to-r from-transparent via-brand-green-500 to-transparent" />
+            <div className="h-px bg-gradient-to-r from-transparent via-primary-500 to-transparent" />
 
             {/* Decorative blobs */}
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-blue-500/5 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-green-500/5 rounded-full blur-3xl" />
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-500/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl" />
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 mb-16">
@@ -51,19 +49,19 @@ export function Footer() {
                         <div className="space-y-3">
                             <div className="flex items-center gap-3 text-sm">
                                 <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center">
-                                    <MapPin className="h-4 w-4 text-brand-green-400" />
+                                    <MapPin className="h-4 w-4 text-primary-400" />
                                 </div>
                                 <span className="text-gray-400">South West Region, Cameroon</span>
                             </div>
                             <div className="flex items-center gap-3 text-sm">
                                 <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center">
-                                    <Phone className="h-4 w-4 text-brand-green-400" />
+                                    <Phone className="h-4 w-4 text-primary-400" />
                                 </div>
-                                <span className="text-gray-400">+237 33 32 29 43</span>
+                                <span className="text-gray-400">+237 333 322 943</span>
                             </div>
                             <div className="flex items-center gap-3 text-sm">
                                 <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center">
-                                    <Mail className="h-4 w-4 text-brand-green-400" />
+                                    <Mail className="h-4 w-4 text-primary-400" />
                                 </div>
                                 <span className="text-gray-400">info@swrfhp.cm</span>
                             </div>
@@ -79,7 +77,7 @@ export function Footer() {
                                     <li key={link.name}>
                                         <Link
                                             href={link.href}
-                                            className="group text-gray-400 hover:text-white text-sm transition-colors duration-300 flex items-center gap-1"
+                                            className="group text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/50 rounded-sm"
                                         >
                                             {link.name}
                                             <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-0.5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200" />

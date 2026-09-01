@@ -43,7 +43,7 @@ export function ServicesPreview() {
             description: 'Malaria control initiatives including distribution of preventive medicines and mosquito nets.',
             imageUrl: 'https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg',
             iconName: 'globe',
-            color: 'from-green-500 to-emerald-600',
+            color: 'from-green-500 to-primary-600',
             bgColor: 'bg-green-50',
             textColor: 'text-green-700'
         },
@@ -61,7 +61,7 @@ export function ServicesPreview() {
             description: 'Implementation of UHC Phase 1 including consultation services and health financing.',
             imageUrl: 'https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg',
             iconName: 'zap',
-            color: 'from-orange-500 to-amber-600',
+            color: 'from-orange-500 to-accent-600',
             bgColor: 'bg-orange-50',
             textColor: 'text-orange-700'
         },

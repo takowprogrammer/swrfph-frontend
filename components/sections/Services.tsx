@@ -46,7 +46,7 @@ export function Services() {
             imageUrl: 'https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg',
             icon: Globe,
             progress: 87,
-            color: 'from-green-500 to-emerald-600',
+            color: 'from-green-500 to-primary-600',
             bgColor: 'bg-green-50',
             textColor: 'text-green-700'
         },
@@ -66,7 +66,7 @@ export function Services() {
             imageUrl: 'https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg',
             icon: Zap,
             progress: 92,
-            color: 'from-orange-500 to-amber-600',
+            color: 'from-orange-500 to-accent-600',
             bgColor: 'bg-orange-50',
             textColor: 'text-orange-700'
         },

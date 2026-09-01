@@ -1,148 +1,138 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Menu, X, Search, Heart, Bell, Facebook, Linkedin, MessageCircle } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+import { Button } from '@/components/ui/button'
+import { Menu, X, Facebook, Linkedin, MessageCircle, ChevronDown } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+
+// ─── NAV CONFIG ─────────────────────────────────────────────────────────────
+
+const nav = [
+  { name: 'Home', href: '/' },
+  { name: 'About Us', href: '/about' },
+  { name: 'Our Work', href: '/our-work' },
+  { name: 'Contact', href: '/contact' },
+]
+
+// ─── DROPDOWN REMOVED ─────────────────────────────────────────────────────────
+// ─── HEADER ──────────────────────────────────────────────────────────────────
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname();
-
-  const navigation = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Medical Supply", href: "/supply" },
-    { name: "Districts", href: "/districts" },
-    { name: "Resources", href: "/resources" },
-  ];
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null)
+  const pathname = usePathname()
 
   return (
     <>
-      <div className="bg-amber-600 text-white px-6 md:px-8 py-2 ">
+      {/* ── TOP BAR ── */}
+      <div className="bg-accent-600 text-white px-6 md:px-8 py-2">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <p>
-            <span className="text-sm">Emergency Supply Line:</span> +237 333 322
-            943
-          </p>
-
-          <div className="items-center gap-4 hidden md:flex">
-            <a href="#" className="text-white bg-white/20 p-2 rounded-full hover:text-amber-400 transition-colors">
-              <Facebook size={16} />
-            </a>
-            <a href="#" className="text-white bg-white/20 p-2 rounded-full hover:text-amber-400 transition-colors">
-              <Linkedin size={16} />
-            </a>
-            <a href="#" className="text-white bg-white/20 p-2 rounded-full hover:text-amber-400 transition-colors">
-              <MessageCircle size={16} />
-            </a>
+          <p className="text-sm">Contact us: +237 333 322 943</p>
+          <div className="items-center gap-3 hidden md:flex">
+            {[Facebook, Linkedin, MessageCircle].map((Icon, i) => (
+              <a key={i} href="#" className="text-white bg-white/20 p-2 rounded-full hover:text-accent-200 transition-colors focus-visible:ring-2 focus-visible:ring-white outline-none">
+                <Icon size={14} />
+              </a>
+            ))}
           </div>
         </div>
       </div>
-      <header className="sticky top-0 z-50 w-full bg-white border-b">
-        <div className="container mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-          {/* MOBILE: MENU + LOGO LEFT */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 text-emerald-950  rounded-lg transition-colors"
-            >
-              {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
-            </button>
 
+      {/* ── MAIN NAV ── */}
+      <header className="sticky top-0 z-50 w-full bg-white border-b border-slate-100">
+        <div className="container mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
+
+          {/* Left: hamburger + logo */}
+          <div className="flex items-center gap-3">
+            <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden p-2 text-primary-950 focus-visible:ring-2 focus-visible:ring-primary-500/50 outline-none rounded-sm">
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative">
-                <Image
-                  src="/swrfph-logo.png"
-                  alt="SWRFPH Logo"
-                  width={48}
-                  height={48}
-                  className="rounded-full ring-2 ring-emerald-800 group-hover:ring-amber-400 transition-all"
-                />
-                {/* Small "Online" indicator for a slicker look */}
-                {/* <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-emerald-950 rounded-full"></span> */}
-              </div>
+              <Image src="/swrfph-logo.png" alt="SWRFHP" width={48} height={48} className="rounded-full ring-2 ring-primary-800  transition-all" />
               <div className="hidden sm:block">
-                <span className=" font-black text-sm block tracking-tighter leading-none">
-                  SWRFHP
-                </span>
-                <span className="text-[9px] text-emerald-700 uppercase font-bold tracking-[0.2em]">
-                  Cameroon
-                </span>
+                <span className="font-black text-sm block tracking-tighter leading-none">SWRFHP</span>
+                <span className="text-[9px] text-primary-700 uppercase font-bold tracking-[0.2em]">Cameroon</span>
               </div>
             </Link>
           </div>
 
-          {/* DESKTOP NAV: CLEAN & SPACED */}
+          {/* Center: desktop nav */}
           <nav className="hidden lg:flex items-center gap-1">
-            {navigation.map((item) => (
+            {nav.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`px-5 py-2 text-[13px] font-bold uppercase tracking-wider transition-all hover:text-amber-400 ${
-                  pathname === item.href ? "text-amber-400" : "text-emerald-950"
-                }`}
+                className={`px-5 py-2 text-[13px] font-bold uppercase tracking-wider transition-colors hover:text-accent-500 focus-visible:ring-2 focus-visible:ring-primary-500/50 outline-none rounded-sm ${pathname === item.href ? 'text-accent-500' : 'text-primary-950'}`}
               >
                 {item.name}
               </Link>
             ))}
           </nav>
 
-          {/* RIGHT SIDE: UTILITY */}
+          {/* Right: CTA */}
           <div className="flex items-center gap-3">
-            <button className="p-2 text-emerald-950 hover:text-emerald-950 transition-colors">
-              <Search size={20} />
-            </button>
-
-            {/* The Red CTA - Using your Logo Red */}
             <Link href="/contact">
-              <Button className="bg-emerald-600 hidden md:block hover:bg-emerald-800 text-white rounded-none px-6 h-11 font-semibold text-[11px] uppercase tracking-[0.15em]">
-                Partner with us
+              <Button className="bg-primary-600 hover:bg-primary-700 text-white rounded-none px-6 h-11 font-semibold text-[11px] uppercase tracking-[0.15em] hidden md:flex hover:-translate-y-0.5 active:scale-95 duration-200 transition-all focus-visible:ring-4 focus-visible:ring-primary-500/50">
+                Partner with Us
               </Button>
-
-              <Button className="bg-emerald-600 hover:bg-emerald-800 text-white md:hidden rounded-none px-4 py-3 text-[11px] tracking-[0.15em] ">
+              <Button className="bg-primary-600 hover:bg-primary-700 text-white md:hidden rounded-none px-4 h-10 text-[11px] tracking-[0.15em] hover:-translate-y-0.5 active:scale-95 duration-200 transition-all focus-visible:ring-4 focus-visible:ring-primary-500/50">
                 Partner
               </Button>
             </Link>
           </div>
         </div>
 
-        {/* FULL SCREEN MOBILE OVERLAY */}
+        {/* ── MOBILE SIDEBAR ── */}
         <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed inset-0 top-20 bg-white z-40 lg:hidden p-8"
-            >
-              <div className="flex flex-col gap-6">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-3xl font-black text-emerald-950 hover:text-amber-400 transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-                <hr className="border-emerald-800 my-4" />
-                <p className="text-emerald-500 text-sm font-bold uppercase tracking-widest">
-                  Emergency Supply Line
-                </p>
-                <p className="text-emerald-950 text-xl font-mono">
-                  +237 XXX XXX XXX
-                </p>
-              </div>
-            </motion.div>
+          {menuOpen && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0  bg-white/30 backdrop-blur-md z-40 lg:hidden"
+                onClick={() => setMenuOpen(false)}
+              />
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className='fixed top-4 right-4 z-50 bg-white rounded-full p-2' onClick={() => setMenuOpen(false)}><X className='text-gray-700'/> </motion.div>
+              <motion.div
+                initial={{ x: '-100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '-100%' }}
+                transition={{ type: 'spring', damping: 28, stiffness: 220 }}
+                className="fixed top-0 left-0 bottom-0 w-[280px] bg-white z-50 lg:hidden flex flex-col shadow-xl overflow-y-auto"
+              >
+                <nav className="flex-1 py-6 divide-y divide-slate-50">
+                  {nav.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      className={`block px-6 py-4 text-[13px] font-black uppercase tracking-wider transition-colors hover:text-accent-500 ${pathname === item.href ? 'text-accent-500' : 'text-primary-950'}`}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </nav>
+
+                <div className="p-6 border-t border-slate-100">
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">Contact us</p>
+                  <p className="text-primary-950 font-black text-lg">+237 333 322 943</p>
+                </div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </header>
+
     </>
-  );
+  )
 }

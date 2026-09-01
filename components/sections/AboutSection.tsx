@@ -33,7 +33,7 @@ export function AboutSection() {
             <div className="max-w-xl">
               {/* Title */}
               <h2
-                className="text-3xl lg:text-4xl font-bold text-emerald-950/90 mb-4 leading-tight"
+                className="text-3xl lg:text-4xl font-bold text-primary-950/90 mb-4 leading-tight"
                 data-aos="fade-up"
                 data-aos-duration="900"
                 data-aos-delay="300"
@@ -82,7 +82,7 @@ export function AboutSection() {
                 data-aos="fade-up"
                 data-aos-duration="1000"
                 data-aos-delay="700"
-                className="inline-flex items-center gap-2 text-[#064E3B] font-bold text-sm border-b-2 border-transparent border-amber-500 pb-1 transition-all"
+                className="inline-flex items-center gap-2 text-[#064E3B] font-bold text-sm border-b-2 border-transparent border-accent-500 pb-1 transition-all"
               >
                 Learn more about our mission
                 <ArrowRight size={16} />

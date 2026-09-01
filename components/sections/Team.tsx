@@ -12,7 +12,7 @@ export function Team() {
     return (
         <section id="team" className="relative bg-gray-50 py-16 sm:py-20 overflow-hidden">
             {/* Decorative */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-emerald-50 rounded-full blur-3xl opacity-50" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary-50 rounded-full blur-3xl opacity-50" />
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -21,7 +21,7 @@ export function Team() {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-block text-sm font-bold tracking-[0.2em] text-emerald-600 uppercase mb-4"
+                        className="inline-block text-sm font-bold tracking-[0.2em] text-primary-600 uppercase mb-4"
                     >
                         Leadership
                     </motion.span>
@@ -33,7 +33,7 @@ export function Team() {
                         className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight"
                     >
                         Meet Our
-                        <span className="block bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-500">Dedicated Team</span>
+                        <span className="block bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500">Dedicated Team</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -60,7 +60,7 @@ export function Team() {
                             <div className="flex flex-col md:flex-row gap-12 items-center">
                                 <div className="md:w-1/3 flex flex-col items-center text-center shrink-0">
                                     <div className="relative group">
-                                        <div className="absolute -inset-2 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full blur opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
+                                        <div className="absolute -inset-2 bg-gradient-to-br from-primary-400 to-accent-500 rounded-full blur opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
                                         <div className="relative w-44 h-44 rounded-full overflow-hidden shadow-2xl border-4 border-white">
                                             <Image
                                                 src="https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg"
@@ -71,7 +71,7 @@ export function Team() {
                                         </div>
                                     </div>
                                     <h3 className="text-2xl font-extrabold text-gray-900 mt-6">Mrs. Ngondo W. Musenja</h3>
-                                    <p className="text-emerald-600 font-semibold text-sm uppercase tracking-wider mt-1">The Administrator</p>
+                                    <p className="text-primary-600 font-semibold text-sm uppercase tracking-wider mt-1">The Administrator</p>
                                 </div>
                                 <div className="md:w-2/3 space-y-4">
                                     <p className="text-gray-600 leading-relaxed text-lg">
@@ -122,7 +122,7 @@ export function Team() {
                                 viewport={{ once: true }}
                                 className="group bg-white p-8 rounded-2xl border border-gray-100 hover:shadow-xl transition-all duration-500 text-center"
                             >
-                                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-100 group-hover:scale-110 transition-transform">
+                                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-accent-600 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary-100 group-hover:scale-110 transition-transform">
                                     <Users className="w-7 h-7 text-white" />
                                 </div>
                                 <h4 className="text-xl font-bold text-gray-900 mb-3">Partnership & Health Promotion</h4>

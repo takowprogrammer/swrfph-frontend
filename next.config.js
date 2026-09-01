@@ -2,19 +2,13 @@
 const nextConfig = {
     // Keep reactStrictMode false to avoid potential hydration issues
     reactStrictMode: false,
+    
+    // Enable static export for seamless Cloudflare deployment
+    output: 'export',
 
-    // Essential configuration for external images
+    // Cloudflare Pages requires unoptimized images when using static export
     images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'images.unsplash.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'images.pexels.com',
-            },
-        ],
+        unoptimized: true,
     },
 
     // Ensure the API URL environment variable is available

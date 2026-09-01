@@ -12,7 +12,7 @@ export function HomePreview() {
             title: 'Serving Communities Since 1989',
             description: 'From the Primary Health Care Essential Drug Program to a full Public Interest Group, discover our journey of over 35 years serving the South West Region of Cameroon.',
             href: '/about',
-            gradient: 'from-brand-green-500 to-brand-green-600',
+            gradient: 'from-primary-500 to-primary-600',
             icon: Heart,
             features: ['Our Vision & Mission', 'Historical Timeline', 'Administrator\'s Message']
         },
@@ -21,7 +21,7 @@ export function HomePreview() {
             title: 'Comprehensive Health Impact',
             description: 'Explore our 8 key areas of intervention spanning essential medicines, community health education, maternal care, and multi-partner collaboration.',
             href: '/intervention',
-            gradient: 'from-brand-blue-500 to-brand-blue-700',
+            gradient: 'from-accent-500 to-accent-700',
             icon: Shield,
             features: ['Essential Medicines', 'Health Financing', 'Community Sensitization']
         },
@@ -30,7 +30,7 @@ export function HomePreview() {
             title: 'Four Major Operational Pillars',
             description: 'The SWRFHP operates under four major sections: Pharmaceutical Products Management, Administration & Finance, Partnership & Health Promotion, and Universal Health Coverage.',
             href: '/sections',
-            gradient: 'from-brand-blue-600 to-brand-blue-800',
+            gradient: 'from-accent-600 to-accent-800',
             icon: Pill,
             features: ['Pharmaceutical Management', 'Universal Health Coverage', 'Administration & Finance']
         },
@@ -55,7 +55,7 @@ export function HomePreview() {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-block text-sm font-bold tracking-[0.2em] text-brand-green-600 uppercase mb-4"
+                        className="inline-block text-sm font-bold tracking-[0.2em] text-primary-600 uppercase mb-4"
                     >
                         Explore
                     </motion.span>
@@ -67,7 +67,7 @@ export function HomePreview() {
                         className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight"
                     >
                         Discover
-                        <span className="block bg-clip-text text-transparent bg-gradient-to-r from-brand-blue-600 to-brand-green-500"> Our Work</span>
+                        <span className="block bg-clip-text text-transparent bg-gradient-to-r from-accent-600 to-primary-500"> Our Work</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -91,7 +91,7 @@ export function HomePreview() {
                             transition={{ delay: index * 0.1 }}
                         >
                             <Link href={section.href} className="group block">
-                                <div className="relative bg-white rounded-[2rem] border border-gray-100 shadow-sm p-8 md:p-10 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-brand-blue-900/5 overflow-hidden h-full">
+                                <div className="relative bg-white rounded-[2rem] border border-gray-100 shadow-sm p-8 md:p-10 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-accent-900/5 overflow-hidden h-full">
                                     {/* Gradient accent */}
                                     <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${section.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
@@ -106,7 +106,7 @@ export function HomePreview() {
                                     </span>
 
                                     {/* Title */}
-                                    <h3 className="text-2xl font-bold text-gray-900 mt-2 mb-3 group-hover:text-brand-blue-700 transition-colors">
+                                    <h3 className="text-2xl font-bold text-gray-900 mt-2 mb-3 group-hover:text-accent-700 transition-colors">
                                         {section.title}
                                     </h3>
 
@@ -125,7 +125,7 @@ export function HomePreview() {
                                     </div>
 
                                     {/* CTA */}
-                                    <div className="flex items-center text-brand-blue-600 font-semibold text-sm group-hover:gap-3 gap-2 transition-all">
+                                    <div className="flex items-center text-accent-600 font-semibold text-sm group-hover:gap-3 gap-2 transition-all">
                                         <span>Explore</span>
                                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </div>
